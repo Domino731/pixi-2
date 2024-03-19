@@ -2,6 +2,7 @@ import { ContentContainer } from '../../components/ContentContainer';
 import { ProfileImageFrame } from '../../../components/ImageFrames';
 import { StatisticBar } from './components/StatisticBar';
 import { Container } from 'pixi.js';
+import { LevelBar } from './components/LevelBar';
 
 const config = {
     styles: {
@@ -21,6 +22,7 @@ export class ProfileScreen extends ContentContainer {
             height: 600,
         }));
         this.createStatistics();
+        this.addChild(new LevelBar({ position: { x: 31, y: 360 }, barWidth: 540 }));
     }
 
     private createStatistics() {
@@ -36,7 +38,7 @@ export class ProfileScreen extends ContentContainer {
         ];
 
         const container = new Container();
-        container.position.set(40, 750);
+        container.position.set(40, 800);
         stats.forEach(({ title, onClick }, i) => {
             container.addChild(new StatisticBar({
                 position: { x: 0, y: i * config.styles.statistics.gap },
