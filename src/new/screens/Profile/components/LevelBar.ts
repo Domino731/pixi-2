@@ -1,7 +1,7 @@
 import { Container } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { GAME_COLORS } from '../../../../const/styles';
-
+import { Text } from 'pixi.js';
 
 interface LevelBarOptions {
     position: {
@@ -10,6 +10,10 @@ interface LevelBarOptions {
     };
     barWidth: number;
 }
+
+const LEVELS_OFFSET = 20;
+const LEVELS_WIDTH = 100;
+const LEVELS_HEIGHT = 36;
 
 export class LevelBar extends Container {
     private containerPosition: {
@@ -23,6 +27,9 @@ export class LevelBar extends Container {
         this.containerPosition = position;
         this.barWidth = barWidth;
         this.setProgressBar();
+        this.setLevelText();
+        this.setFixersLevelText();
+        this.setTitleText();
     }
 
     private setProgressBar() {
@@ -56,20 +63,174 @@ export class LevelBar extends Container {
         wrapper.endFill();
 
 
+
+        const wrapper2 = new Graphics();
+        wrapper2.beginFill('#001207');
+        wrapper2.lineStyle(2, GAME_COLORS.lightBlue);
+
+        const points2 = [
+            x, y,
+
+
+            x, y + height - sharpOffset,
+            x + sharpOffset, y + height,
+
+            x + width - sharpOffset2, y + height,
+            x + width, y + height - sharpOffset2,
+
+            x + width, y,
+        ];
+
+        wrapper2.drawPolygon(points2);
+        wrapper2.endFill();
+
+
+
         const progress = new Graphics();
 
 
         progress.beginFill('green');
 
-        progress.drawRect(this.containerPosition.x, this.containerPosition.y, 40, height);
-        // progress.mask = wrapper;
+        progress.drawRect(this.containerPosition.x, this.containerPosition.y, 100, 40);
+        
 
         progress.endFill();
-        wrapper.addChild(progress);
-
+     
+        container.addChild(wrapper2);
         container.addChild(wrapper);
+        container.addChild(progress);
+       
+
+        progress.mask = wrapper;
 
         this.addChild(container);
+        
     }
+
+private setLevelText(){
+    const container = new Container();
+    const yOffset = LEVELS_OFFSET
+    container.position.set(this.containerPosition.x + 10, this.containerPosition.y+ yOffset);
+    const wrapper = new Graphics();
+    wrapper.beginFill();
+    wrapper.lineStyle(2, GAME_COLORS.lightBlue);
+    const width = LEVELS_WIDTH;
+    const height = LEVELS_HEIGHT;
+    const sharpOffset = 10;
+
+    const x = this.containerPosition.x;
+    const y = this.containerPosition.y + yOffset;
+
+    const points = [
+        x, y,
+
+        x, y + height - sharpOffset,
+        x + sharpOffset, y + height,
+
+        x + width, y + height,
+        x + width, y,
+    ];
+
+    wrapper.drawPolygon(points);
+    wrapper.endFill();
+
+    const text = new Text('24', {
+        fontFamily: 'Arial',
+        fontSize: 26,
+        fill: 'white',
+        align: 'center',
+        fontWeight: 'bold',
+    });
+    text.position.set(x + 34, y + 4);
+
+    container.addChild(wrapper)
+    container.addChild(text);
+    this.addChild(container)
+}
+
+
+private setFixersLevelText(){
+    const container = new Container();
+    const yOffset = LEVELS_OFFSET
+    container.position.set(this.containerPosition.x + 10 + LEVELS_WIDTH, this.containerPosition.y+ yOffset);
+    const wrapper = new Graphics();
+    wrapper.beginFill();
+    wrapper.lineStyle(2, GAME_COLORS.lightBlue);
+    const width = LEVELS_WIDTH;
+    const height = LEVELS_HEIGHT;
+    const sharpOffset = 10;
+
+    const x = this.containerPosition.x;
+    const y = this.containerPosition.y + yOffset;
+
+    const points = [
+        x, y,
+
+        x, y + height,
+        
+        x + width, y + height,
+        x + width, y,
+    ];
+
+    wrapper.drawPolygon(points);
+    wrapper.endFill();
+
+    const text = new Text('24', {
+        fontFamily: 'Arial',
+        fontSize: 26,
+        fill: 'white',
+        align: 'center',
+        fontWeight: 'bold',
+    });
+    text.position.set(x + 34, y + 4);
+
+    container.addChild(wrapper)
+    container.addChild(text);
+    this.addChild(container)
+}
+
+private setTitleText(){
+    const container = new Container();
+    const yOffset = LEVELS_OFFSET
+    container.position.set(this.containerPosition.x + 10 + (LEVELS_WIDTH * 2), this.containerPosition.y+ yOffset);
+    const wrapper = new Graphics();
+    wrapper.beginFill();
+    wrapper.lineStyle(2, GAME_COLORS.lightBlue);
+    const width = 280;
+    const height = LEVELS_HEIGHT;
+    const sharpOffset = 10;
+
+    const x = this.containerPosition.x;
+    const y = this.containerPosition.y + yOffset;
+
+    const points = [
+        x, y,
+
+        x, y + height,
+        
+        x + width - sharpOffset, y + height,
+        x + width, y + height - sharpOffset,
+
+        x + width, y,
+    ];
+
+    wrapper.drawPolygon(points);
+    wrapper.endFill();
+
+
+    container.addChild(wrapper)
+    const text = new Text('Scavenger', {
+        fontFamily: 'Arial',
+        fontSize: 2,
+        fill: 'white',
+        align: 'center',
+        fontWeight: 'bold',
+    });
+    text.position.set(x + 34, y + 10);
+
+
+    container.addChild(text);
+    this.addChild(container)
+}
 
 }
