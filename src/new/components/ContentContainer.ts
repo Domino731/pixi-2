@@ -30,14 +30,6 @@ export class ContentContainer extends Container {
         console.log(scaleX, scaleY);
         this.sprite.scale.set(scaleX, 1.2);
         this.addChild(this.sprite);
-        const text = new Text(title, {
-            fontFamily: 'Arial',
-            fontSize: 26,
-            fill: 0xe8132a,
-            align: 'center',
-        });
-        text.position.set(10 + 24, 10 + 8);
-        this.addChild(text);
 
     }
 

@@ -13,43 +13,53 @@ const config = {
     },
 };
 
+const stats = [
+    {
+        title: 'Strength',
+        onClick: () => console.log(123),
+    },
+    {
+        title: 'Strength',
+        onClick: () => console.log(123),
+    },
+];
+
 /** The first screen that shows up after loading */
 export class ProfileScreen extends ContentContainer {
     constructor() {
-        super('profile screen');
+        super();
         this.addChild(new ProfileImageFrame({
             position: { x: 40, y: 40 },
             width: 600,
             height: 600,
         }));
-        this.createStatistics();
+        // this.createStatistics();
         this.addChild(new LevelBar({ position: { x: 31, y: 360 }, barWidth: 540 }));
-        this.addChild(new SectionTitle())
+        this.createStats();
     }
 
-    private createStatistics() {
-        const stats = [
-            {
-                title: 'Strength',
-                onClick: () => console.log(123),
-            },
-            {
-                title: 'Strength',
-                onClick: () => console.log(123),
-            },
-        ];
-
+    private createStats() {
         const container = new Container();
-        container.position.set(40, 800);
+        container.position.set(40, 830);
+
+        container.addChild(new SectionTitle({
+            position: { x: 0, y: 0 },
+            width: 600,
+            text: 'Statistics',
+        }));
+
+        const statisticsWrapper = new Container();
+        statisticsWrapper.position.set(0, 50);
         stats.forEach(({ title, onClick }, i) => {
-            container.addChild(new StatisticBar({
+            statisticsWrapper.addChild(new StatisticBar({
                 position: { x: 0, y: i * config.styles.statistics.gap },
                 title,
                 onClick,
-                width: 500,
+                width: 600,
             }));
         });
 
+        container.addChild(statisticsWrapper);
         this.addChild(container);
     }
 }

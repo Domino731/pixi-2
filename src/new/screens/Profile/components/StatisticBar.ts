@@ -67,7 +67,7 @@ export class StatisticBar extends Container {
 
     private getButton(onClick: () => void) {
         const container = new Container();
-        container.position.set(this.containerWidth, 0);
+        container.position.set(this.containerWidth - config.styles.button.size, 0);
         const graphics = new Graphics();
         graphics.beginFill();
         graphics.lineStyle(2, GAME_COLORS.lightBlue);
