@@ -91,7 +91,7 @@ export class LevelBar extends Container {
 
         progress.beginFill('green');
 
-        progress.drawRect(this.containerPosition.x, this.containerPosition.y, 100, 40);
+        progress.drawRect(this.containerPosition.x + 1, this.containerPosition.y + 1, 100, 40);
         
 
         progress.endFill();
@@ -99,7 +99,6 @@ export class LevelBar extends Container {
         container.addChild(wrapper2);
         container.addChild(wrapper);
         container.addChild(progress);
-       
 
         progress.mask = wrapper;
 
@@ -131,7 +130,7 @@ private setLevelText(){
         x + width, y,
     ];
 
-    wrapper.drawPolygon(points);
+    wrapper.drawRect(x, y, width, height);
     wrapper.endFill();
 
     const text = new Text('24', {
@@ -196,41 +195,31 @@ private setTitleText(){
     const wrapper = new Graphics();
     wrapper.beginFill();
     wrapper.lineStyle(2, GAME_COLORS.lightBlue);
-    const width = 280;
+    const width = 315;
     const height = LEVELS_HEIGHT;
-    const sharpOffset = 10;
 
     const x = this.containerPosition.x;
     const y = this.containerPosition.y + yOffset;
 
-    const points = [
-        x, y,
 
-        x, y + height,
-        
-        x + width - sharpOffset, y + height,
-        x + width, y + height - sharpOffset,
-
-        x + width, y,
-    ];
-
-    wrapper.drawPolygon(points);
+    wrapper.drawRect(x, y, width, height);
     wrapper.endFill();
 
 
     container.addChild(wrapper)
     const text = new Text('Scavenger', {
         fontFamily: 'Arial',
-        fontSize: 2,
+        fontSize: 24,
         fill: 'white',
         align: 'center',
         fontWeight: 'bold',
     });
-    text.position.set(x + 34, y + 10);
+    text.position.set(x + 34,y + 5);
 
 
     container.addChild(text);
     this.addChild(container)
+    // this.addChild(text)
 }
 
 }

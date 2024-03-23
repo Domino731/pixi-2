@@ -3,6 +3,7 @@ import { ProfileImageFrame } from '../../../components/ImageFrames';
 import { StatisticBar } from './components/StatisticBar';
 import { Container } from 'pixi.js';
 import { LevelBar } from './components/LevelBar';
+import { SectionTitle } from './components/SectionTitle';
 
 const config = {
     styles: {
@@ -23,6 +24,7 @@ export class ProfileScreen extends ContentContainer {
         }));
         this.createStatistics();
         this.addChild(new LevelBar({ position: { x: 31, y: 360 }, barWidth: 540 }));
+        this.addChild(new SectionTitle())
     }
 
     private createStatistics() {
