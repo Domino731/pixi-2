@@ -1,11 +1,17 @@
-import { Container, Text } from 'pixi.js';
+import { Container, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { Button } from '../../../components/Buttons';
 import { GAME_COLORS } from '../../../const/styles';
 import { InfoLine } from './components/InfoLine';
+import { createAppTexture } from '../../../main';
+import { ScrollBox } from '@pixi/ui';
 
-const DETAILS_COLUMN_WIDTH = 300;
+const DETAILS_COLUMN_WIDTH = 400;
 const DETAILS_COLUMN_LEFT_PADDING = 40;
+const DESCRIPTION_SECTION_X = DETAILS_COLUMN_LEFT_PADDING * 2 + DETAILS_COLUMN_WIDTH;
+const WIDTH = 1600;
+const DESCRIPTION_WIDTH = WIDTH - DESCRIPTION_SECTION_X - DETAILS_COLUMN_LEFT_PADDING;
+const DESCRIPTION_HEIGHT = 600;
 
 export class ContractDetails extends Container {
     private fixerName = 'Rogue Alvarez';
@@ -15,6 +21,7 @@ export class ContractDetails extends Container {
         this.createContainer();
         this.setFixerText();
         this.setDetails();
+        this.setDescriptionSection();
         this.position.set(200, 100);
     }
 
@@ -25,7 +32,7 @@ export class ContractDetails extends Container {
         const topBarWidth = 600;
         const x = 0;
         const y = 0;
-        const width = 1600;
+        const width = WIDTH;
         const height = 1000;
 
         const g = new Graphics();
@@ -72,7 +79,7 @@ export class ContractDetails extends Container {
         const acceptMissionBtn = new Button({
             width: DETAILS_COLUMN_WIDTH, position: {
                 x: 0, y: fixerPhoto.height + 120,
-            }, label: 'Accept', labelX: 110,
+            }, label: 'Accept', labelX: 150,
         });
         const expInfo = new InfoLine({
             position: { x: 0, y: fixerPhoto.height + 30 },
@@ -99,8 +106,11 @@ export class ContractDetails extends Container {
         const size = DETAILS_COLUMN_WIDTH;
         const offset = 40;
 
+
         g.beginFill();
         g.lineStyle(2, GAME_COLORS.red1);
+
+
         const points = [
             x, y,
             x, y + size,
@@ -110,7 +120,39 @@ export class ContractDetails extends Container {
             x + size, y,
         ];
         g.drawPolygon(points);
+        const imageUrl = 'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d961a96-b47f-4f2d-be69-7b2b965755bd/width=450/ComfyUI_02485_.jpeg';
+        Texture.fromURL(imageUrl).then(texture => {
+            const sprite = new Sprite(texture);
+            sprite.width = 400;
+            sprite.height = 400;
+            const texture2 = createAppTexture(sprite);
+            g.beginTextureFill({ texture: texture2 });
+            g.drawPolygon(points);
+            g.endFill();
+        });
         g.endFill();
         return g;
+    }
+
+    private setDescriptionSection() {
+        const container = new Container();
+
+        const description = new Graphics();
+        description.beginFill('red');
+        description.drawRect(0, 0, 1000, 500);
+        description.endFill();
+
+        const scrollBox = new ScrollBox({
+            background: 0XFFFFFF,
+            width: DESCRIPTION_WIDTH,
+            height: DESCRIPTION_HEIGHT,
+            items: [
+                description,
+            ],
+        });
+        scrollBox.position.set(DESCRIPTION_SECTION_X, DETAILS_COLUMN_LEFT_PADDING);
+
+        container.addChild(scrollBox);
+        this.addChild(container);
     }
 }
