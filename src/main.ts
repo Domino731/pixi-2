@@ -6,6 +6,7 @@ import { Navigation } from './utils/navigation';
 import { TiledBackground } from './ui/TiledBackground';
 import { sound } from '@pixi/sound';
 import { ProfileScreen } from './new/screens/Profile/Profile';
+import { FixersScreen } from './new/screens/Fixers/FixersScreen';
 
 /** The PixiJS app Application instance, shared across the project */
 export const app = new Application<HTMLCanvasElement>({
@@ -74,7 +75,7 @@ async function init() {
     // Show initial loading screen
     // await navigation.showScreen(LoadScreen);
 
-    await navigation.showScreen(ProfileScreen);
+    await navigation.showScreen(FixersScreen);
 
     // Go to one of the screens if a shortcut is present in url params, otherwise go to home screen
     // if (getUrlParam('game') !== null) {
