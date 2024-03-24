@@ -22,6 +22,7 @@ export class ContractDetails extends Container {
         this.setFixerText();
         this.setDetails();
         this.setDescriptionSection();
+        this.setDetailsImages();
         this.position.set(200, 100);
     }
 
@@ -153,6 +154,37 @@ export class ContractDetails extends Container {
         scrollBox.position.set(DESCRIPTION_SECTION_X, DETAILS_COLUMN_LEFT_PADDING);
 
         container.addChild(scrollBox);
+        this.addChild(container);
+    }
+
+    private setDetailsImages() {
+        const container = new Container();
+        container.position.set(DESCRIPTION_SECTION_X, DESCRIPTION_HEIGHT + (DETAILS_COLUMN_LEFT_PADDING * 2));
+        const size = 250;
+        const createImage = (x: number) => {
+
+            const offset = 30;
+            const y = 0;
+            const g = new Graphics();
+            g.beginFill();
+            g.lineStyle(2, 'red');
+            g.drawPolygon([
+                x, y,
+
+                x, y + size - offset,
+                x + offset, y + size,
+
+                x + size, y + size,
+
+                x + size, y,
+            ]);
+            g.endFill();
+            container.addChild(g);
+        };
+
+        createImage(DESCRIPTION_WIDTH - size);
+        createImage(DESCRIPTION_WIDTH - (size * 2) - DETAILS_COLUMN_LEFT_PADDING);
+
         this.addChild(container);
     }
 }
