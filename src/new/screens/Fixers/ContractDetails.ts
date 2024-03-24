@@ -1,5 +1,7 @@
 import { Container, Text } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
+import { Button } from '../../../components/Buttons';
+import { GAME_COLORS } from '../../../const/styles';
 
 const DETAILS_COLUMN_WIDTH = 300;
 const DETAILS_COLUMN_LEFT_PADDING = 40;
@@ -66,7 +68,13 @@ export class ContractDetails extends Container {
     private setDetails() {
         const container = new Container();
         const fixerPhoto = this.getFixerPhoto();
+        const acceptMissionBtn = new Button({
+            width: DETAILS_COLUMN_WIDTH, position: {
+                x: 0, y: fixerPhoto.height + DETAILS_COLUMN_LEFT_PADDING,
+            }, label: 'Accept', labelX: 110,
+        });
         container.addChild(fixerPhoto);
+        container.addChild(acceptMissionBtn);
         container.position.set(DETAILS_COLUMN_LEFT_PADDING, DETAILS_COLUMN_LEFT_PADDING);
         this.addChild(container);
     }
@@ -75,10 +83,11 @@ export class ContractDetails extends Container {
         const g = new Graphics();
         const x = 0;
         const y = 0;
-        const size = 350;
+        const size = DETAILS_COLUMN_WIDTH;
         const offset = 40;
 
-        g.beginFill('red');
+        g.beginFill();
+        g.lineStyle(2, GAME_COLORS.red1);
         const points = [
             x, y,
             x, y + size,
