@@ -2,6 +2,7 @@ import { Container, Text } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { Button } from '../../../components/Buttons';
 import { GAME_COLORS } from '../../../const/styles';
+import { InfoLine } from './components/InfoLine';
 
 const DETAILS_COLUMN_WIDTH = 300;
 const DETAILS_COLUMN_LEFT_PADDING = 40;
@@ -70,12 +71,24 @@ export class ContractDetails extends Container {
         const fixerPhoto = this.getFixerPhoto();
         const acceptMissionBtn = new Button({
             width: DETAILS_COLUMN_WIDTH, position: {
-                x: 0, y: fixerPhoto.height + DETAILS_COLUMN_LEFT_PADDING,
+                x: 0, y: fixerPhoto.height + 120,
             }, label: 'Accept', labelX: 110,
+        });
+        const expInfo = new InfoLine({
+            position: { x: 0, y: fixerPhoto.height + 30 },
+            color: GAME_COLORS.green1,
+            label: '100',
+        });
+        const timeInfo = new InfoLine({
+            position: { x: 0, y: fixerPhoto.height + 70 },
+            color: GAME_COLORS.lightBlue,
+            label: '13:00',
         });
         container.addChild(fixerPhoto);
         container.addChild(acceptMissionBtn);
         container.position.set(DETAILS_COLUMN_LEFT_PADDING, DETAILS_COLUMN_LEFT_PADDING);
+        container.addChild(expInfo);
+        container.addChild(timeInfo);
         this.addChild(container);
     }
 
