@@ -5,6 +5,7 @@ import { GAME_COLORS } from '../../../const/styles';
 import { InfoLine } from './components/InfoLine';
 import { createAppTexture } from '../../../main';
 import { ScrollBox } from '@pixi/ui';
+import { Button as PixiButton } from '@pixi/ui';
 
 const DETAILS_COLUMN_WIDTH = 400;
 const DETAILS_COLUMN_LEFT_PADDING = 40;
@@ -13,19 +14,39 @@ const WIDTH = 1600;
 const DESCRIPTION_WIDTH = WIDTH - DESCRIPTION_SECTION_X - DETAILS_COLUMN_LEFT_PADDING;
 const DESCRIPTION_HEIGHT = 600;
 
+interface IContractDetails {
+    onCloseButtonClick: () => void;
+}
+
 export class ContractDetails extends Container {
     private fixerName = 'Rogue Alvarez';
 
-    constructor() {
+    constructor({ onCloseButtonClick }: IContractDetails) {
         super();
         this.createContainer();
         this.setFixerText();
         this.setDetails();
         this.setDescriptionSection();
         this.setDetailsImages();
-        this.position.set(200, 100);
+        this.position.set(80, 140);
+        this.setCloseButton(onCloseButtonClick);
     }
 
+
+    private setCloseButton(onCloseButtonClick: () => void) {
+        const g = new Graphics();
+        const x = 600;
+        const y = 0 - 40;
+        const width = 40;
+        const height = 40;
+
+        g.beginFill('red');
+        g.drawRect(x, y, width, height);
+        g.endFill();
+        const btn = new PixiButton(g);
+        btn.onPress.connect(onCloseButtonClick);
+        this.addChild(btn.view);
+    }
 
     private createContainer() {
         const sharpOffset1 = 40;

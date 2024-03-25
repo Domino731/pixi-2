@@ -8,6 +8,10 @@ const PADDING = 20;
 const FIXERS_LIST_GAP = 70;
 
 
+interface Mission {
+    title: string;
+}
+
 const MOCK_DATA = [
     {
         fixerId: 1,
@@ -43,25 +47,63 @@ class BaseColumn extends Container {
     }
 }
 
+interface IContentColumn {
+    onMissionClick: (mission: Mission) => void;
+    hideMissionCard: () => void;
+}
+
 export class ContentColumn extends BaseColumn {
-    constructor() {
+    private fixersContainer = new Container();
+    private missionsContainer = new Container();
+    private currentMissions: Mission[] = [];
+
+    constructor({ onMissionClick }: IContentColumn) {
         super();
-        this.setFixersList();
+        this.addChild(this.fixersContainer);
+        this.setFixersList(onMissionClick);
     }
 
-    private setFixersList() {
-        const container = new Container();
-
+    private setFixersList(onMissionClick: (mission: Mission) => void) {
         MOCK_DATA.forEach((el, i) => {
-            this.addChild(new FixerCard({
+            this.fixersContainer.addChild(new FixerCard({
                 width: WIDTH - (PADDING * 2),
                 x: PADDING,
                 y: PADDING + (i * FIXERS_LIST_GAP),
-                label: 'Judy Alvarez',
-                onClick: () => console.log(123123),
+                label: el.fixerName,
+                onClick: () => {
+                    this.changeFixersContainerVisibility(false);
+                    this.currentMissions = el.missions;
+                    this.missionsContainer = this.getMissionsList(onMissionClick);
+                    this.addChild(this.missionsContainer);
+                },
             }));
         });
+    }
 
-        this.addChild(container);
+    private getMissionsList(onMissionClick: (mission: Mission) => void) {
+        const container = new Container();
+
+        this.currentMissions.forEach((el, i) => {
+            container.addChild(new FixerCard({
+                width: WIDTH - (PADDING * 2),
+                x: PADDING,
+                y: PADDING + (i * FIXERS_LIST_GAP),
+                label: el.title,
+                onClick: () => {
+                    this.changeFixersContainerVisibility(true);
+                    onMissionClick(el);
+                },
+            }));
+        });
+        return container;
+    }
+
+
+    private changeFixersContainerVisibility(isVisible: boolean) {
+        if (isVisible) {
+            this.addChild(this.fixersContainer);
+        } else {
+            this.removeChild(this.fixersContainer);
+        }
     }
 }
