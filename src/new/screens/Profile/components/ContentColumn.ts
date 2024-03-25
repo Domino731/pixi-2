@@ -5,7 +5,7 @@ import { FixerCard } from './FIxerCard';
 const WIDTH = 500;
 const HEIGHT = 1278;
 const PADDING = 20;
-const FIXERS_LIST_GAP = 70;
+const FIXERS_LIST_GAP = 90;
 
 
 interface Mission {
@@ -22,7 +22,7 @@ const MOCK_DATA = [
     },
     {
         fixerId: 2,
-        fixerName: '',
+        fixerName: 'Rogue',
         missions: [{
             title: 'TEST x',
         }, { title: 'ASD!()*@#&' }],
@@ -40,7 +40,7 @@ class BaseColumn extends Container {
     private addContainerStyles() {
         const g = new Graphics();
         g.beginFill();
-        g.lineStyle(1, GAME_COLORS.yellow);
+        g.lineStyle(2, GAME_COLORS.yellow);
         g.drawRect(0, 0, WIDTH, HEIGHT);
         g.endFill();
         this.addChild(g);
