@@ -1,5 +1,6 @@
-import { Container } from 'pixi.js';
+import { Container, Text } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
+import { GAME_COLORS } from '../../../../const/styles';
 
 interface IItemCard {
     x: number;
@@ -7,8 +8,10 @@ interface IItemCard {
 }
 
 const RARITY_BAR_WIDTH = 20;
-const HEIGHT = 120;
-const ITEM_CARD_WIDTH = 350;
+const HEIGHT = 150;
+const ITEM_CARD_WIDTH = 450;
+const ITEM_TITLE_FONT_SIZE = 18;
+const AMMO_TYPE_SIZE = 25;
 
 export class ItemCard extends Container {
     constructor({ x, y }: IItemCard) {
@@ -24,6 +27,11 @@ export class ItemCard extends Container {
     private setStyles() {
         this.addChild(this.getRarityGraphic());
         this.addChild(this.setItemCardGraphic());
+        this.addChild(this.setItemTitle());
+        this.addChild(this.getPriceTag());
+        this.addChild(this.getAmmoTypeGraphic());
+        this.addChild(this.getChipsGraphics());
+        this.addChild(this.getAttachmentsGraphics());
     }
 
     private setItemCardGraphic() {
@@ -73,5 +81,76 @@ export class ItemCard extends Container {
         g.drawPolygon(points);
         g.endFill();
         return g;
+    }
+
+
+    private setItemTitle() {
+        const text = new Text('SNIPER-RIFLE', {
+            fill: 'grey',
+            fontSize: ITEM_TITLE_FONT_SIZE,
+            letterSpacing: 1,
+            fontWeight: 'bold',
+        });
+        text.position.set(100, HEIGHT - ITEM_TITLE_FONT_SIZE - 10);
+        return text;
+    }
+
+    private getPriceTag() {
+        const g = new Graphics();
+
+        g.position.set((ITEM_CARD_WIDTH + RARITY_BAR_WIDTH) - 80, 10);
+        g.beginFill();
+        g.lineStyle(1, 'yellow');
+        g.drawRect(0, 0, 70, 25);
+        g.endFill();
+
+        return g;
+    }
+
+    private getAmmoTypeGraphic() {
+        const g = new Graphics();
+
+        g.position.set(RARITY_BAR_WIDTH + 14, HEIGHT - AMMO_TYPE_SIZE - 12);
+        g.beginFill();
+        g.lineStyle(2, GAME_COLORS.lightBlue);
+        g.drawRect(0, 0, AMMO_TYPE_SIZE, AMMO_TYPE_SIZE);
+        g.endFill();
+        return g;
+    }
+
+    private getChipsGraphics() {
+        const container = new Container();
+
+        container.position.set(RARITY_BAR_WIDTH + 22, 12);
+
+        for (let i = 0; i < 3; i++) {
+            const g = new Graphics();
+            g.beginFill();
+            g.lineStyle(2, 'grey');
+            g.drawCircle(22 * i, 10, 8);
+            g.endFill();
+            container.addChild(g);
+        }
+
+
+        return container;
+    }
+
+    private getAttachmentsGraphics() {
+        const container = new Container();
+
+        container.position.set(ITEM_CARD_WIDTH - 80, 110);
+
+        for (let i = 0; i < 3; i++) {
+            const g = new Graphics();
+            g.beginFill();
+            g.lineStyle(2, 'grey');
+            g.drawRect(26 * i, 10, 20, 20);
+            g.endFill();
+            container.addChild(g);
+        }
+
+
+        return container;
     }
 }
