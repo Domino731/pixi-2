@@ -17,24 +17,24 @@ export class ItemCard extends Container {
     constructor({ x, y }: IItemCard) {
         super();
         this.position.set(x, y);
-        this.setStyles();
+        this.setComponents();
         this.onclick = () => {
             console.log(123);
         };
     }
 
 
-    private setStyles() {
+    private setComponents() {
         this.addChild(this.getRarityGraphic());
-        this.addChild(this.setItemCardGraphic());
-        this.addChild(this.setItemTitle());
+        this.addChild(this.getItemCardGraphic());
+        this.addChild(this.getItemTitle());
         this.addChild(this.getPriceTag());
         this.addChild(this.getAmmoTypeGraphic());
         this.addChild(this.getChipsGraphics());
         this.addChild(this.getAttachmentsGraphics());
     }
 
-    private setItemCardGraphic() {
+    private getItemCardGraphic() {
         const x = RARITY_BAR_WIDTH + 5;
         const y = 0;
         const width = ITEM_CARD_WIDTH;
@@ -66,10 +66,10 @@ export class ItemCard extends Container {
         const points = [
             x, y,
 
-            x, y + 50,
-            x + 6, y + 50,
-            x + 6, y + 80,
-            x, y + 85,
+            x, y + 70,
+            x + 6, y + 70,
+            x + 6, y + 130,
+            x, y + 135,
 
             x, y + height,
             x + width, y + height,
@@ -84,7 +84,7 @@ export class ItemCard extends Container {
     }
 
 
-    private setItemTitle() {
+    private getItemTitle() {
         const text = new Text('SNIPER-RIFLE', {
             fill: 'grey',
             fontSize: ITEM_TITLE_FONT_SIZE,
