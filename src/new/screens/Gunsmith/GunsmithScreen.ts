@@ -13,13 +13,13 @@ export class GunsmithScreen extends ContentContainer {
 
     private createGunsSection() {
         const container = new Container();
-        container.position.set(500, 0);
+        container.position.set(1244, 0);
 
 
         const g = new Graphics();
         g.beginFill();
         g.lineStyle(2, 'red');
-        g.drawRect(0, 0, 1200, 1276);
+        g.drawRect(0, 0, 1015, 1276);
         g.endFill();
         container.addChild(g);
 

@@ -60,8 +60,8 @@ export class ItemCard extends Container {
         ];
 
         const g = new Graphics();
-        g.beginFill();
-        g.lineStyle(2, 'red');
+        g.beginFill(GAME_COLORS.black2);
+        g.lineStyle(2, GAME_COLORS.crimson);
         g.drawPolygon(points);
         g.endFill();
         return g;
