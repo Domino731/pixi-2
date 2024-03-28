@@ -1,23 +1,29 @@
 import { Container, Text } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { GAME_COLORS } from '../../../../const/styles';
+import { getColorByItemRarity, ItemRarityUnion } from '../../../../const/types';
 
 interface IItemCard {
     x: number;
     y: number;
+    rarity: ItemRarityUnion;
 }
 
 const RARITY_BAR_WIDTH = 20;
-const HEIGHT = 150;
+const HEIGHT = 160;
 const ITEM_CARD_WIDTH = 450;
 const ITEM_TITLE_FONT_SIZE = 18;
 const AMMO_TYPE_SIZE = 25;
 
 export class ItemCard extends Container {
-    constructor({ x, y }: IItemCard) {
+    private highlightColor: string;
+
+    constructor({ x, y, rarity }: IItemCard) {
         super();
+        this.highlightColor = getColorByItemRarity(rarity);
         this.position.set(x, y);
         this.setComponents();
+
         this.onclick = () => {
             console.log(123);
         };
@@ -32,6 +38,10 @@ export class ItemCard extends Container {
         this.addChild(this.getAmmoTypeGraphic());
         this.addChild(this.getChipsGraphics());
         this.addChild(this.getAttachmentsGraphics());
+    }
+
+    public getWidth() {
+        return ITEM_CARD_WIDTH;
     }
 
     private getItemCardGraphic() {
@@ -77,7 +87,8 @@ export class ItemCard extends Container {
         ];
 
         const g = new Graphics();
-        g.beginFill('red');
+        console.log(this.highlightColor);
+        g.beginFill(this.highlightColor);
         g.drawPolygon(points);
         g.endFill();
         return g;
