@@ -1,8 +1,11 @@
-import { Container, Graphics, Texture, TilingSprite } from 'pixi.js';
+import { Container, Graphics } from 'pixi.js';
 import { CyberButton } from '../new/components/Button';
 import { Navigation } from './navigation';
 import { ProfileScreen } from '../new/screens/Profile/Profile';
 import { FixersScreen } from '../new/screens/Fixers/FixersScreen';
+import { GangCampScreen } from '../new/screens/GangCamp';
+import { SettingsScreen } from '../new/screens/Settings';
+import { ContractsScreen } from '../new/screens/Contracts';
 
 export const NAVIGATION_BAR_CONFIG = {
     styles: {
@@ -19,18 +22,23 @@ const navOptions = [
         label: 'Profile',
         screen: ProfileScreen,
     },
-    // {
-    //     label: 'Camp',
-    //     screen: ProfileScreen,
-    // },
-    // {
-    //     label: 'City',
-    //     screen: ProfileScreen,
-    // },
     {
-        label: 'Fixers',
+        label: 'Map',
         screen: FixersScreen,
     },
+    {
+        label: 'Gang camp',
+        screen: GangCampScreen,
+    },
+    {
+        label: 'Contracts',
+        screen: ContractsScreen,
+    },
+    {
+        label: 'Setting',
+        screen: SettingsScreen,
+    },
+
 ];
 
 export class NavigationBar {
