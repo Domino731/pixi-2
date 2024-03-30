@@ -87,5 +87,33 @@ async function init() {
     // }
 }
 
+
+const auth = () => {
+    const signInContainer = document.querySelector('#auth-sign-in-form') as HTMLElement;
+    const signUpContainer = document.querySelector('#auth-sign-up-form') as HTMLElement;
+    const passwordRecoveryContainer = document.querySelector('#auth-password-recovery-form') as HTMLElement;
+
+    const siqnInLinks = document.querySelectorAll('.jsLinkSignIn');
+    const siqnUpLinks = document.querySelectorAll('.jsLinkSignUp');
+    const passwordRecoveryLinks = document.querySelectorAll('.jsLinkPasswordRecovery');
+
+    siqnInLinks.forEach(el => el.addEventListener('click', () => {
+        signInContainer.style.display = 'block';
+        signUpContainer.style.display = 'none';
+        passwordRecoveryContainer.style.display = 'none';
+    }));
+    siqnUpLinks.forEach(el => el.addEventListener('click', () => {
+        signInContainer.style.display = 'none';
+        signUpContainer.style.display = 'block';
+        passwordRecoveryContainer.style.display = 'none';
+    }));
+    passwordRecoveryLinks.forEach(el => el.addEventListener('click', () => {
+        signInContainer.style.display = 'none';
+        signUpContainer.style.display = 'none';
+        passwordRecoveryContainer.style.display = 'block';
+    }));
+};
+
+auth();
 // Init everything
 init();

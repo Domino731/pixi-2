@@ -18,7 +18,24 @@
 <body>
 <script type='module' src='/src/main.ts'></script>
 <div class='auth'>
-    <div class='container'>
+    <div class='container' id='auth-password-recovery-form' style='display: none'>
+        <h1 class='title'>Password recovery</h1>
+        <form action=''>
+            <div class='input-wrapper'>
+                <label class='label'>
+                    E-mail
+                </label>
+                <input name='e-mail' class='input' type='email'>
+            </div>
+            <button class='button'>Recover your account</button>
+        </form>
+        <div class='links-wrapper'>
+            <p class='link jsLinkSignUp'>Create free account</p>
+            <p class='link jsLinkSignIn'>Sign in</p>
+        </div>
+    </div>
+
+    <div class='container' id='auth-sign-in-form'>
         <h1 class='title'>Sign in</h1>
         <form action=''>
             <div class='input-wrapper'>
@@ -35,7 +52,47 @@
             </div>
             <button class='button'>sign in</button>
         </form>
+        <div class='links-wrapper'>
+            <p class='link jsLinkSignUp'>Create free account</p>
+            <p class='link jsLinkPasswordRecovery'>Forgot password?</p>
+        </div>
     </div>
+
+    <div class='container' id='auth-sign-up-form' style='display: none'>
+        <h1 class='title'>Create free account</h1>
+        <form action=''>
+            <div class='input-wrapper'>
+                <label class='label' for='sign-up-e-mail'>
+                    E-mail
+                </label>
+                <input id='sign-up-e-mail' name='e-mail' class='input' type='email'>
+            </div>
+            <div class='input-wrapper'>
+                <label class='label' for='sign-up-nick'>
+                    Nick
+                </label>
+                <input id='sign-up-nick' name='e-mail' class='input' type='email'>
+            </div>
+            <div class='input-wrapper'>
+                <label class='label' for='sign-up-password'>
+                    Password
+                </label>
+                <input id='sign-up-password' name='e-mail' class='input' type='password'>
+            </div>
+            <div class='input-wrapper'>
+                <label class='label' for='sign-up-password-repeat'>
+                    Repeat the password
+                </label>
+                <input id='sign-up-password-repeat' name='e-mail' class='input' type='password'>
+            </div>
+            <button class='button'>sign up</button>
+        </form>
+        <div class='links-wrapper'>
+            <p class='link jsLinkSignIn'>Sign in</p>
+            <p class='link jsLinkPasswordRecovery'>Forgot password?</p>
+        </div>
+    </div>
+
 </div>
 </body>
 
@@ -55,6 +112,30 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+    }
+
+    .auth::after {
+        width: 100%;
+        height: 48px;
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: url("public/auth/auth-decoration.svg");
+    }
+
+    .auth::before {
+        transform: rotate(180deg);
+        width: 100%;
+        height: 48px;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url("public/auth/auth-decoration.svg");
     }
 
     .container {
@@ -80,7 +161,7 @@
     }
 
     .input-wrapper {
-        clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%);
         position: relative;
         margin-bottom: 18px;
     }
@@ -89,7 +170,7 @@
         content: "";
         display: block;
         position: absolute;
-        right: 3px;
+        right: -2px;
         bottom: -5px;
         width: 2px;
         height: 45px;
@@ -107,7 +188,7 @@
     }
 
     .button {
-        margin-top: 30px;
+        margin-top: 20px;
         padding: 8px 16px;
         width: 100%;
         font-size: 18px;
@@ -119,6 +200,17 @@
         font-weight: bold;
         letter-spacing: 2px;
         clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%);
+    }
+
+    .links-wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+        cursor: pointer;
     }
 </style>
 </html>
