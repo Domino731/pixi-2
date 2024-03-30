@@ -1,7 +1,6 @@
 import { ContentContainer } from '../../components/ContentContainer';
 import { ContentColumn } from '../Profile/components/ContentColumn';
 import { ContractDetails } from './ContractDetails';
-import { FixerCard } from '../Profile/components/FIxerCard';
 
 export class FixersScreen extends ContentContainer {
     private contractCard: ContractDetails;

@@ -1,33 +1,55 @@
 import { DistrictMap, IDistrictEntity } from './DistrictMap';
+import { navigation } from '../../../../main';
+import { GunsmithScreen } from '../../Gunsmith/GunsmithScreen';
+import { FixersScreen } from '../../Fixers/FixersScreen';
+import { PharmacyScreen } from '../../Pharmacy';
+import { RipperdocScreen } from '../../Ripperdoc';
+import { MeleeShopScreen } from '../../MeleeShopScreen';
+import { NetrunnerScreen } from '../../Netrunner';
+import { ScrapbookerScreen } from '../../Scrapbooker';
 
 const WATSON_ENTITIES: Array<IDistrictEntity> = [
     {
         name: 'Gun shop',
-        onClick: () => console.log('gun shop'),
+        onClick: () => {
+            navigation.showScreen(GunsmithScreen);
+        },
     },
     {
         name: 'Fixer',
-        onClick: () => console.log('Fixer'),
+        onClick: () => {
+            navigation.showScreen(FixersScreen);
+        },
     },
     {
         name: 'Pharmacy',
-        onClick: () => console.log('Pharmacy'),
+        onClick: () => {
+            navigation.showScreen(PharmacyScreen);
+        },
     },
     {
         name: 'Ripperdoc',
-        onClick: () => console.log('ripperdoc'),
+        onClick: () => {
+            navigation.showScreen(RipperdocScreen);
+        },
     },
     {
         name: 'Melee shop',
-        onClick: () => console.log('Melee shop'),
+        onClick: () => {
+            navigation.showScreen(MeleeShopScreen);
+        },
     },
     {
         name: 'Netrunner',
-        onClick: () => console.log('Netrunner'),
+        onClick: () => {
+            navigation.showScreen(NetrunnerScreen);
+        },
     },
     {
         name: 'scrapbooker',
-        onClick: () => console.log('scrapbooker'),
+        onClick: () => {
+            navigation.showScreen(ScrapbookerScreen);
+        },
     },
 ];
 

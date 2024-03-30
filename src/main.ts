@@ -3,11 +3,7 @@ import 'pixi-spine';
 import { Application, Sprite } from 'pixi.js';
 import { initAssets } from './utils/assets';
 import { Navigation } from './utils/navigation';
-import { TiledBackground } from './ui/TiledBackground';
 import { sound } from '@pixi/sound';
-import { ProfileScreen } from './new/screens/Profile/Profile';
-import { FixersScreen } from './new/screens/Fixers/FixersScreen';
-import { GunsmithScreen } from './new/screens/Gunsmith/GunsmithScreen';
 import { CityMap } from './new/screens/MapScreens/Map';
 
 /** The PixiJS app Application instance, shared across the project */
@@ -17,7 +13,7 @@ export const app = new Application<HTMLCanvasElement>({
 });
 export const createAppTexture = (data: Sprite) => app.renderer.generateTexture(data);
 
-const navigation = new Navigation();
+export const navigation = new Navigation();
 
 /** Set up a resize function for the app */
 function resize() {
