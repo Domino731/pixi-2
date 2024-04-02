@@ -39,17 +39,23 @@
         <h1 class='title'>Sign in</h1>
         <form action=''>
             <div class='input-wrapper'>
-                <label class='label' for='e-mail'>
+                <label class='label' for='sign-in-e-mail'>
                     E-mail
                 </label>
-                <input id='e-mail' name='e-mail' class='input' type='email'>
+                <div>
+                    <input id='sign-in-e-mail' name='e-mail' class='input' type='email'>
+                </div>
             </div>
+
             <div class='input-wrapper'>
-                <label class='label' for='password'>
+                <label class='label' for='sign-in-password'>
                     Password
                 </label>
-                <input id='password' name='e-mail' class='input' type='password'>
+                <div>
+                    <input id='sign-in-password' name='e-mail' class='input' type='password'>
+                </div>
             </div>
+            <span class='error-block' style='display: none' id='auth-sign-in-form-error'>Invalid credentials!</span>
             <button class='button'>sign in</button>
         </form>
         <div class='links-wrapper'>
@@ -62,28 +68,40 @@
         <h1 class='title'>Create free account</h1>
         <form action=''>
             <div class='input-wrapper'>
-                <label class='label' for='sign-up-e-mail'>
+                <label class='label' for='sign-up-email'>
                     E-mail
                 </label>
-                <input id='sign-up-e-mail' name='e-mail' class='input' type='email'>
+                <div>
+                    <input id='sign-up-email' name='e-mail' class='input' type='email'>
+                </div>
+                <span class='error' id='sign-up-error-email'></span>
             </div>
             <div class='input-wrapper'>
                 <label class='label' for='sign-up-nick'>
                     Nick
                 </label>
-                <input id='sign-up-nick' name='e-mail' class='input' type='email'>
+                <div>
+                    <input id='sign-up-nick' name='e-mail' class='input' type='email'>
+                </div>
+                <span class='error' id='sign-up-error-nick'></span>
             </div>
             <div class='input-wrapper'>
                 <label class='label' for='sign-up-password'>
                     Password
                 </label>
-                <input id='sign-up-password' name='e-mail' class='input' type='password'>
+                <div>
+                    <input id='sign-up-password' name='e-mail' class='input' type='password'>
+                </div>
+                <span class='error' id='sign-up-error-password'></span>
             </div>
             <div class='input-wrapper'>
                 <label class='label' for='sign-up-password-repeat'>
                     Repeat the password
                 </label>
-                <input id='sign-up-password-repeat' name='e-mail' class='input' type='password'>
+                <div>
+                    <input id='sign-up-password-repeat' name='e-mail' class='input' type='password'>
+                </div>
+                <span class='error' id='sign-up-error-password-repeat'></span>
             </div>
             <button class='button'>sign up</button>
         </form>
@@ -103,6 +121,23 @@
 
     * {
         box-sizing: border-box;
+    }
+
+    .error {
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 4px;
+        display: block;
+    }
+
+    .error-block {
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        display: block;
     }
 
     .auth {
@@ -161,12 +196,16 @@
     }
 
     .input-wrapper {
-        clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%);
-        position: relative;
         margin-bottom: 18px;
     }
 
-    .input-wrapper::after {
+    .input-wrapper div {
+        clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%);
+        position: relative;
+
+    }
+
+    .input-wrapper div::after {
         content: "";
         display: block;
         position: absolute;
