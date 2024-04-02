@@ -5,6 +5,7 @@ import { initAssets } from './utils/assets';
 import { Navigation } from './utils/navigation';
 import { sound } from '@pixi/sound';
 import { CityMap } from './new/screens/MapScreens/Map';
+import { authServices } from './modules/api/auth';
 
 /** The PixiJS app Application instance, shared across the project */
 export const app = new Application<HTMLCanvasElement>({
@@ -146,7 +147,7 @@ const signUp = () => {
     };
 
     const createNewAccount = () => {
-        console.log('create new account');
+        authServices.signUp('tolo@gmail.com', '192038i@12/asd@a0-ASS');
     };
 
     form.addEventListener('submit', (e) => {
