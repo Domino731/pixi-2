@@ -1,20 +1,13 @@
-import { firebaseAuth } from './firebase';
+import { firebaseAuth, firestoreApi } from './firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { profileServices } from './profile';
 
-const signUp = (email: string, password: string) => {
+const signUp = async({email, password}: {email: string, password: string}) => {
     createUserWithEmailAndPassword(firebaseAuth, email, password)
-        .then((userCredential) => {
-            console.log(userCredential);
-            // Signed up
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            console.log(error);
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
+    .then((data) => {
+        const userId = data.user.uid;
+        profileServices.createNewProfile({userId});
+    });
 };
 
 

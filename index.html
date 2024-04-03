@@ -17,7 +17,7 @@
 </head>
 <body>
 <script type='module' src='/src/main.ts'></script>
-<div class='auth'>
+<div class='auth' id='auth'>
     <div class='container' id='auth-password-recovery-form' style='display: none'>
         <h1 class='title'>Password recovery</h1>
         <form action=''>
@@ -81,7 +81,7 @@
                     Nick
                 </label>
                 <div>
-                    <input id='sign-up-nick' name='e-mail' class='input' type='email'>
+                    <input id='sign-up-nick' name='e-mail' class='input'>
                 </div>
                 <span class='error' id='sign-up-error-nick'></span>
             </div>
@@ -103,6 +103,7 @@
                 </div>
                 <span class='error' id='sign-up-error-password-repeat'></span>
             </div>
+            <span class='error-block' id='sign-up-error-general'></span>
             <button class='button'>sign up</button>
         </form>
         <div class='links-wrapper'>

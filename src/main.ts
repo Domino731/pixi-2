@@ -5,7 +5,7 @@ import { initAssets } from './utils/assets';
 import { Navigation } from './utils/navigation';
 import { sound } from '@pixi/sound';
 import { CityMap } from './new/screens/MapScreens/Map';
-import { authServices } from './modules/api/auth';
+import { auth } from './modules/auth';
 
 /** The PixiJS app Application instance, shared across the project */
 export const app = new Application<HTMLCanvasElement>({
@@ -88,105 +88,4 @@ async function init() {
     // }
 }
 
-
-const toggleForms = () => {
-    // Handle forms toggling
-    const signInContainer = document.querySelector('#auth-sign-in-form') as HTMLElement;
-    const signUpContainer = document.querySelector('#auth-sign-up-form') as HTMLElement;
-    const passwordRecoveryContainer = document.querySelector('#auth-password-recovery-form') as HTMLElement;
-
-    const siqnInLinks = document.querySelectorAll('.jsLinkSignIn');
-    const siqnUpLinks = document.querySelectorAll('.jsLinkSignUp');
-    const passwordRecoveryLinks = document.querySelectorAll('.jsLinkPasswordRecovery');
-
-    siqnInLinks.forEach(el => el.addEventListener('click', () => {
-        signInContainer.style.display = 'block';
-        signUpContainer.style.display = 'none';
-        passwordRecoveryContainer.style.display = 'none';
-    }));
-    siqnUpLinks.forEach(el => el.addEventListener('click', () => {
-        signInContainer.style.display = 'none';
-        signUpContainer.style.display = 'block';
-        passwordRecoveryContainer.style.display = 'none';
-    }));
-    passwordRecoveryLinks.forEach(el => el.addEventListener('click', () => {
-        signInContainer.style.display = 'none';
-        signUpContainer.style.display = 'none';
-        passwordRecoveryContainer.style.display = 'block';
-    }));
-};
-
-const signUp = () => {
-    const form = document.querySelector('#auth-sign-up-form') as HTMLElement;
-    // Errors
-    const emailError = document.querySelector('#sign-up-error-email') as HTMLElement;
-    const nickError = document.querySelector('#sign-up-error-nick') as HTMLElement;
-    const passwordError = document.querySelector('#sign-up-error-password') as HTMLElement;
-    const passwordRepeatError = document.querySelector('#sign-up-error-password-repeat') as HTMLElement;
-    // Inputs
-    const emailInput = document.querySelector('#sign-up-email') as HTMLInputElement;
-    const nickInput = document.querySelector('#sign-up-nick') as HTMLInputElement;
-    const passwordInput = document.querySelector('#sign-up-password') as HTMLInputElement;
-    const passwordRepeatInput = document.querySelector('#sign-up-password-repeat') as HTMLInputElement;
-
-    // TODO before release: make more detailed
-    const validateEmail = (): boolean => {
-        return true;
-        // return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailInput.value);
-    };
-    const validateNick = (): boolean => {
-        return true;
-        // return nickInput.value.length > 3;
-    };
-    const validatePasswordRepeatInput = () => {
-        return true;
-        // return passwordInput.value.length === passwordRepeatInput.value.length;
-    };
-    const validatePassword = () => {
-        return true;
-    };
-
-    const createNewAccount = () => {
-        authServices.signUp('tolo@gmail.com', '192038i@12/asd@a0-ASS');
-    };
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const isEmailValid = validateEmail();
-        const isNickValid = validateNick();
-        const isPasswordRepeatValid = validatePasswordRepeatInput();
-        const isPasswordValid = validatePassword();
-        const isFormValid = isEmailValid && isNickValid && isPasswordValid && isPasswordRepeatValid;
-
-        if (isFormValid) {
-            createNewAccount();
-            return;
-        }
-
-    });
-};
-const signIn = () => {
-    const form = document.querySelector('#auth-sign-in-form') as HTMLFormElement;
-    const error = document.querySelector('#auth-sign-in-form-error') as HTMLElement;
-    const emailInput = document.querySelector('#sign-in-email') as HTMLElement;
-    const passwordInput = document.querySelector('#sign-in-password') as HTMLElement;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log({
-            emailInput,
-            passwordInput,
-        });
-        error.style.display = 'block';
-    });
-};
-
-const auth = () => {
-    toggleForms();
-    signUp();
-    signIn();
-};
-
-auth();
-// Init everything
-init();
+auth(init);
