@@ -88,4 +88,6 @@ async function init() {
     // }
 }
 
-auth(init);
+init();
+
+// auth(init);
