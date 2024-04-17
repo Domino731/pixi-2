@@ -39,6 +39,12 @@ export class Map1000 extends Container {
             [0, TILE_SIZE * 3], [TILE_SIZE, TILE_SIZE * 3], [TILE_SIZE * 2, TILE_SIZE * 3], [TILE_SIZE * 3, TILE_SIZE * 3], [TILE_SIZE * 4, TILE_SIZE * 3], [TILE_SIZE * 5, TILE_SIZE * 3], [TILE_SIZE * 6, TILE_SIZE * 3], [TILE_SIZE * 7, TILE_SIZE * 3],
             // 5th row
             [0, TILE_SIZE * 4], [TILE_SIZE, TILE_SIZE * 4], [TILE_SIZE * 2, TILE_SIZE * 4], [TILE_SIZE * 3, TILE_SIZE * 4], [TILE_SIZE * 4, TILE_SIZE * 4], [TILE_SIZE * 5, TILE_SIZE * 4], [TILE_SIZE * 6, TILE_SIZE * 4], [TILE_SIZE * 7, TILE_SIZE * 4],
+            // 6th row
+            [0, TILE_SIZE * 5], [TILE_SIZE, TILE_SIZE * 5], [TILE_SIZE * 2, TILE_SIZE * 5], [TILE_SIZE * 3, TILE_SIZE * 5], [TILE_SIZE * 4, TILE_SIZE * 5], [TILE_SIZE * 5, TILE_SIZE * 5], [TILE_SIZE * 6, TILE_SIZE * 5], [TILE_SIZE * 7, TILE_SIZE * 5],
+            // 7th row
+            [0, TILE_SIZE * 6], [TILE_SIZE, TILE_SIZE * 6], [TILE_SIZE * 2, TILE_SIZE * 6], [TILE_SIZE * 3, TILE_SIZE * 6], [TILE_SIZE * 4, TILE_SIZE * 6], [TILE_SIZE * 5, TILE_SIZE * 6], [TILE_SIZE * 6, TILE_SIZE * 6], [TILE_SIZE * 7, TILE_SIZE * 6],
+            // 8th row
+            [0, TILE_SIZE * 7], [TILE_SIZE, TILE_SIZE * 7], [TILE_SIZE * 2, TILE_SIZE * 7], [TILE_SIZE * 3, TILE_SIZE * 7], [TILE_SIZE * 4, TILE_SIZE * 7], [TILE_SIZE * 5, TILE_SIZE * 7], [TILE_SIZE * 6, TILE_SIZE * 7], [TILE_SIZE * 7, TILE_SIZE * 7],
         ];
         const texturePaths = [
             // 1st row
@@ -86,6 +92,33 @@ export class Map1000 extends Container {
             'map/1000/5-6',
             'map/1000/5-7',
             'map/1000/5-8',
+            // 6th row
+            'map/1000/6-1',
+            'map/1000/6-2',
+            'map/1000/6-3',
+            'map/1000/6-4',
+            'map/1000/6-5',
+            'map/1000/6-6',
+            'map/1000/6-7',
+            'map/1000/6-8',
+            // 7th row
+            'map/1000/7-1',
+            'map/1000/7-2',
+            'map/1000/7-3',
+            'map/1000/7-4',
+            'map/1000/7-5',
+            'map/1000/7-6',
+            'map/1000/7-7',
+            'map/1000/7-8',
+            // 8th row
+            'map/1000/8-1',
+            'map/1000/8-2',
+            'map/1000/8-3',
+            'map/1000/8-4',
+            'map/1000/8-5',
+            'map/1000/8-6',
+            'map/1000/8-7',
+            'map/1000/8-8',
         ];
 
         for (let i = 0; i < positions.length; i++) {
