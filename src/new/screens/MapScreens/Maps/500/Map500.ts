@@ -2,7 +2,6 @@ import { Container, Graphics, Sprite, Texture } from 'pixi.js';
 import { GAME } from '../../../../../configs/game';
 
 const TILE_SIZE = 256;
-const TILE_OFFSET = -1;
 
 export class Map500 extends Container {
     constructor() {
