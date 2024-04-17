@@ -8,12 +8,6 @@ export class ContentContainer extends Container {
         this.width = 400;
         this.height = 400;
         this.x = NAVIGATION_BAR_CONFIG.styles.width;
-        // const skeleton = Assets.cache
-        // Assets.load('myTexture.png').then(texture => {
-        //      const sprite = new Sprite(texture);
-        //     console.log(sprite);
-        // });
-
         this.infoButton = new CyberButton({
             label: 'Profile',
             onClick: () => console.log(123),

@@ -1,9 +1,10 @@
 import { Container } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
+import { GAME_COLORS } from '../../../../const/styles';
 
 const PANEL_WIDTH = 500;
 const PANEL_HEIGHT = 200;
-const PANEL_BG_COLOR = 'black';
+const PANEL_BG_COLOR = GAME_COLORS.yellow;
 const POSITION_X = 2060;
 const POSITION_Y = 1079;
 const PANEL_SHARP_OFFSET = 30;

@@ -47,8 +47,8 @@ export class NavigationBar {
 
     constructor(navigation: Navigation) {
         this.navigation = navigation;
-        this.setStyles();
-        this.setButtons();
+        // this.setStyles();
+        // this.setButtons();
     }
 
     public getContainer() {
