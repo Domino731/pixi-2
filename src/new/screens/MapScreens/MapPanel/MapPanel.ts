@@ -1,6 +1,8 @@
 import { Container } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { GAME_COLORS } from '../../../../const/styles';
+import { Button } from '@pixi/ui';
+import { CityMap } from '../Map';
 
 const PANEL_WIDTH = 500;
 const PANEL_HEIGHT = 200;
@@ -10,10 +12,14 @@ const POSITION_Y = 1079;
 const PANEL_SHARP_OFFSET = 30;
 
 export class MapPanel extends Container {
-    constructor() {
+    private readonly map: CityMap;
+
+    constructor(map: CityMap) {
         super();
+        this.map = map;
         this.position.set(POSITION_X, POSITION_Y);
         this.addGraphics();
+        this.setTopButtons();
     }
 
     private addGraphics() {
@@ -32,5 +38,30 @@ export class MapPanel extends Container {
         ]);
         g.endFill();
         this.addChild(g);
+    }
+
+    private setTopButtons() {
+        const container = new Container();
+        const g1 = new Graphics();
+        g1.beginFill('black');
+        g1.drawRect(20, 20, 40, 40);
+        g1.endFill();
+        const btn1 = new Button(g1);
+        btn1.onPress.connect(() => {
+            this.map.zoomIn();
+        });
+
+        const g2 = new Graphics();
+        g2.beginFill('black');
+        g2.drawRect(100, 20, 40, 40);
+        g2.endFill();
+        const btn2 = new Button(g2);
+        btn2.onPress.connect(() => {
+            this.map.zoomOut();
+        });
+
+        container.addChild(btn1.view);
+        container.addChild(btn2.view);
+        this.addChild(container);
     }
 }
