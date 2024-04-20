@@ -21,9 +21,9 @@ export class Map2000 extends MapFactory {
     }
 
     private setIcons() {
-        const i1 = new MapIcon({ x: 400, y: 400, variant: 'VENDOR', name: 'GUN_VENDOR' });
+        const i1 = new MapIcon({ x: 400, y: 400, variant: 'VENDOR', name: 'GUN_VENDOR', label: 'Gun vendor' });
         const i2 = new MapIcon({ x: 440, y: 400, variant: 'VENDOR', name: 'CLOTHES' });
-        const i3 = new MapIcon({ x: 480, y: 400, variant: 'FIXER', name: 'FIXER' });
+        const i3 = new MapIcon({ x: 480, y: 400, variant: 'FIXER', name: 'FIXER', label: 'Fixer' });
         const i4 = new MapIcon({ x: 520, y: 400, variant: 'VENDOR', name: 'JUNK' });
         const i5 = new MapIcon({ x: 560, y: 400, variant: 'VENDOR', name: 'MED_POINT' });
         const i6 = new MapIcon({ x: 600, y: 400, variant: 'VENDOR', name: 'MELEE_VENDOR' });
@@ -32,13 +32,13 @@ export class Map2000 extends MapFactory {
 
 
         this.mapContainer.addChild(i1);
-        this.mapContainer.addChild(i2);
+        // this.mapContainer.addChild(i2);
         this.mapContainer.addChild(i3);
-        this.mapContainer.addChild(i4);
-        this.mapContainer.addChild(i5);
-        this.mapContainer.addChild(i6);
-        this.mapContainer.addChild(i7);
-        this.mapContainer.addChild(i8);
+        // this.mapContainer.addChild(i4);
+        // this.mapContainer.addChild(i5);
+        // this.mapContainer.addChild(i6);
+        // this.mapContainer.addChild(i7);
+        // this.mapContainer.addChild(i8);
     }
 
     private setWatsonDistricLine() {

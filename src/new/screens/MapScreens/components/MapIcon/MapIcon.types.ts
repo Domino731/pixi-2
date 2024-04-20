@@ -5,6 +5,7 @@ export interface MapIconOptions {
     y: number;
     variant?: MapIconVariantsUnion;
     name: MapIconUnion;
+    label: string;
 }
 
 export type MapIconVariantsUnion = keyof typeof MAP_ICON_VARIANTS;
