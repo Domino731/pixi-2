@@ -8,7 +8,7 @@ export class MapFactory extends Container {
     private readonly tilesWidth: MapFactoryOptions['tilesWidth'];
     private readonly tilesHeight: MapFactoryOptions['tilesHeight'];
     private readonly tilesPaths: MapFactoryOptions['tilesPaths'];
-    private readonly mapContainer: Container;
+    protected readonly mapContainer: Container;
     private isDragging: boolean = false;
     private lastMousePosition: { x: number, y: number } = { x: 0, y: 0 };
 
@@ -30,7 +30,7 @@ export class MapFactory extends Container {
         this.mapContainer.on('pointermove', this.onPointerMove);
     }
 
-    private onPointerDown = (event: PIXI.InteractionEvent) => {
+    private onPointerDown = (event: any) => {
         this.isDragging = true;
         this.lastMousePosition = event.data.global.clone();
     };
@@ -39,7 +39,7 @@ export class MapFactory extends Container {
         this.isDragging = false;
     };
 
-    private onPointerMove = (event: PIXI.InteractionEvent) => {
+    private onPointerMove = (event: any) => {
         if (this.isDragging) {
             const newPosition = event.data.global;
             const deltaX = newPosition.x - this.lastMousePosition.x;

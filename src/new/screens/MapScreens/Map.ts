@@ -15,7 +15,7 @@ export class CityMap extends Container {
         small: new Map500(),
         extraSmall: new Map200(),
     };
-    private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'extraSmall';
+    private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'big';
     private currentMap = this.maps[this.currentMapIndex];
 
 
