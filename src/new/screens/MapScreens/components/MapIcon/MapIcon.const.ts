@@ -13,7 +13,8 @@ export enum MAP_ICON {
     JUNK = 'JUNK',
     MELEE_VENDOR = 'MELEE_VENDOR',
     NETRUNNER = 'NETRUNNER',
-    RIPPERDOC = 'RIPPERDOC'
+    RIPPERDOC = 'RIPPERDOC',
+    FOOD = 'FOOD'
 }
 
 export const mapIconColors = {

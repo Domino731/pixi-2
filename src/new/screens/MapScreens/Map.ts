@@ -4,18 +4,19 @@ import { Map2000 } from './Maps/2000/Map2000';
 import { Map500 } from './Maps/500/Map500';
 import { Map1000 } from './Maps/1000/Map1000';
 import { Map200 } from './Maps/200/map200';
+import { Map4000 } from './Maps/4000/Map4000';
 
 export class CityMap extends Container {
     private mapPanel: MapPanel;
 
     private maps = {
-        large: new Map2000(),
+        large: new Map4000(),
         big: new Map2000(),
         medium: new Map1000(),
         small: new Map500(),
         extraSmall: new Map200(),
     };
-    private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'big';
+    private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'large';
     private currentMap = this.maps[this.currentMapIndex];
 
 

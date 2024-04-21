@@ -46,6 +46,8 @@ export class MapIcon extends Container {
                 return new Sprite(Texture.from('icons/map/gun-vendor'));
             case MAP_ICON.RIPPERDOC:
                 return new Sprite(Texture.from('icons/map/ripperdoc'));
+            case MAP_ICON.FOOD:
+                return new Sprite(Texture.from('icons/map/food'));
             default:
                 console.error(`MapIcon.getIcon(): no match for ${this.iconName}`);
                 return new Sprite(Texture.from('icons/map/gun-vendor'));
@@ -117,7 +119,7 @@ export class MapIcon extends Container {
         btn.onHover.connect(() => {
             btn.view.addChild(this.tooltip);
         });
-        
+
         this.addChild(btn.view);
     }
 }

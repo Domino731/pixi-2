@@ -1,4 +1,4 @@
-import { Container, Graphics, Sprite, Texture } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
 import { GAME } from '../../../../configs/game';
 import { MapFactoryOptions } from './MapFactory.types';
 
@@ -28,6 +28,9 @@ export class MapFactory extends Container {
         this.mapContainer.on('pointerup', this.onPointerUp);
         this.mapContainer.on('pointerupoutside', this.onPointerUp);
         this.mapContainer.on('pointermove', this.onPointerMove);
+        this.mapContainer.on('click', (e) => {
+            console.log(e);
+        });
     }
 
     private onPointerDown = (event: any) => {
@@ -52,7 +55,11 @@ export class MapFactory extends Container {
 
     private addTile(texturePath: string, x: number, y: number) {
         const tile = new Sprite(Texture.from(texturePath));
+        const text = new Text(texturePath, {
+            fill: 'red',
+        });
         tile.position.set(x, y);
+        tile.addChild(text);
         this.mapContainer.addChild(tile);
     }
 
@@ -69,16 +76,24 @@ export class MapFactory extends Container {
 
         // Pre-calculate tile positions
         const positions = [];
-        for (let row = 0; row < this.tilesWidth; row++) {
-            for (let col = 0; col < this.tilesHeight; col++) {
-                positions.push([col * TILE_SIZE - col, row * TILE_SIZE - row]);
+        for (let row = 0; row < this.tilesHeight; row++) {
+            for (let col = 0; col < this.tilesWidth; col++) {
+                const x = col * TILE_SIZE - col;
+                const y = row * TILE_SIZE - row;
+                positions.push([x, y, row + 1]);
             }
+        }
+
+        if (positions.length === 60) {
+            console.log(positions);
         }
 
         // Add tiles
         for (let i = 0; i < positions.length; i++) {
             const [x, y] = positions[i];
-            this.addTile(this.tilesPaths[i], x, y);
+            if (this.tilesPaths[i]) {
+                this.addTile(this.tilesPaths[i], x, y);
+            }
         }
     }
 }

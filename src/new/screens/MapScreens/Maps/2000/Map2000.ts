@@ -21,19 +21,51 @@ export class Map2000 extends MapFactory {
     }
 
     private setIcons() {
-        const i1 = new MapIcon({ x: 400, y: 400, variant: 'VENDOR', name: 'GUN_VENDOR', label: 'Gun vendor' });
-        const i2 = new MapIcon({ x: 440, y: 400, variant: 'VENDOR', name: 'CLOTHES' });
-        const i3 = new MapIcon({ x: 480, y: 400, variant: 'FIXER', name: 'FIXER', label: 'Fixer' });
-        const i4 = new MapIcon({ x: 520, y: 400, variant: 'VENDOR', name: 'JUNK' });
-        const i5 = new MapIcon({ x: 560, y: 400, variant: 'VENDOR', name: 'MED_POINT' });
-        const i6 = new MapIcon({ x: 600, y: 400, variant: 'VENDOR', name: 'MELEE_VENDOR' });
-        const i7 = new MapIcon({ x: 640, y: 400, variant: 'VENDOR', name: 'NETRUNNER' });
-        const i8 = new MapIcon({ x: 680, y: 400, variant: 'VENDOR', name: 'RIPPERDOC' });
-
-
+        // Little china
+        const i1 = new MapIcon({ x: 1460, y: 1070, variant: 'VENDOR', name: 'FOOD', label: 'Gun vendor' });
         this.mapContainer.addChild(i1);
-        // this.mapContainer.addChild(i2);
+        const i2 = new MapIcon({ x: 1535, y: 1035, variant: 'VENDOR', name: 'MED_POINT', label: 'Gun vendor' });
+        this.mapContainer.addChild(i2);
+        const i3 = new MapIcon({ x: 1621, y: 1015, variant: 'VENDOR', name: 'GUN_VENDOR', label: 'Gun vendor' });
         this.mapContainer.addChild(i3);
+        const i4 = new MapIcon({ x: 1629, y: 1009, variant: 'VENDOR', name: 'MELEE_VENDOR', label: 'Gun vendor' });
+        this.mapContainer.addChild(i4);
+        const i5 = new MapIcon({ x: 1588, y: 1042, variant: 'VENDOR', name: 'RIPPERDOC', label: 'Gun vendor' });
+        this.mapContainer.addChild(i5);
+        const i6 = new MapIcon({ x: 1594, y: 885, variant: 'VENDOR', name: 'CLOTHES', label: 'Gun vendor' });
+        this.mapContainer.addChild(i6);
+        // Kabuki
+        const i7 = new MapIcon({ x: 1767, y: 971, variant: 'VENDOR', name: 'JUNK', label: 'Gun vendor' });
+        this.mapContainer.addChild(i7);
+        const i8 = new MapIcon({ x: 1756, y: 968, variant: 'VENDOR', name: 'RIPPERDOC', label: 'Gun vendor' });
+        this.mapContainer.addChild(i8);
+        const i9 = new MapIcon({ x: 1718, y: 924, variant: 'FIXER', name: 'FIXER', label: 'Gun vendor' });
+        this.mapContainer.addChild(i9);
+        const i10 = new MapIcon({ x: 1781, y: 874, variant: 'VENDOR', name: 'FOOD', label: 'Gun vendor' });
+        this.mapContainer.addChild(i10);
+        const i11 = new MapIcon({ x: 1788, y: 856, variant: 'VENDOR', name: 'MED_POINT', label: 'Gun vendor' });
+        this.mapContainer.addChild(i11);
+        const i12 = new MapIcon({ x: 1739, y: 733, variant: 'VENDOR', name: 'RIPPERDOC', label: 'Gun vendor' });
+        this.mapContainer.addChild(i12);
+        const i13 = new MapIcon({ x: 1690, y: 800, variant: 'VENDOR', name: 'RIPPERDOC', label: 'Gun vendor' });
+        // this.mapContainer.addChild(i13);
+        const i14 = new MapIcon({ x: 1699, y: 790, variant: 'VENDOR', name: 'FOOD', label: 'Gun vendor' });
+        // this.mapContainer.addChild(i14);
+        const i15 = new MapIcon({ x: 1720, y: 776, variant: 'VENDOR', name: 'FOOD', label: 'Gun vendor' });
+        // this.mapContainer.addChild(i15);
+        const i16 = new MapIcon({ x: 1694, y: 769, variant: 'VENDOR', name: 'GUN_VENDOR', label: 'Gun vendor' });
+        this.mapContainer.addChild(i16);
+        // const i2 = new MapIcon({ x: 440, y: 400, variant: 'VENDOR', name: 'CLOTHES' });
+        // const i3 = new MapIcon({ x: 480, y: 400, variant: 'FIXER', name: 'FIXER', label: 'Fixer' });
+        // const i4 = new MapIcon({ x: 520, y: 400, variant: 'VENDOR', name: 'JUNK' });
+        // const i5 = new MapIcon({ x: 560, y: 400, variant: 'VENDOR', name: 'MED_POINT' });
+        // const i6 = new MapIcon({ x: 600, y: 400, variant: 'VENDOR', name: 'MELEE_VENDOR' });
+        // const i7 = new MapIcon({ x: 640, y: 400, variant: 'VENDOR', name: 'NETRUNNER' });
+        // const i8 = new MapIcon({ x: 680, y: 400, variant: 'VENDOR', name: 'RIPPERDOC' });
+
+
+        // this.mapContainer.addChild(i2);
+        // this.mapContainer.addChild(i3);
         // this.mapContainer.addChild(i4);
         // this.mapContainer.addChild(i5);
         // this.mapContainer.addChild(i6);
