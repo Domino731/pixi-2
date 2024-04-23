@@ -59,7 +59,7 @@ export class MapFactory extends Container {
             fill: 'red',
         });
         tile.position.set(x, y);
-        tile.addChild(text);
+        // tile.addChild(text);
         this.mapContainer.addChild(tile);
     }
 

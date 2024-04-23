@@ -19,7 +19,7 @@ const easeJumpToCauldronX = registerCustomEase(
 
 /** Custom ease curve for y tweens of pieces flying to cauldron */
 const easeJumpToCauldronY = registerCustomEase(
-    'M0,0 C0,0 0.326,1.247 0.662,1.29 0.898,1.32 1,1 1,1 ',
+    'M0,0 C0,0 0.326,1.247 0.662,1.30 0.898,1.32 1,1 1,1 ',
 );
 
 /** Custom ease curve for scale tweens of pieces flying to cauldron */
