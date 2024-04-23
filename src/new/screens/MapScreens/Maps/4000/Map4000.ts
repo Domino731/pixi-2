@@ -6,7 +6,7 @@ export class Map4000 extends MapFactory {
         super({
             tilesPaths: texturePathsMap4000,
             tilesWidth: 29,
-            tilesHeight: 8,
+            tilesHeight: 29,
         });
     }
 }
