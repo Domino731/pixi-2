@@ -49,5 +49,46 @@ export class Map4000 extends MapFactory {
         // ]);
         g.endFill();
         this.mapContainer.addChild(g);
+
+        this.setArasakaShoreline();
+        this.setLittleChinaBorder();
     }
+
+
+    private setArasakaShoreline() {
+        const g = new Graphics();
+        g.beginFill(0xFF0000, 0);
+        g.lineStyle(3, 'red');
+        g.drawPolygon([
+            2340, 853,
+            2480, 1061,
+            2447, 1147,
+            2502, 1241,
+            2593, 1240,
+            2863, 1730,
+            2433, 1969,
+            1773, 1790,
+            1870, 1150,
+        ]);
+        g.endFill();
+        this.mapContainer.addChild(g);
+    }
+
+    private setLittleChinaBorder() {
+        const g = new Graphics();
+        g.beginFill(0xFF0000, 0);
+        g.lineStyle(3, 'red');
+        g.drawPolygon([
+            3310, 2360,
+            3140, 2360,
+            3167, 1741,
+            2863, 1730,
+            2433, 1969,
+            2544, 2444,
+            3250, 2444,
+        ]);
+        g.endFill();
+        this.mapContainer.addChild(g);
+    }
+
 }
