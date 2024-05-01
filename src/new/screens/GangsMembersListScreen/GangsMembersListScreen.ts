@@ -3,6 +3,8 @@ import { Graphics, Text } from 'pixi.js';
 import { GAME_COLORS } from '../../../const/styles';
 import { GAME } from '../../../configs/game';
 import { Button } from '@pixi/ui';
+import { LvlIcon } from '../../../components/LvlIcon';
+import { LVL_ICON_VARIANT } from '../../../components/LvlIcon/LvlIcon.const';
 
 const imageHeight = 500;
 const width = 400;
@@ -42,6 +44,8 @@ export class GangsMembersListScreen extends ContentContainer {
         g.endFill();
 
         g.addChild(this.createToggleBtn());
+        g.addChild(this.createLevelsBar());
+        g.addChild(this.createDetailsNick());
         return g;
     }
 
@@ -129,6 +133,67 @@ export class GangsMembersListScreen extends ContentContainer {
 
         g.addChild(this.createToggleBtn());
         g.addChild(btn.view);
+        g.addChild(new LvlIcon({ x: 15, y: 30, variant: LVL_ICON_VARIANT.OVERALL, lvl: 9, graphicsStyle: 1 }));
+        g.addChild(new LvlIcon({ x: 15, y: 80, variant: LVL_ICON_VARIANT.POWER, lvl: 6, graphicsStyle: 2 }));
+        return g;
+    }
+
+    private createLevelsBar() {
+        const sharpOffset = 40;
+        const overallLvlX = 15;
+        const overallLvlY = 15;
+        const height = 40;
+        const width = 160;
+        const gap = 4;
+
+        const powerLvlX = overallLvlX + width + gap;
+        const powerLvlY = overallLvlY;
+
+        const g = new Graphics();
+        g.beginFill(GAME_COLORS.green1);
+        g.drawPolygon(
+            overallLvlX + sharpOffset, overallLvlY,
+            overallLvlX, overallLvlY + height,
+            overallLvlX + width, overallLvlY + height,
+            overallLvlX + width, overallLvlY,
+        );
+        g.endFill();
+        const overallLvlTxt = new Text('9', {
+            fill: GAME_COLORS.black2,
+            fontSize: 30,
+            fontWeight: 'bolder',
+        });
+        overallLvlTxt.position.set(100, overallLvlY + 2);
+        g.addChild(overallLvlTxt);
+        g.beginFill(GAME_COLORS.lightBlue);
+        g.drawPolygon(
+            powerLvlX, powerLvlY,
+            powerLvlX, powerLvlY + height,
+            powerLvlX + width, powerLvlY + height,
+            powerLvlX + width, powerLvlY,
+        );
+        g.endFill();
+        const powerLvlTxt = new Text('11', {
+            fill: GAME_COLORS.black2,
+            fontSize: 30,
+            fontWeight: 'bolder',
+        });
+        powerLvlTxt.position.set(powerLvlX + 60, overallLvlY + 2);
+        g.addChild(powerLvlTxt);
+        return g;
+    }
+
+    private createDetailsNick() {
+        const g = new Graphics();
+        const nick = new Text('Johnny', {
+            fontSize: 33,
+            fill: GAME_COLORS.white,
+        });
+        g.position.set(15, 70);
+        g.beginFill();
+        g.lineStyle(2, GAME_COLORS.red1);
+        g.endFill();
+        g.addChild(nick);
         return g;
     }
 }
