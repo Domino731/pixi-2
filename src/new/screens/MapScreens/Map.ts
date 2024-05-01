@@ -10,11 +10,11 @@ export class CityMap extends Container {
     private mapPanel: MapPanel;
 
     private maps = {
-        large: new Map4000(),
-        big: new Map2000(),
-        medium: new Map1000(),
-        small: new Map500(),
-        extraSmall: new Map200(),
+        // large: new Map4000(),
+        // big: new Map2000(),
+        // medium: new Map1000(),
+        // small: new Map500(),
+        // extraSmall: new Map200(),
     };
     private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'large';
     private currentMap = this.maps[this.currentMapIndex];
@@ -22,8 +22,8 @@ export class CityMap extends Container {
     constructor() {
         super();
         this.mapPanel = new MapPanel(this);
-        this.addChild(this.currentMap);
-        this.addChild(this.mapPanel);
+        // this.addChild(this.currentMap);
+        // this.addChild(this.mapPanel);
     }
 
     public zoomIn() {
