@@ -4,25 +4,38 @@ import { List, ScrollBox } from '@pixi/ui';
 import { GAME } from '../../../configs/game';
 import { gangMembersApi } from '../../../modules/api/gang-members';
 import { GAME_COLORS } from '../../../const/styles';
+import { config } from './config';
+import { SECTION_BAR_CONFIG } from '../../components/SectionBar/SectionBar.const';
+import { SectionBar } from '../../components/SectionBar';
 
 
 export class GangsMembersListScreen extends ContentContainer {
     constructor() {
         super();
         this.addChild(this.createGangMembersList());
+        this.addChild(this.createSectionBar());
     }
 
+    private createSectionBar() {
+        return new SectionBar({
+            backButtonLabel: 'mapa',
+            onBackButtonClick: () => {
+                console.log('map');
+            },
+        });
+    }
 
     private createGangMembersList() {
         const scrollbox = new ScrollBox({
-            background: GAME_COLORS.black2,
+            background: GAME_COLORS.black,
             width: GAME.WINDOW_WIDTH,
-            height: GAME.WINDOW_HEIGHT,
+            height: config.MEMBERS_LIST_HEIGHT,
             horPadding: 20,
             vertPadding: 20,
             elementsMargin: 20,
             items: [],
         });
+        scrollbox.position.set(0, SECTION_BAR_CONFIG.HEIGHT);
 
         gangMembersApi.getAllGangMembers().then(res => {
             res.forEach((gangMember) => scrollbox.addItem(new GangMemberCard(gangMember)));
