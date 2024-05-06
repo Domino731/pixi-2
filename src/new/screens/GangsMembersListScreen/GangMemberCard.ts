@@ -110,7 +110,6 @@ export class GangMemberCard extends Container {
 
             x + width - sharpOffset, y + imageHeight,
             x + width, y + imageHeight - sharpOffset,
-            x + width, y + imageHeight,
             x + width, y,
         ];
 
@@ -140,7 +139,8 @@ export class GangMemberCard extends Container {
             [
                 nickX, nickY,
                 nickX, nickY + nickHeigth,
-                nickX + width, nickY + nickHeigth,
+                nickX + width - sharpOffset, nickY + nickHeigth,
+                nickX + width, nickY + nickHeigth - sharpOffset,
                 nickX + width, nickY - 15,
                 nickX + width - (width / 3), nickY - 15,
                 nickX + width - 15 - (width / 3), nickY,
