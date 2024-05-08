@@ -7,6 +7,8 @@ import { GAME_COLORS } from '../../../const/styles';
 import { config } from './config';
 import { SECTION_BAR_CONFIG } from '../../components/SectionBar/SectionBar.const';
 import { SectionBar } from '../../components/SectionBar';
+import { navigation } from '../../../main';
+import { CityMap } from '../MapScreens/Map';
 
 
 export class GangsMembersListScreen extends ContentContainer {
@@ -20,7 +22,7 @@ export class GangsMembersListScreen extends ContentContainer {
         return new SectionBar({
             backButtonLabel: 'mapa',
             onBackButtonClick: () => {
-                console.log('map');
+                navigation.showScreen(CityMap);
             },
         });
     }
