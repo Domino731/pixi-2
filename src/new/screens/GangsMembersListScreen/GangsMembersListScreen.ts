@@ -20,7 +20,7 @@ export class GangsMembersListScreen extends ContentContainer {
 
     private createSectionBar() {
         return new SectionBar({
-            backButtonLabel: 'mapa',
+            backButtonLabel: 'Go back',
             onBackButtonClick: () => {
                 navigation.showScreen(CityMap);
             },

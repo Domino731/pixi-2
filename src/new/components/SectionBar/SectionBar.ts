@@ -7,7 +7,7 @@ export class SectionBar extends Container {
     constructor({ onBackButtonClick, backButtonLabel }: SectionBarOptions) {
         super();
         this.addChild(this.createBackground());
-        this.addChild(this.createBottomBorder());
+        // this.addChild(this.createBottomBorder());
         this.addChild(this.createBackButton(onBackButtonClick, backButtonLabel));
     }
 
@@ -48,11 +48,11 @@ export class SectionBar extends Container {
         g.beginFill(SECTION_BAR_CONFIG.BACK_BTN_BACKGROUND);
         g.lineStyle(SECTION_BAR_CONFIG.BACK_BTN_LINE_HEIGHT, SECTION_BAR_CONFIG.BACK_BTN_LINE_COLOR);
         g.drawPolygon(
-            x, y + (height / 2),
-            x + sharpOffset, y,
-            x + sharpOffset + width, y,
-            x + sharpOffset + width, y + height,
-            x + sharpOffset, y + height,
+            x, y,
+            x, y + height,
+            x + width - sharpOffset, y + height,
+            x + width, y + height - sharpOffset,
+            x+ width, y
         );
         g.endFill();
 

@@ -1,10 +1,11 @@
 import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
 import { GAME_COLORS } from '../../../const/styles';
 import { Button } from '@pixi/ui';
-import { createAppTexture } from '../../../main';
+import { createAppTexture, navigation } from '../../../main';
 import { LvlIcon } from '../../../components/LvlIcon';
 import { LVL_ICON_VARIANT } from '../../../components/LvlIcon/LvlIcon.const';
 import { GangMemberCardOptions } from './GangMemberCard.types';
+import { GangMemberScreen } from '../GangMemberScreen';
 
 const imageHeight = 500;
 const width = 400;
@@ -150,7 +151,7 @@ export class GangMemberCard extends Container {
         gNick.addChild(this.createTitle());
         const btn = new Button(gNick);
         btn.onPress.connect(() => {
-            alert('Show member details');
+            navigation.showScreen(GangMemberScreen);
         });
 
         // g.addChild(this.createToggleBtn());

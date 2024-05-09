@@ -7,6 +7,8 @@ import { sound } from '@pixi/sound';
 import { CityMap } from './new/screens/MapScreens/Map';
 import { auth } from './modules/auth';
 import { GangsMembersListScreen } from './new/screens/GangsMembersListScreen';
+import { GangMemberCard } from './new/screens/GangsMembersListScreen/GangMemberCard';
+import { GangMemberScreen } from './new/screens/GangMemberScreen';
 
 /** The PixiJS app Application instance, shared across the project */
 export const app = new Application<HTMLCanvasElement>({
@@ -75,8 +77,9 @@ async function init() {
     // Show initial loading screen
     // await navigation.showScreen(LoadScreen);
 
+    await navigation.showScreen(GangMemberScreen)
     // await navigation.showScreen(GangsMembersListScreen);
-    await navigation.showScreen(CityMap);
+    // await navigation.showScreen(CityMap);
 
     // Go to one of the screens if a shortcut is present in url params, otherwise go to home screen
     // if (getUrlParam('game') !== null) {
