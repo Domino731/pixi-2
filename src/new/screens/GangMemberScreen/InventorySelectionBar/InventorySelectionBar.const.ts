@@ -1,6 +1,8 @@
 import { GAME_COLORS } from '../../../../const/styles';
 
 export const CONFIG = {
+    X: 1000,
+    y: 500,
     BACKGROUND: GAME_COLORS.black2,
     BORDER_COLOR: GAME_COLORS.red1,
     BORDER_WIDTH: 2,
