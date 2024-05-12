@@ -30,9 +30,8 @@ export class Inventory extends Container {
             x, y + height - sharpOffsetLeft,
             x + sharpOffsetLeft, y + height,
 
-            x + width - sharpOffsetRight, y + height,
-            x + width, y + height - sharpOffsetRight,
-
+            x + width, y + height,
+            
             x + width, y + height - indentBottomOffset,
             x + width - sharpOffsetRight, y + height - indentBottomOffset - sharpOffsetRight,
             x + width - sharpOffsetRight, y + height - indentBottomOffset - indentHeight,
