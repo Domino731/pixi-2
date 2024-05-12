@@ -1,10 +1,11 @@
 import { Container, Graphics } from 'pixi.js';
 import { CONFIG } from './Inventory.const';
+import { InventoryOptions } from './Inventory.types';
 
 export class Inventory extends Container {
-    constructor() {
+    constructor({ x, y }: InventoryOptions) {
         super();
-        this.position.set(CONFIG.X, CONFIG.Y);
+        this.position.set(x, y);
         this.addChild(this.createContainer());
 
     }

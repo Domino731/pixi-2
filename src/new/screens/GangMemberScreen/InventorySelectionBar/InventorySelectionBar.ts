@@ -1,14 +1,15 @@
 import { Container, Graphics, Sprite, Texture } from 'pixi.js';
 import { CONFIG, INVENTORY_SECTIONS } from './InventorySelectionBar.const';
 import { Button } from '@pixi/ui';
+import { InventorySelectionBarOptions } from './InventorySelectionBar.types';
 
 export class InventorySelectionBar extends Container {
     private icons: Sprite[];
 
-    constructor() {
+    constructor({ x, y }: InventorySelectionBarOptions) {
         super();
         this.icons = [];
-        this.position.set(300, 300);
+        this.position.set(x, y);
         this.addChild(this.createBar());
         this.addChild(this.createButtonsList());
     }
@@ -64,7 +65,7 @@ export class InventorySelectionBar extends Container {
         const width = (INVENTORY_SECTIONS.length * CONFIG.BUTTONS_GAP) + (INVENTORY_SECTIONS.length * CONFIG.BUTTON_WIDTH) + (CONFIG.HORIZONTAL_PADDING * 2) - CONFIG.BUTTONS_GAP;
         const height = CONFIG.HEIGHT;
         const sharpOffset = CONFIG.SHARP_OFFSET;
-        
+
         const g = new Graphics();
         g.beginFill(CONFIG.BACKGROUND);
         g.lineStyle(CONFIG.BORDER_WIDTH, CONFIG.BORDER_COLOR);
