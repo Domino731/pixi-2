@@ -11,6 +11,7 @@ import { Container } from 'pixi.js';
 import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { InventoryScrollBar } from './InventoryScrollbar';
 import { ProfileCard } from './ProfileCard';
+import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 
 export class GangMemberScreen extends ContentContainer {
     constructor() {
@@ -25,6 +26,7 @@ export class GangMemberScreen extends ContentContainer {
         this.addChild(new Inventory({ x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
         this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
+        this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
         this.addChild(this.createInventorySlots());
         this.addChild(this.createSkillsSlots());
     }

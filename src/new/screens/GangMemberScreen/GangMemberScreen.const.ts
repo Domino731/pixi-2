@@ -4,6 +4,7 @@ import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { CONFIG as INVENTORY_SCROLL_CONFIG } from './InventoryScrollbar/InventoryScrollBar.const';
 import { GAME } from '../../../configs/game';
 import { PROFILE_CARD_CONFIG } from './ProfileCard';
+import { PROFILE_TOGGLE_BAR_CONFIG } from './ProfileToggleBar';
 
 const horizontalPadding = 40;
 const verticalPadding = 40;
@@ -29,6 +30,9 @@ export const CONFIG = {
 
     SKILLS_SLOTS_X: horizontalPadding + PROFILE_CARD_CONFIG.WIDTH + 24,
     SKILLS_SLOTS_Y: GAME.WINDOW_HEIGHT - PROFILE_CARD_CONFIG.HEIGHT - verticalPadding + PROFILE_CARD_CONFIG.SHARP_OFFSET_PRIMARY,
+
+    PROFILE_TOGGLE_BAR_X: horizontalPadding,
+    PROFILE_TOGGLE_BAR_Y: GAME.WINDOW_HEIGHT - PROFILE_CARD_CONFIG.HEIGHT - verticalPadding - PROFILE_TOGGLE_BAR_CONFIG.HEIGHT - 24,
 };
 
 export const InventorySlots = [

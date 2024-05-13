@@ -1,3 +1,4 @@
 import { Inventory } from './Inventory';
+import { CONFIG as INVENTORY_CONFIG } from './Inventory.const';
 
-export { Inventory };
+export { Inventory, INVENTORY_CONFIG };
