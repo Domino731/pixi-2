@@ -6,7 +6,7 @@ import { GangsListBar } from './GangsListBar';
 import { InventorySelectionBar } from './InventorySelectionBar';
 import { ItemTile } from './ItemTile/ItemTile';
 import { Inventory } from './Inventory';
-import { CONFIG, InventorySlots } from './GangMemberScreen.const';
+import { CONFIG, InventorySlots, SkillsSlots } from './GangMemberScreen.const';
 import { Container } from 'pixi.js';
 import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { InventoryScrollBar } from './InventoryScrollbar';
@@ -26,6 +26,7 @@ export class GangMemberScreen extends ContentContainer {
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
         this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
         this.addChild(this.createInventorySlots());
+        this.addChild(this.createSkillsSlots());
     }
 
     private createInventorySlots() {
@@ -39,6 +40,19 @@ export class GangMemberScreen extends ContentContainer {
         });
 
         return container;
+    }
+
+    private createSkillsSlots(): Container {
+        const container = new Container();
+        container.position.set(CONFIG.SKILLS_SLOTS_X, CONFIG.SKILLS_SLOTS_Y);
+        SkillsSlots.forEach((_, i) => {
+            container.addChild(new ItemTile({
+                x: 0,
+                y: (i * ITEM_TILE_CONFIG.SIZE) + (i * CONFIG.INVENTORY_SLOTS_GAP),
+            }));
+        });
+        return container;
+
     }
 
     private createSectionBar() {

@@ -26,8 +26,13 @@ export const CONFIG = {
 
     PROFILE_CARD_X: horizontalPadding,
     PROFILE_CARD_Y: GAME.WINDOW_HEIGHT - PROFILE_CARD_CONFIG.HEIGHT - verticalPadding,
+
+    SKILLS_SLOTS_X: horizontalPadding + PROFILE_CARD_CONFIG.WIDTH + 24,
+    SKILLS_SLOTS_Y: GAME.WINDOW_HEIGHT - PROFILE_CARD_CONFIG.HEIGHT - verticalPadding + PROFILE_CARD_CONFIG.SHARP_OFFSET_PRIMARY,
 };
 
 export const InventorySlots = [
     1, 2, 3, 4, 5, 6, 7, 8,
 ];
+
+export const SkillsSlots = [1, 2, 3, 4];
