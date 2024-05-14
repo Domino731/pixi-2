@@ -2,6 +2,9 @@ import { Container, Graphics } from 'pixi.js';
 import { ProfileCardOptions } from './ProfileCard.types';
 import { CONFIG } from './ProfileCard.const';
 import { ProfileFrame } from './components/ProfileFrame';
+import { List } from '@pixi/ui';
+import { AttributeRow } from './components/AttributeRow';
+import { AttributesListTitle } from './components/AttributesListTitle';
 
 export class ProfileCard extends Container {
     constructor({ x, y }: ProfileCardOptions) {
@@ -9,6 +12,43 @@ export class ProfileCard extends Container {
         this.position.set(x, y);
         this.addChild(this.createBackground());
         this.addChild(new ProfileFrame({ x: CONFIG.PROFILE_FRAME_X, y: CONFIG.PROFILE_FRAME_Y }));
+        this.addChild(new AttributesListTitle(({
+            x: CONFIG.ATTRIBUTE_LIST_TITLE_X,
+            y: CONFIG.ATTRIBUTE_LIST__TITLE_Y,
+            width: CONFIG.ATTRIBUTE_ROW_WIDTH,
+        })));
+        this.addChild(this.createAttributesList());
+    }
+
+    private createAttributesList() {
+        const attributes = [
+            {
+                name: 'Reflexes',
+            },
+            {
+                name: 'Body',
+            },
+            {
+                name: 'Intelligence',
+            },
+            {
+                name: 'Cool',
+            },
+            {
+                name: 'Technical ability',
+            },
+
+        ];
+
+        const list = new List({ elementsMargin: 16 });
+        list.position.set(CONFIG.ATTRIBUTES_LIST_X, CONFIG.ATTRIBUTES_LIST_Y + 40);
+        list.type = 'vertical';
+        list.width = 0;
+        attributes.forEach(({ name }) => {
+            list.addChild(new AttributeRow({ x: 0, y: 0, width: CONFIG.ATTRIBUTE_ROW_WIDTH, attributeName: name }));
+        });
+
+        return list;
     }
 
     private createBackground(): Graphics {

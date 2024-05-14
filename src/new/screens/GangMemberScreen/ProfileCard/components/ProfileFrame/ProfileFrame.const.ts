@@ -9,3 +9,5 @@ export const CONFIG = {
     HEIGHT: Math.floor(PROFILE_CARD_CONFIG.HEIGHT / 2),
     SHARP_OFFSET: 30,
 };
+
+export const PROFILE_FRAME_CONFIG = CONFIG;
