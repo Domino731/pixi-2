@@ -5,6 +5,7 @@ import { ProfileFrame } from './components/ProfileFrame';
 import { List } from '@pixi/ui';
 import { AttributeRow } from './components/AttributeRow';
 import { AttributesListTitle } from './components/AttributesListTitle';
+import { ICONS } from '../../../components/Icon/Icon.const';
 
 export class ProfileCard extends Container {
     constructor({ x, y }: ProfileCardOptions) {
@@ -24,18 +25,28 @@ export class ProfileCard extends Container {
         const attributes = [
             {
                 name: 'Reflexes',
+                icon: ICONS.ATTRIBUTE_REFLEXES,
+                count: 1,
             },
             {
                 name: 'Body',
+                icon: ICONS.ATTRIBUTE_BODY,
+                count: 11,
             },
             {
                 name: 'Intelligence',
+                icon: ICONS.ATTRIBUTE_INTELLIGENCE,
+                count: 9,
             },
             {
                 name: 'Cool',
+                icon: ICONS.ATTRIBUTE_COOL,
+                count: 20,
             },
             {
                 name: 'Technical ability',
+                icon: ICONS.ATTRIBUTE_TECHNICAL_ABILITY,
+                count: 18,
             },
 
         ];
@@ -44,8 +55,15 @@ export class ProfileCard extends Container {
         list.position.set(CONFIG.ATTRIBUTES_LIST_X, CONFIG.ATTRIBUTES_LIST_Y + 40);
         list.type = 'vertical';
         list.width = 0;
-        attributes.forEach(({ name }) => {
-            list.addChild(new AttributeRow({ x: 0, y: 0, width: CONFIG.ATTRIBUTE_ROW_WIDTH, attributeName: name }));
+        attributes.forEach(({ name, icon, count }) => {
+            list.addChild(new AttributeRow({
+                x: 0,
+                y: 0,
+                width: CONFIG.ATTRIBUTE_ROW_WIDTH,
+                attributeName: name,
+                icon,
+                count,
+            }));
         });
 
         return list;
