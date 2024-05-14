@@ -1,12 +1,14 @@
 import { Container, Graphics } from 'pixi.js';
 import { ProfileCardOptions } from './ProfileCard.types';
 import { CONFIG } from './ProfileCard.const';
+import { ProfileFrame } from './components/ProfileFrame';
 
 export class ProfileCard extends Container {
     constructor({ x, y }: ProfileCardOptions) {
         super();
         this.position.set(x, y);
         this.addChild(this.createBackground());
+        this.addChild(new ProfileFrame({ x: CONFIG.PROFILE_FRAME_X, y: CONFIG.PROFILE_FRAME_Y }));
     }
 
     private createBackground(): Graphics {
