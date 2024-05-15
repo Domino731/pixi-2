@@ -6,16 +6,16 @@ import { Text } from 'pixi.js';
 export class AttributesListTitle extends Container {
     private readonly frameWidth: number;
 
-    constructor({ x, y, width }: AttributeListTitleOptions) {
+    constructor({ x, y, width, title, isSharpOffset }: AttributeListTitleOptions) {
         super();
         this.frameWidth = width;
         this.position.set(x, y);
-        this.addChild(this.createBackground());
-        this.addChild(this.createText());
+        this.addChild(this.createBackground(isSharpOffset));
+        this.addChild(this.createText(title));
     }
 
-    private createText() {
-        const text = new Text('Attributes', {
+    private createText(title: string) {
+        const text = new Text(title, {
             fontSize: CONFIG.FONT_SIZE,
             fill: CONFIG.FONT_COLOR,
             letterSpacing: CONFIG.LETTER_SPACING,
@@ -27,11 +27,11 @@ export class AttributesListTitle extends Container {
         return text;
     }
 
-    private createBackground() {
+    private createBackground(isSharpOffset: boolean) {
         const g = new Graphics();
         const width = this.frameWidth;
         const height = CONFIG.HEIGHT;
-        const sharpOffset = CONFIG.SHARP_OFFSET;
+        const sharpOffset =isSharpOffset ?  CONFIG.SHARP_OFFSET : 0;
         const x = 0;
         const y = 0;
 
