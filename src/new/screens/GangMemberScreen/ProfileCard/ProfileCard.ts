@@ -8,6 +8,7 @@ import { AttributesListTitle } from './components/AttributesListTitle';
 import { ICONS } from '../../../components/Icon/Icon.const';
 import { ProgresBar } from './components/ProgressBar';
 import { PROGRESS_BAR_VARIANT } from './components/ProgressBar/ProgressBar.const';
+import { StatsBar } from '../StatsBar';
 
 export class ProfileCard extends Container {
     constructor({ x, y }: ProfileCardOptions) {
@@ -20,107 +21,116 @@ export class ProfileCard extends Container {
             x: CONFIG.ATTRIBUTE_LIST_TITLE_X,
             y: CONFIG.ATTRIBUTE_LIST__TITLE_Y,
             width: CONFIG.ATTRIBUTE_ROW_WIDTH,
-            isSharpOffset: true
+            isSharpOffset: true,
         })));
         this.addChild(new AttributesListTitle({
             title: 'Overview',
             x: CONFIG.OVERVIEW_TITLE_X,
             y: CONFIG.OVERVIEW_TITLE_Y,
             width: CONFIG.ATTRIBUTE_ROW_WIDTH,
-            isSharpOffset: false
-        }))
+            isSharpOffset: false,
+        }));
         this.addChild(this.createAttributesList());
         this.addChild(this.createLevels());
-        this.addChild(this.createSkillsList())
+        this.addChild(this.createSkillsList());
+        this.addChild(new StatsBar({ x: CONFIG.STATS_BAR_X, y: CONFIG.STATS_BAR_Y }));
     }
 
-    private createLevels(){
-        const list = new List({elementsMargin: 10});
+    private createLevels() {
+        const list = new List({ elementsMargin: 10 });
         list.position.set(CONFIG.LEVELS_LIST_X, CONFIG.LEVELS_LIST_Y);
-        list.type = "vertical";
-        list.addChild(new ProgresBar({width:  CONFIG.ATTRIBUTE_ROW_WIDTH, variant: PROGRESS_BAR_VARIANT.LEVEL, progress: 50 }));
-        list.addChild(new ProgresBar({width:  CONFIG.ATTRIBUTE_ROW_WIDTH, variant: PROGRESS_BAR_VARIANT.STREET_LEVEL, progress: 10 }));
+        list.type = 'vertical';
+        list.addChild(new ProgresBar({
+            width: CONFIG.ATTRIBUTE_ROW_WIDTH,
+            variant: PROGRESS_BAR_VARIANT.LEVEL,
+            progress: 50,
+        }));
+        list.addChild(new ProgresBar({
+            width: CONFIG.ATTRIBUTE_ROW_WIDTH,
+            variant: PROGRESS_BAR_VARIANT.STREET_LEVEL,
+            progress: 10,
+        }));
         return list;
     }
 
-    private createSkillsList(){
+    private createSkillsList() {
         const skillsLeftColumn = [
             // body
             {
                 name: 'Athetics',
                 icon: ICONS.SKILL_ATHETICS,
-                value: 3
+                value: 3,
             },
             {
-                name: "Annihilation",
+                name: 'Annihilation',
                 icon: ICONS.SKILL_ANNIHILATION,
-                value: 19
+                value: 19,
             },
             {
-                name: "Street brawler",
+                name: 'Street brawler',
                 icon: ICONS.SKILL_STREET_BRAWLER,
-                value: 7
+                value: 7,
             },
             // reflexes
             {
-                name: "Handguns",
+                name: 'Handguns',
                 icon: ICONS.SKILL_HANDGUNS,
-                value: 4
+                value: 4,
             },
             {
                 name: 'blades',
                 icon: ICONS.SKILL_BLADES,
-                value: 13
+                value: 13,
             },
             {
-                name: "Assault",
+                name: 'Assault',
                 icon: ICONS.SKILL_ASSAULT,
-                value: 17
+                value: 17,
             },
         ];
         const skillsRightColumn = [
             // cool
             {
-                name: "Stealth",
+                name: 'Stealth',
                 icon: ICONS.SKILL_STEALTH,
-                value: 1
+                value: 1,
             },
             {
-                name: "Cold blood",
+                name: 'Cold blood',
                 icon: ICONS.SKILL_COLD_BLOOD,
-                value: 20
+                value: 20,
             },
             // Intelligence
             {
-                name: "Breach protocol",
+                name: 'Breach protocol',
                 icon: ICONS.SKILL_BREACH_PROTOCOL,
-                value: 11
+                value: 11,
             },
             {
-                name: "Quickhacking",
+                name: 'Quickhacking',
                 icon: ICONS.SKILL_QUICKHACKING,
-                value: 12
+                value: 12,
             },
             // Tech ability
             {
-                name: "Crafting",
+                name: 'Crafting',
                 icon: ICONS.SKILL_CRAFTING,
-                value: 8
+                value: 8,
             },
             {
-                name: "Engineering",
+                name: 'Engineering',
                 icon: ICONS.SKILL_ENGINEERING,
-                value: 3
-            }
+                value: 3,
+            },
         ];
-        const container = new List({elementsMargin: 20});
-        const leftList = new List({elementsMargin: 16});
-        const rightList = new List({elementsMargin: 16});
+        const container = new List({ elementsMargin: 20 });
+        const leftList = new List({ elementsMargin: 16 });
+        const rightList = new List({ elementsMargin: 16 });
         container.addChild(leftList);
         container.addChild(rightList);
         container.position.set(CONFIG.SKILLS_CONTAINER_X, CONFIG.SKILLS_CONTAINER_Y);
- 
-        skillsLeftColumn.forEach(({name, icon, value}) => {
+
+        skillsLeftColumn.forEach(({ name, icon, value }) => {
             leftList.addChild(new AttributeRow({
                 x: 0,
                 y: 0,
@@ -128,10 +138,10 @@ export class ProfileCard extends Container {
                 attributeName: name,
                 icon,
                 count: value,
-            }))
+            }));
         });
 
-        skillsRightColumn.forEach(({name, icon, value}) => {
+        skillsRightColumn.forEach(({ name, icon, value }) => {
             rightList.addChild(new AttributeRow({
                 x: 0,
                 y: 0,
@@ -139,11 +149,11 @@ export class ProfileCard extends Container {
                 attributeName: name,
                 icon,
                 count: value,
-            }))
-        })
+            }));
+        });
 
         return container;
-    
+
     }
 
     private createAttributesList() {

@@ -35,6 +35,8 @@ export const CONFIG = {
     PROFILE_TOGGLE_BAR_Y: GAME.WINDOW_HEIGHT - PROFILE_CARD_CONFIG.HEIGHT - verticalPadding - PROFILE_TOGGLE_BAR_CONFIG.HEIGHT - 24,
 };
 
+export const GANG_MEMBER_SCREEN_CONFIG = CONFIG;
+
 export const InventorySlots = [
     1, 2, 3, 4, 5, 6, 7, 8,
 ];

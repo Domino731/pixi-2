@@ -20,7 +20,9 @@ export const CONFIG = {
     LEVELS_LIST_Y: 420,
     SKILLS_CONTAINER_X: 46,
     SKILLS_CONTAINER_Y: Math.floor(950 / 2) + 140,
-    SKILL_ROW_WIDTH: Math.floor(700 / 2) - 26
+    SKILL_ROW_WIDTH: Math.floor(700 / 2) - 26,
+    STATS_BAR_X: 30,
+    STATS_BAR_Y: Math.floor(950 / 2) + 30,
 };
 
 export const PROFILE_CARD_CONFIG = CONFIG;
