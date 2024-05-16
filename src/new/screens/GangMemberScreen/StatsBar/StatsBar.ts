@@ -1,42 +1,95 @@
 import { Container, Graphics } from 'pixi.js';
 import { CONFIG } from './StatsBar.const';
 import { StatsBarOptions } from './StatsBar.types';
-import { List } from '@pixi/ui';
-import { Icon } from '../../../components/Icon';
-import { ICONS } from '../../../components/Icon/Icon.const';
+import { Button } from '@pixi/ui';
+import { Text } from 'pixi.js';
 
 export class StatsBar extends Container {
+    private readonly inactiveStatsBtn: Button;
+    private readonly inactiveSkillsBtn: Button;
+    private readonly activeStatsBtn: Button;
+    private readonly activeSkillsBtn: Button;
+
     constructor({ x, y }: StatsBarOptions) {
         super();
         this.position.set(x, y);
-        this.addChild(this.createBackground());
-        this.addChild(this.createList());
+        this.inactiveStatsBtn = this.createButton(false, false);
+        this.inactiveSkillsBtn = this.createButton(true, false);
+        this.activeStatsBtn = this.createButton(false, true);
+        this.activeSkillsBtn = this.createButton(true, true);
+        this.addChild(this.inactiveStatsBtn.view);
+        this.addChild(this.activeSkillsBtn.view);
+        this.addEvents();
     }
 
-    private createList() {
-        const list = new List();
-        // list.addChild(new Icon({name: ICONS.ATTRIBUTE_TECHNICAL_ABILITY}));
+    private addEvents() {
+        this.inactiveSkillsBtn.onPress.connect(() => {
+            this.removeChildren();
+            this.addChild(this.inactiveStatsBtn.view);
+            this.addChild(this.activeSkillsBtn.view);
+        });
 
-        const container = new Container();
-        container.addChild(new Icon({ name: ICONS.STAT_STAMINA, width: 50, height: 50 }));
-        list.addChild(container);
+        this.inactiveStatsBtn.onPress.connect(() => {
+            this.removeChildren();
+            this.addChild(this.inactiveSkillsBtn.view);
+            this.addChild(this.activeStatsBtn.view);
 
 
-        return list;
+        });
     }
 
-    private createBackground() {
-        const x = 0;
+    private createButton(isSecondVariant: boolean, isActive: boolean) {
+
         const y = 0;
-        const width = CONFIG.WIDTH;
+        const width = CONFIG.BUTTON_WIDTH - CONFIG.PADDING;
+        const x = isSecondVariant ? (CONFIG.PADDING + width) : CONFIG.PADDING;
         const height = CONFIG.HEIGHT;
+        const sharpOffset = CONFIG.BUTTON_SHARP_OFFSET;
         const g = new Graphics();
 
-        g.beginFill(CONFIG.BACKGROUND);
+
+        g.beginFill(isActive ? CONFIG.BACKGROUND_ACTIVE : CONFIG.BACKGROUND_INACTIVE);
         g.lineStyle(CONFIG.BORDER_WIDTH, CONFIG.BORDER_COLOR);
-        g.drawRect(x, y, width, height);
+        if (isSecondVariant) {
+            g.drawPolygon(
+                x, y,
+                x, y + height,
+                x + width, y + height,
+                x + width, y + sharpOffset,
+                x + width - sharpOffset, y,
+            );
+        } else {
+            g.drawPolygon(
+                x, y,
+                x, y + height,
+                x + width, y + height,
+                x + width, y,
+            );
+        }
+
         g.endFill();
 
-        return g;
+
+        const btn = new Button(g);
+        if (isActive) {
+            btn.view.eventMode = 'none';
+        }
+        let textLabel = 'Stats';
+
+        if (isSecondVariant) {
+            textLabel = 'Skills';
+        }
+        const text = new Text(textLabel, {
+            fill: isActive ? CONFIG.FONT_COLOR_ACTIVE : CONFIG.FONT_COLOR_INACTIVE,
+            fontSize: CONFIG.FONT_SIZE,
+            letterSpacing: CONFIG.LETTER_SPACING,
+            fontWeight: CONFIG.FONT_WEIGHT,
+        });
+        const textX = x + (Math.floor(g.width / 2) - Math.floor(text.width / 2));
+        const textY = y + (Math.floor(g.height / 2) - Math.floor(text.height / 2));
+        text.position.set(textX, textY);
+        btn.view.addChild(text);
+
+        return btn;
     }
 }
