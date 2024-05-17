@@ -15,7 +15,7 @@ export class AttributeRow extends Container {
         this.attributeName = attributeName;
         this.position.set(x, y);
         this.addChild(this.createFrame());
-        this.addChild(this.createLabel());
+        this.addChild(this.createLabel(Boolean(icon)));
         if (icon) {
             this.addChild(this.createIcon(icon));
         }
@@ -48,12 +48,15 @@ export class AttributeRow extends Container {
         return icon;
     }
 
-    private createLabel() {
+    private createLabel(isWithIcon: boolean) {
         const text = new Text(this.attributeName, {
             fill: CONFIG.FONT_COLOR,
             fontSize: CONFIG.FONT_SIZE,
         });
-        const x = CONFIG.TEXT_OFFSET_X;
+        let x = CONFIG.TEXT_OFFSET_X;
+        if (!isWithIcon) {
+            x = 0;
+        }
         const y = Math.floor(CONFIG.HEIGHT / 2) - Math.floor(text.height / 2);
         text.position.set(x, y);
         return text;

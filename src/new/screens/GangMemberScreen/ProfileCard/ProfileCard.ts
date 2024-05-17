@@ -37,17 +37,18 @@ export class ProfileCard extends Container {
         this.addChild(this.createLevels());
         this.skillsListContainer = this.createSkillsList();
         this.statsListContainer = this.createStatsList();
-        // this.addChild(this.skillsListContainer);
-        this.addChild(this.statsListContainer);
+        this.addChild(this.skillsListContainer);
         this.addChild(this.createStatsBar());
     }
 
     private createStatsBar() {
         const onStatsClick = () => {
             this.removeChild(this.skillsListContainer);
+            this.addChild(this.statsListContainer);
         };
         const onSkillsClick = () => {
             this.addChild(this.skillsListContainer);
+            this.removeChild(this.statsListContainer);
         };
 
         return new StatsBar({ x: CONFIG.STATS_BAR_X, y: CONFIG.STATS_BAR_Y, onStatsClick, onSkillsClick });
@@ -141,8 +142,8 @@ export class ProfileCard extends Container {
             },
         ];
         const container = new List({ elementsMargin: 20 });
-        const leftList = new List({ elementsMargin: 16 });
-        const rightList = new List({ elementsMargin: 16 });
+        const leftList = new List({ elementsMargin: 28 });
+        const rightList = new List({ elementsMargin: 28 });
         container.addChild(leftList);
         container.addChild(rightList);
         container.position.set(CONFIG.SKILLS_CONTAINER_X, CONFIG.SKILLS_CONTAINER_Y);
@@ -239,7 +240,7 @@ export class ProfileCard extends Container {
         const rightList = new List({ elementsMargin: 16 });
         container.addChild(leftList);
         container.addChild(rightList);
-        container.position.set(CONFIG.SKILLS_CONTAINER_X, CONFIG.SKILLS_CONTAINER_Y - 40);
+        container.position.set(CONFIG.SKILLS_CONTAINER_X, CONFIG.SKILLS_CONTAINER_Y);
 
         skillsLeftColumn.forEach(({ name, value }) => {
             leftList.addChild(new AttributeRow({
