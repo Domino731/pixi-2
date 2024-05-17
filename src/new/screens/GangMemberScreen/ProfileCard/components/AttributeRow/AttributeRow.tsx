@@ -16,7 +16,10 @@ export class AttributeRow extends Container {
         this.position.set(x, y);
         this.addChild(this.createFrame());
         this.addChild(this.createLabel());
-        this.addChild(this.createIcon(icon));
+        if (icon) {
+            this.addChild(this.createIcon(icon));
+        }
+
         this.addChild(this.createValueText(count));
     }
 

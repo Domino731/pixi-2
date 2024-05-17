@@ -10,7 +10,7 @@ export class StatsBar extends Container {
     private readonly activeStatsBtn: Button;
     private readonly activeSkillsBtn: Button;
 
-    constructor({ x, y }: StatsBarOptions) {
+    constructor({ x, y, onStatsClick, onSkillsClick }: StatsBarOptions) {
         super();
         this.position.set(x, y);
         this.inactiveStatsBtn = this.createButton(false, false);
@@ -19,22 +19,22 @@ export class StatsBar extends Container {
         this.activeSkillsBtn = this.createButton(true, true);
         this.addChild(this.inactiveStatsBtn.view);
         this.addChild(this.activeSkillsBtn.view);
-        this.addEvents();
+        this.addEvents(onStatsClick, onSkillsClick);
     }
 
-    private addEvents() {
+    private addEvents(onStatsClick: Function, onSkillsClick: Function) {
         this.inactiveSkillsBtn.onPress.connect(() => {
             this.removeChildren();
             this.addChild(this.inactiveStatsBtn.view);
             this.addChild(this.activeSkillsBtn.view);
+            onSkillsClick();
         });
 
         this.inactiveStatsBtn.onPress.connect(() => {
             this.removeChildren();
             this.addChild(this.inactiveSkillsBtn.view);
             this.addChild(this.activeStatsBtn.view);
-
-
+            onStatsClick();
         });
     }
 

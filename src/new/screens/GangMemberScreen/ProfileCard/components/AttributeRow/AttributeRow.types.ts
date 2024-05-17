@@ -5,6 +5,6 @@ export interface AttributeRowOptions {
     y: number;
     width: number;
     attributeName: string;
-    icon: IconsUnion;
+    icon?: IconsUnion;
     count: number;
 }

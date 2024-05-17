@@ -11,6 +11,9 @@ import { PROGRESS_BAR_VARIANT } from './components/ProgressBar/ProgressBar.const
 import { StatsBar } from '../StatsBar';
 
 export class ProfileCard extends Container {
+    private readonly skillsListContainer: Container;
+    private readonly statsListContainer: Container;
+
     constructor({ x, y }: ProfileCardOptions) {
         super();
         this.position.set(x, y);
@@ -32,8 +35,22 @@ export class ProfileCard extends Container {
         }));
         this.addChild(this.createAttributesList());
         this.addChild(this.createLevels());
-        this.addChild(this.createSkillsList());
-        this.addChild(new StatsBar({ x: CONFIG.STATS_BAR_X, y: CONFIG.STATS_BAR_Y }));
+        this.skillsListContainer = this.createSkillsList();
+        this.statsListContainer = this.createStatsList();
+        // this.addChild(this.skillsListContainer);
+        this.addChild(this.statsListContainer);
+        this.addChild(this.createStatsBar());
+    }
+
+    private createStatsBar() {
+        const onStatsClick = () => {
+            this.removeChild(this.skillsListContainer);
+        };
+        const onSkillsClick = () => {
+            this.addChild(this.skillsListContainer);
+        };
+
+        return new StatsBar({ x: CONFIG.STATS_BAR_X, y: CONFIG.STATS_BAR_Y, onStatsClick, onSkillsClick });
     }
 
     private createLevels() {
@@ -151,10 +168,102 @@ export class ProfileCard extends Container {
                 count: value,
             }));
         });
-
         return container;
-
     }
+
+    private createStatsList() {
+        const skillsLeftColumn = [
+            // body
+            {
+                name: 'Health',
+                value: 3,
+            },
+            {
+                name: 'Stamina',
+                value: 19,
+            },
+            {
+                name: 'Amor',
+                value: 7,
+            },
+            {
+                name: 'Armor penetration',
+                value: 4,
+            },
+            {
+                name: 'Adrenaline',
+                value: 13,
+            },
+            {
+                name: 'Resistances',
+                value: 17,
+            },
+            {
+                name: 'Mitigation Chance',
+                value: 12,
+            },
+        ];
+        const skillsRightColumn = [
+            {
+                name: 'Mitigation Strength',
+                value: 12,
+            },
+            {
+                name: 'Crit Chance',
+                value: 20,
+            },
+            {
+                name: 'Crit Damage',
+                value: 11,
+            },
+            {
+                name: 'Cyberware Capacity',
+                value: 12,
+            },
+            {
+                name: 'Headshot Damage Multiplier',
+                value: 12,
+            },
+            {
+                name: 'Bonus Ricochet Damage',
+                value: 8,
+            },
+            {
+                name: 'Charge Damage Multiplier',
+                value: 3,
+            },
+        ];
+
+        const container = new List({ elementsMargin: 20 });
+        const leftList = new List({ elementsMargin: 16 });
+        const rightList = new List({ elementsMargin: 16 });
+        container.addChild(leftList);
+        container.addChild(rightList);
+        container.position.set(CONFIG.SKILLS_CONTAINER_X, CONFIG.SKILLS_CONTAINER_Y - 40);
+
+        skillsLeftColumn.forEach(({ name, value }) => {
+            leftList.addChild(new AttributeRow({
+                x: 0,
+                y: 0,
+                width: CONFIG.SKILL_ROW_WIDTH,
+                attributeName: name,
+                count: value,
+            }));
+        });
+
+        skillsRightColumn.forEach(({ name, icon, value }) => {
+            rightList.addChild(new AttributeRow({
+                x: 0,
+                y: 0,
+                width: CONFIG.SKILL_ROW_WIDTH,
+                attributeName: name,
+                icon,
+                count: value,
+            }));
+        });
+        return container;
+    }
+
 
     private createAttributesList() {
         const attributes = [
@@ -186,8 +295,8 @@ export class ProfileCard extends Container {
 
         ];
 
-        const list = new List({ elementsMargin: 16 });
-        list.position.set(CONFIG.ATTRIBUTES_LIST_X, CONFIG.ATTRIBUTES_LIST_Y + 40);
+        const list = new List({ elementsMargin: 10 });
+        list.position.set(CONFIG.ATTRIBUTES_LIST_X, CONFIG.ATTRIBUTES_LIST_Y + 44);
         list.type = 'vertical';
         list.width = 0;
         attributes.forEach(({ name, icon, count }) => {
