@@ -1,4 +1,4 @@
-import { GAME } from '../../../configs/game';
+import { GAME } from '../../../config/game';
 import { SECTION_BAR_CONFIG } from '../../components/SectionBar/SectionBar.const';
 
 export const config = {

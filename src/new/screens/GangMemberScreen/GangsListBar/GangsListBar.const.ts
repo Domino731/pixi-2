@@ -1,5 +1,5 @@
-import { GAME } from "../../../../configs/game";
-import { GAME_COLORS } from "../../../../const/styles";
+import { GAME } from '../../../../config/game';
+import { GAME_COLORS } from '../../../../const/styles';
 
 export const CONFIG = {
     WIDTH: 500,
@@ -12,4 +12,4 @@ export const CONFIG = {
     BORDER_WIDTH: 3,
     BORDER_COLOR: GAME_COLORS.red1,
     // NAV_BTN_SIZE: 30
-}
+};

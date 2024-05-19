@@ -1,6 +1,7 @@
 import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
-import { GAME } from '../../../../configs/game';
+import { GAME } from '../../../../config/game';
 import { MapFactoryOptions } from './MapFactory.types';
+
 
 const TILE_SIZE = 256;
 

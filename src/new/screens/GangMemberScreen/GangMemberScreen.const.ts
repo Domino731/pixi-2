@@ -2,7 +2,7 @@ import { CONFIG as INVENTORY_CONFIG } from './Inventory/Inventory.const';
 import { CONFIG as INVENTORY_SELECTION_BAR_CONFIG } from './InventorySelectionBar/InventorySelectionBar.const';
 import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { CONFIG as INVENTORY_SCROLL_CONFIG } from './InventoryScrollbar/InventoryScrollBar.const';
-import { GAME } from '../../../configs/game';
+import { GAME } from '../../../config/game';
 import { PROFILE_CARD_CONFIG } from './ProfileCard';
 import { PROFILE_TOGGLE_BAR_CONFIG } from './ProfileToggleBar';
 

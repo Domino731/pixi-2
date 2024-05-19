@@ -1,7 +1,7 @@
 import { ContentContainer } from '../../components/ContentContainer';
 import { GangMemberCard } from './GangMemberCard';
 import { List, ScrollBox } from '@pixi/ui';
-import { GAME } from '../../../configs/game';
+import { GAME } from '../../../config/game';
 import { gangMembersApi } from '../../../modules/api/gang-members';
 import { GAME_COLORS } from '../../../const/styles';
 import { config } from './config';

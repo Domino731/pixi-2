@@ -1,8 +1,6 @@
 import { MapFactory } from '../MapFactory';
 import { texturePathsMap2000 } from './Map2000.const';
 import { Graphics } from 'pixi.js';
-import { GAME_COLORS } from '../../../../../const/styles';
-import { GAME } from '../../../../../configs/game';
 import { MapIcon } from '../../components/MapIcon/MapIcon';
 
 export class Map2000 extends MapFactory {

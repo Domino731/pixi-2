@@ -1,5 +1,5 @@
 import { GAME_COLORS } from '../../../../const/styles';
-import { GAME } from '../../../../configs/game';
+import { GAME } from '../../../../config/game';
 
 export const CONFIG = {
     POSITION_X: 0,
