@@ -4,11 +4,7 @@ import { Application, Sprite } from 'pixi.js';
 import { initAssets } from './utils/assets';
 import { Navigation } from './utils/navigation';
 import { sound } from '@pixi/sound';
-import { CityMap } from './new/screens/MapScreens/Map';
-import { auth } from './modules/auth';
-import { GangsMembersListScreen } from './new/screens/GangsMembersListScreen';
-import { GangMemberCard } from './new/screens/GangsMembersListScreen/GangMemberCard';
-import { GangMemberScreen } from './new/screens/GangMemberScreen';
+import { GangMemberScreen } from './screens/GangMemberScreen';
 
 /** The PixiJS app Application instance, shared across the project */
 export const app = new Application<HTMLCanvasElement>({
@@ -77,7 +73,7 @@ async function init() {
     // Show initial loading screen
     // await navigation.showScreen(LoadScreen);
 
-    await navigation.showScreen(GangMemberScreen)
+    await navigation.showScreen(GangMemberScreen);
     // await navigation.showScreen(GangsMembersListScreen);
     // await navigation.showScreen(CityMap);
 
