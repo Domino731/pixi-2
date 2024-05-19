@@ -1,9 +1,9 @@
-import { ContentContainer } from '../../components/ContentContainer';
+import { ContentContainer } from '../../../components/ContentContainer';
 import { Container } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { ItemCard } from './components/ItemCard';
 import { ScrollBox } from '@pixi/ui';
-import { ITEM_RARITY } from '../../../const/types';
+import { ITEM_RARITY } from '../../../config/types';
 
 export class GunsmithScreen extends ContentContainer {
     constructor() {

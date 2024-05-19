@@ -5,7 +5,7 @@ import { ProfileFrame } from './components/ProfileFrame';
 import { List } from '@pixi/ui';
 import { AttributeRow } from './components/AttributeRow';
 import { AttributesListTitle } from './components/AttributesListTitle';
-import { ICONS } from '../../../components/Icon/Icon.const';
+import { ICONS } from '../../../../components/Icon/Icon.const';
 import { ProgresBar } from './components/ProgressBar';
 import { PROGRESS_BAR_VARIANT } from './components/ProgressBar/ProgressBar.const';
 import { StatsBar } from '../StatsBar';

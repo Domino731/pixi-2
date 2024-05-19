@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 import { Button } from '@pixi/ui';
 import { CityMap } from '../Map';
 

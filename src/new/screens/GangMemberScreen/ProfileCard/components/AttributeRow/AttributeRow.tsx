@@ -1,9 +1,9 @@
 import { Container, Graphics, Text } from 'pixi.js';
 import { AttributeRowOptions } from './AttributeRow.types';
 import { CONFIG } from './AttributeRow.const';
-import { IconsUnion } from '../../../../../components/Icon/Icon.const';
-import { Icon } from '../../../../../components/Icon';
-import { GAME_COLORS } from '../../../../../../const/styles';
+import { IconsUnion } from '../../../../../../components/Icon/Icon.const';
+import { Icon } from '../../../../../../components/Icon';
+import { GAME_COLORS } from '../../../../../../config/styles';
 
 export class AttributeRow extends Container {
     private readonly frameWidth: number;

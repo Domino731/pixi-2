@@ -1,5 +1,5 @@
 import { Container, Texture, TilingSprite } from 'pixi.js';
-import { GAME } from '../../config/game';
+import { GAME } from '../config/game';
 
 export class ContentContainer extends Container {
     constructor() {

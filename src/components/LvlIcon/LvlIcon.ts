@@ -1,7 +1,7 @@
 import { Container, Graphics, Text } from 'pixi.js';
 import { LvlIconOptions } from './LvlIcon.types';
 import { LvlIconColorsVariants, LvlIconVariantUnion } from './LvlIcon.const';
-import { GAME_COLORS } from '../../const/styles';
+import { GAME_COLORS } from '../../config/styles';
 
 export class LvlIcon extends Container {
     private readonly lvl: number;

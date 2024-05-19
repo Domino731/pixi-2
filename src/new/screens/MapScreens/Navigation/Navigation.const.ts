@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 import { GAME } from '../../../../config/game';
 
 export const CONFIG = {

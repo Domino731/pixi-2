@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../../../../../const/styles';
+import { GAME_COLORS } from '../../../../../../config/styles';
 import { PROFILE_CARD_CONFIG } from '../../ProfileCard.const';
 
 export const CONFIG = {

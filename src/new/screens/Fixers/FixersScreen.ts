@@ -1,4 +1,4 @@
-import { ContentContainer } from '../../components/ContentContainer';
+import { ContentContainer } from '../../../components/ContentContainer';
 import { ContentColumn } from '../Profile/components/ContentColumn';
 import { ContractDetails } from './ContractDetails';
 

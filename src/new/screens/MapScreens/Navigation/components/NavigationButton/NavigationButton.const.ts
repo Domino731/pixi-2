@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../../../../../const/styles';
+import { GAME_COLORS } from '../../../../../../config/styles';
 import { NavigationButtonOptions } from './NavigationButton.types';
 import { navigation } from '../../../../../../main';
 import { CityMap } from '../../../Map';

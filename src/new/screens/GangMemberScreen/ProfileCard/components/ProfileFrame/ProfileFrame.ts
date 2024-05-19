@@ -1,6 +1,6 @@
 import { Container, Graphics, Sprite, Texture } from 'pixi.js';
 import { ProfileFrameOptions } from './ProfileFrame.types';
-import { GAME_COLORS } from '../../../../../../const/styles';
+import { GAME_COLORS } from '../../../../../../config/styles';
 import { createAppTexture } from '../../../../../../main';
 import { CONFIG } from './ProfileFrame.const';
 import { LvlIcon } from '../../../../../../components/LvlIcon';

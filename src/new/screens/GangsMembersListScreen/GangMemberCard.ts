@@ -1,5 +1,5 @@
 import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
-import { GAME_COLORS } from '../../../const/styles';
+import { GAME_COLORS } from '../../../config/styles';
 import { Button } from '@pixi/ui';
 import { createAppTexture, navigation } from '../../../main';
 import { LvlIcon } from '../../../components/LvlIcon';

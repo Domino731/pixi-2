@@ -1,11 +1,11 @@
 import { Container, Graphics } from 'pixi.js';
-import { CyberButton } from '../new/components/Button';
+import { CyberButton } from '../components/Button';
 import { Navigation } from './navigation';
 import { ProfileScreen } from '../new/screens/Profile/Profile';
 import { FixersScreen } from '../new/screens/Fixers/FixersScreen';
-import { GangCampScreen } from '../new/screens/GangCamp';
-import { SettingsScreen } from '../new/screens/Settings';
-import { ContractsScreen } from '../new/screens/Contracts';
+import { GangCampScreen } from '../screens/GangCamp';
+import { SettingsScreen } from '../screens/Settings';
+import { ContractsScreen } from '../screens/Contracts';
 
 export const NAVIGATION_BAR_CONFIG = {
     styles: {

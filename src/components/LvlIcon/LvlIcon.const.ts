@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../const/styles';
+import { GAME_COLORS } from '../../config/styles';
 
 export enum LVL_ICON_VARIANT {
     OVERALL = 'OVERALL',

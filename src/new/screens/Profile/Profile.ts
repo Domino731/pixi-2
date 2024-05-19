@@ -1,4 +1,4 @@
-import { ContentContainer } from '../../components/ContentContainer';
+import { ContentContainer } from '../../../components/ContentContainer';
 import { ProfileImageFrame } from '../../../components/ImageFrames';
 import { StatisticBar } from './components/StatisticBar';
 import { Container } from 'pixi.js';

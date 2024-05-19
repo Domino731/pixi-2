@@ -1,6 +1,6 @@
 import { navigation } from '../../../main';
-import { ContentContainer } from '../../components/ContentContainer';
-import { SectionBar } from '../../components/SectionBar';
+import { ContentContainer } from '../../../components/ContentContainer';
+import { SectionBar } from '../../../components/SectionBar';
 import { GangsMembersListScreen } from '../GangsMembersListScreen';
 import { GangsListBar } from './GangsListBar';
 import { InventorySelectionBar } from './InventorySelectionBar';

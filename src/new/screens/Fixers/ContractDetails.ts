@@ -1,7 +1,7 @@
 import { Container, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { Button } from '../../../components/Buttons';
-import { GAME_COLORS } from '../../../const/styles';
+import { GAME_COLORS } from '../../../config/styles';
 import { InfoLine } from './components/InfoLine';
 import { createAppTexture } from '../../../main';
 import { ScrollBox } from '@pixi/ui';

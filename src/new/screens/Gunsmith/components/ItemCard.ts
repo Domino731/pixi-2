@@ -1,7 +1,7 @@
 import { Container, Text } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
-import { GAME_COLORS } from '../../../../const/styles';
-import { getColorByItemRarity, ItemRarityUnion } from '../../../../const/types';
+import { GAME_COLORS } from '../../../../config/styles';
+import { getColorByItemRarity, ItemRarityUnion } from '../../../../config/types';
 
 interface IItemCard {
     x: number;

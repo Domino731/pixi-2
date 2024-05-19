@@ -1,12 +1,12 @@
-import { ContentContainer } from '../../components/ContentContainer';
+import { ContentContainer } from '../../../components/ContentContainer';
 import { GangMemberCard } from './GangMemberCard';
 import { List, ScrollBox } from '@pixi/ui';
 import { GAME } from '../../../config/game';
 import { gangMembersApi } from '../../../modules/api/gang-members';
-import { GAME_COLORS } from '../../../const/styles';
+import { GAME_COLORS } from '../../../config/styles';
 import { config } from './config';
-import { SECTION_BAR_CONFIG } from '../../components/SectionBar/SectionBar.const';
-import { SectionBar } from '../../components/SectionBar';
+import { SECTION_BAR_CONFIG } from '../../../components/SectionBar/SectionBar.const';
+import { SectionBar } from '../../../components/SectionBar';
 import { navigation } from '../../../main';
 import { CityMap } from '../MapScreens/Map';
 

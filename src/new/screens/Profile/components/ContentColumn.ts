@@ -1,5 +1,5 @@
 import { Container, Graphics } from 'pixi.js';
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 import { FixerCard } from './FIxerCard';
 
 const WIDTH = 500;

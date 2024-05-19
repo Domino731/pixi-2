@@ -1,5 +1,5 @@
 import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
-import { GAME_COLORS } from '../../const/styles';
+import { GAME_COLORS } from '../../config/styles';
 import { createAppTexture } from '../../main';
 
 interface ProfileImageFrameOptions {

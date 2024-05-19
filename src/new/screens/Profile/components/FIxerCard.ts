@@ -1,5 +1,5 @@
 import { Container, Graphics, Text } from 'pixi.js';
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 import { Button } from '@pixi/ui';
 
 interface IFixerCard {

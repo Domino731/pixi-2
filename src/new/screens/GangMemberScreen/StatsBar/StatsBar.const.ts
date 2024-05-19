@@ -1,5 +1,5 @@
 import { PROFILE_CARD_CONFIG } from '../ProfileCard/ProfileCard.const';
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 
 export const CONFIG = {
     WIDTH: PROFILE_CARD_CONFIG.WIDTH,

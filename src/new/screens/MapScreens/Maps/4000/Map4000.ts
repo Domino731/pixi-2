@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../../../../const/styles';
+import { GAME_COLORS } from '../../../../../config/styles';
 import { MapIcon } from '../../components/MapIcon/MapIcon';
 import { MAP_ICON } from '../../components/MapIcon/MapIcon.const';
 import { MapFactory } from '../MapFactory';
@@ -14,62 +14,62 @@ export class Map4000 extends MapFactory {
         });
         this.setDistricts();
         this.setIcons();
-    
+
     }
 
-    private setIcons(){
+    private setIcons() {
         // northside
-        const i1 = new MapIcon({x: 2678, y: 1104, name: MAP_ICON.MED_POINT, label: "Paramed"});
+        const i1 = new MapIcon({ x: 2678, y: 1104, name: MAP_ICON.MED_POINT, label: 'Paramed' });
         this.mapContainer.addChild(i1);
-        const i2 = new MapIcon({x: 2698, y: 1104, name: MAP_ICON.FOOD, label: "Gastronomy"});
+        const i2 = new MapIcon({ x: 2698, y: 1104, name: MAP_ICON.FOOD, label: 'Gastronomy' });
         this.mapContainer.addChild(i2);
-        const i3 = new MapIcon({x: 2718, y: 1114, name: MAP_ICON.GUN_VENDOR, label: "Guns"});
+        const i3 = new MapIcon({ x: 2718, y: 1114, name: MAP_ICON.GUN_VENDOR, label: 'Guns' });
         this.mapContainer.addChild(i3);
-        const i4 = new MapIcon({x: 2699, y: 1264, name: MAP_ICON.CLOTHES, label: "Clothes"});
+        const i4 = new MapIcon({ x: 2699, y: 1264, name: MAP_ICON.CLOTHES, label: 'Clothes' });
         this.mapContainer.addChild(i4);
-        const i5 = new MapIcon({x: 2842, y: 1351, name: MAP_ICON.RIPPERDOC, label: "Cassious"});
+        const i5 = new MapIcon({ x: 2842, y: 1351, name: MAP_ICON.RIPPERDOC, label: 'Cassious' });
         this.mapContainer.addChild(i5);
-        const i6 = new MapIcon({x: 2912, y: 1551, name: MAP_ICON.MED_POINT, label: "Med"});
+        const i6 = new MapIcon({ x: 2912, y: 1551, name: MAP_ICON.MED_POINT, label: 'Med' });
         this.mapContainer.addChild(i6);
-        const i7 = new MapIcon({x: 3428, y: 1471, name: MAP_ICON.GUN_VENDOR, label: "Guns"});
+        const i7 = new MapIcon({ x: 3428, y: 1471, name: MAP_ICON.GUN_VENDOR, label: 'Guns' });
         this.mapContainer.addChild(i7);
         // littlechina
-        const i8= new MapIcon({x: 2949, y: 1784, name: MAP_ICON.MED_POINT, label: "Med"});
+        const i8 = new MapIcon({ x: 2949, y: 1784, name: MAP_ICON.MED_POINT, label: 'Med' });
         this.mapContainer.addChild(i8);
-        const i9= new MapIcon({x: 3014, y: 2052, name: MAP_ICON.MELEE_VENDOR, label: "Melee"});
+        const i9 = new MapIcon({ x: 3014, y: 2052, name: MAP_ICON.MELEE_VENDOR, label: 'Melee' });
         this.mapContainer.addChild(i9);
-        const i10= new MapIcon({x: 3002, y: 2062, name: MAP_ICON.GUN_VENDOR, label: "Guns"});
+        const i10 = new MapIcon({ x: 3002, y: 2062, name: MAP_ICON.GUN_VENDOR, label: 'Guns' });
         this.mapContainer.addChild(i10);
-        const i11= new MapIcon({x: 2830, y: 2108, name: MAP_ICON.MED_POINT, label: "Med"});
+        const i11 = new MapIcon({ x: 2830, y: 2108, name: MAP_ICON.MED_POINT, label: 'Med' });
         this.mapContainer.addChild(i11);
-        const i12= new MapIcon({x: 2938, y: 2121, name: MAP_ICON.RIPPERDOC, label: "Ripperdoc"});
+        const i12 = new MapIcon({ x: 2938, y: 2121, name: MAP_ICON.RIPPERDOC, label: 'Ripperdoc' });
         this.mapContainer.addChild(i12);
-        const i13= new MapIcon({x: 2668, y: 2181, name: MAP_ICON.FOOD, label: "Food"});
+        const i13 = new MapIcon({ x: 2668, y: 2181, name: MAP_ICON.FOOD, label: 'Food' });
         this.mapContainer.addChild(i13);
         // Kabuki
-        const i14= new MapIcon({x: 3286, y: 1981, name: MAP_ICON.JUNK, label: "Junk"});
+        const i14 = new MapIcon({ x: 3286, y: 1981, name: MAP_ICON.JUNK, label: 'Junk' });
         this.mapContainer.addChild(i14);
-        const i15= new MapIcon({x: 3269, y: 1978, name: MAP_ICON.RIPPERDOC, label: "Ripperdoc"});
+        const i15 = new MapIcon({ x: 3269, y: 1978, name: MAP_ICON.RIPPERDOC, label: 'Ripperdoc' });
         this.mapContainer.addChild(i15);
-        const i16= new MapIcon({x: 3199, y: 1882, name: MAP_ICON.FIXER, label: "Fixer"});
+        const i16 = new MapIcon({ x: 3199, y: 1882, name: MAP_ICON.FIXER, label: 'Fixer' });
         this.mapContainer.addChild(i16);
-        const i17= new MapIcon({x: 3220, y: 1776, name: MAP_ICON.CLOTHES, label: "Clothes"});
+        const i17 = new MapIcon({ x: 3220, y: 1776, name: MAP_ICON.CLOTHES, label: 'Clothes' });
         this.mapContainer.addChild(i17);
-        const i18= new MapIcon({x: 3320, y: 1782, name: MAP_ICON.FOOD, label: "Food"});
+        const i18 = new MapIcon({ x: 3320, y: 1782, name: MAP_ICON.FOOD, label: 'Food' });
         this.mapContainer.addChild(i18);
-        const i19= new MapIcon({x: 3330, y: 1746, name: MAP_ICON.MED_POINT, label: "Med"});
+        const i19 = new MapIcon({ x: 3330, y: 1746, name: MAP_ICON.MED_POINT, label: 'Med' });
         this.mapContainer.addChild(i19);
-        const i20= new MapIcon({x: 3138, y: 1643, name: MAP_ICON.RIPPERDOC, label: "Ripperdoc"});
+        const i20 = new MapIcon({ x: 3138, y: 1643, name: MAP_ICON.RIPPERDOC, label: 'Ripperdoc' });
         this.mapContainer.addChild(i20);
-        const i21= new MapIcon({x: 3148, y: 1617, name: MAP_ICON.FOOD, label: "Food"});
+        const i21 = new MapIcon({ x: 3148, y: 1617, name: MAP_ICON.FOOD, label: 'Food' });
         this.mapContainer.addChild(i21);
-        const i22= new MapIcon({x: 3154, y: 1569, name: MAP_ICON.GUN_VENDOR, label: "Gun"});
+        const i22 = new MapIcon({ x: 3154, y: 1569, name: MAP_ICON.GUN_VENDOR, label: 'Gun' });
         this.mapContainer.addChild(i22);
-        const i23= new MapIcon({x: 3184, y: 1573, name: MAP_ICON.RIPPERDOC, label: "Netrunner"});
+        const i23 = new MapIcon({ x: 3184, y: 1573, name: MAP_ICON.RIPPERDOC, label: 'Netrunner' });
         this.mapContainer.addChild(i23);
-        const i24= new MapIcon({x: 3194, y: 1591, name: MAP_ICON.FOOD, label: "Food"});
+        const i24 = new MapIcon({ x: 3194, y: 1591, name: MAP_ICON.FOOD, label: 'Food' });
         this.mapContainer.addChild(i24);
-        const i25= new MapIcon({x: 3240, y: 1503, name: MAP_ICON.RIPPERDOC, label: "Ripperdoc"});
+        const i25 = new MapIcon({ x: 3240, y: 1503, name: MAP_ICON.RIPPERDOC, label: 'Ripperdoc' });
         this.mapContainer.addChild(i25);
     }
 
@@ -111,14 +111,14 @@ export class Map4000 extends MapFactory {
         g.endFill();
 
 
-        const text = new Text("Watson", {
+        const text = new Text('Watson', {
             fill: GAME_COLORS.yellow,
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
-            fontSize: 22
-        })
-        text.position.set(2870, 1450)
-        g.addChild(text)
+            fontSize: 22,
+        });
+        text.position.set(2870, 1450);
+        g.addChild(text);
 
         this.mapContainer.addChild(g);
 
@@ -146,14 +146,14 @@ export class Map4000 extends MapFactory {
         ]);
         g.endFill();
 
-        const text = new Text("Arasaka waterfront", {
+        const text = new Text('Arasaka waterfront', {
             fill: 'white',
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
-            fontSize: 18
-        })
-        text.position.set(2270, 1400)
-        g.addChild(text)
+            fontSize: 18,
+        });
+        text.position.set(2270, 1400);
+        g.addChild(text);
         this.mapContainer.addChild(g);
     }
 
@@ -172,19 +172,19 @@ export class Map4000 extends MapFactory {
         ]);
         g.endFill();
 
-        const text = new Text("Little china", {
+        const text = new Text('Little china', {
             fill: 'white',
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
-            fontSize: 18
-        })
-        text.position.set(2840, 2080)
-        g.addChild(text)
+            fontSize: 18,
+        });
+        text.position.set(2840, 2080);
+        g.addChild(text);
 
         this.mapContainer.addChild(g);
     }
 
-    private setKabukiBorder(){
+    private setKabukiBorder() {
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
@@ -212,18 +212,18 @@ export class Map4000 extends MapFactory {
         ]);
         g.endFill();
 
-        const text = new Text("Kabuki", {
+        const text = new Text('Kabuki', {
             fill: 'white',
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
-            fontSize: 18
-        })
-        text.position.set(3260, 1900)
-        g.addChild(text)
+            fontSize: 18,
+        });
+        text.position.set(3260, 1900);
+        g.addChild(text);
         this.mapContainer.addChild(g);
     }
 
-    private setNorthsideBorder(){
+    private setNorthsideBorder() {
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
@@ -249,24 +249,24 @@ export class Map4000 extends MapFactory {
             3167, 1741,
             2863, 1730,
             2593, 1240,
-2502, 1241,
-2447, 1147,2480, 1061,
+            2502, 1241,
+            2447, 1147, 2480, 1061,
             2340, 853,
             2670, 838,
             2840, 628,
-            
-            
+
+
         ]);
         g.endFill();
 
-        const text = new Text("Northside", {
+        const text = new Text('Northside', {
             fill: 'white',
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
-            fontSize: 18
-        })
-        text.position.set(3170, 1100)
-        g.addChild(text)
+            fontSize: 18,
+        });
+        text.position.set(3170, 1100);
+        g.addChild(text);
 
         this.mapContainer.addChild(g);
     }

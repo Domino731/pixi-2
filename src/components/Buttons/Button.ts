@@ -1,7 +1,7 @@
 import { Button as PixiButton } from '@pixi/ui';
 import { Graphics } from '@pixi/graphics';
 import { Container, Text } from 'pixi.js';
-import { GAME_COLORS } from '../../const/styles';
+import { GAME_COLORS } from '../../config/styles';
 
 
 interface IButton {

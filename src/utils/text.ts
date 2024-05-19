@@ -1,4 +1,4 @@
-import { Container, Text } from 'pixi.js';
+import { Text } from 'pixi.js';
 
 
 interface CenterTextOptions {

@@ -1,5 +1,5 @@
-import { GAME_COLORS } from '../../../const/styles';
-import { GAME } from '../../../config/game';
+import { GAME_COLORS } from '../../config/styles';
+import { GAME } from '../../config/game';
 import { TextStyleFontWeight } from 'pixi.js';
 
 export const SECTION_BAR_CONFIG = {

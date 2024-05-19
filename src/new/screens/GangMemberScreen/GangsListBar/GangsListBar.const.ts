@@ -1,5 +1,5 @@
 import { GAME } from '../../../../config/game';
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 
 export const CONFIG = {
     WIDTH: 500,

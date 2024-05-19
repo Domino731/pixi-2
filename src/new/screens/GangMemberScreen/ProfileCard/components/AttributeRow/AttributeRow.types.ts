@@ -1,4 +1,4 @@
-import { IconsUnion } from '../../../../../components/Icon/Icon.const';
+import { IconsUnion } from '../../../../../../components/Icon/Icon.const';
 
 export interface AttributeRowOptions {
     x: number;

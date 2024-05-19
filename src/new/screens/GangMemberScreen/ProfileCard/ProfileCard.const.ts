@@ -1,4 +1,4 @@
-import { GAME_COLORS } from '../../../../const/styles';
+import { GAME_COLORS } from '../../../../config/styles';
 
 const height = 1000;
 const width = 800;
