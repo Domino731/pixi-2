@@ -1,4 +1,5 @@
 export interface ItemTileOptions {
-    x: number,
-    y: number
+    x: number;
+    y: number;
+    label?: number;
 }

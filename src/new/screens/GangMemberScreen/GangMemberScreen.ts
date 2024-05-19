@@ -51,6 +51,7 @@ export class GangMemberScreen extends ContentContainer {
             container.addChild(new ItemTile({
                 x: 0,
                 y: (i * ITEM_TILE_CONFIG.SIZE) + (i * CONFIG.INVENTORY_SLOTS_GAP),
+                label: i + 1,
             }));
         });
         return container;
