@@ -1,13 +1,20 @@
 import { Container, Graphics } from 'pixi.js';
 import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
+import { ItemCard } from '../../Gunsmith/components/ItemCard';
 
 export class Inventory extends Container {
     constructor({ x, y }: InventoryOptions) {
         super();
         this.position.set(x, y);
         this.addChild(this.createContainer());
+        this.addChild(this.createItemTile());
 
+    }
+
+    private createItemTile() {
+        const card = new ItemCard({ x: 20, y: 20, rarity: 'LEGENDARY' });
+        return card;
     }
 
     private createContainer(): Graphics {
@@ -31,7 +38,7 @@ export class Inventory extends Container {
             x + sharpOffsetLeft, y + height,
 
             x + width, y + height,
-            
+
             x + width, y + height - indentBottomOffset,
             x + width - sharpOffsetRight, y + height - indentBottomOffset - sharpOffsetRight,
             x + width - sharpOffsetRight, y + height - indentBottomOffset - indentHeight,
