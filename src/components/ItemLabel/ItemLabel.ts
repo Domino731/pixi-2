@@ -14,43 +14,72 @@ export class ItemLabel extends Container {
 
     private createItemsList() {
         const g = new Graphics();
-        const list = new List({ elementsMargin: 30 });
-        list.addChild(this.createTitleSection());
+        const list = new List({ elementsMargin: 10 });
         list.addChild(this.createDamageSection());
-        list.addChild(this.createAdditionalInfo());
-        list.addChild(this.createAttachmentsList());
-        list.addChild(this.createItemTypeSection());
-        list.addChild(this.createItemDescription());
-        list.addChild(this.createStatsSection());
+        list.addChild(this.createBorderLine());
         list.addChild(this.createItemGraphicSection());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createTitleSection());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createItemTypeSection());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createStatsSection());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createAdditionalInfo());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createAttachmentsList());
+        list.addChild(this.createBorderLine());
+        list.addChild(this.createItemDescription());
         list.type = 'vertical';
         list.position.set(CONFIG.PADDING, CONFIG.PADDING);
         const x = 0;
         const y = 0;
         const width = list.width + (2 * CONFIG.PADDING);
         const height = list.height + (2 * CONFIG.PADDING);
+        const sharpOffset = CONFIG.SHARP_OFFSET;
 
         g.beginFill(CONFIG.BACKGROUND);
         g.lineStyle(CONFIG.BORDER_WIDTH, CONFIG.BORDER_COLOR);
         g.drawPolygon(
             x, y,
             x, y + height,
-            x + width, y + height,
+            x + width - sharpOffset, y + height,
+            x + width, y + height - sharpOffset,
             x + width, y,
         );
         g.endFill();
+
+
+        g.beginFill(...GAME_COLORS.transparent);
+        g.lineStyle(1, GAME_COLORS.red2);
+        g.drawRect(CONFIG.SECTION_WIDTH / 2, height - 60, 4, 60);
+        g.endFill();
+        // container.addChild(g);
 
         g.addChild(list);
         return g;
     }
 
-    private createItemGraphicSection() {
-        const container = new Container();
+    private createBorderLine() {
         const g = new Graphics();
-        g.beginFill(GAME_COLORS.red1);
+
+        g.beginFill(...GAME_COLORS.transparent);
         g.drawRect(0, 0, CONFIG.SECTION_WIDTH, 40);
         g.endFill();
-        container.addChild(g);
+
+        g.beginFill(CONFIG.GAP_BORDER_COLOR);
+        g.drawRect(0, 4, CONFIG.SECTION_WIDTH, CONFIG.GAP_BRODER_WIDTH);
+        g.endFill();
+
+        return g;
+    }
+
+    private createItemGraphicSection() {
+        const container = new Container();
+        const txt = Texture.from(`guns/sniperRifles/grad`);
+        const gunTxt = new Sprite(txt);
+
+        container.addChild(gunTxt);
         return container;
     }
 
@@ -66,27 +95,19 @@ export class ItemLabel extends Container {
 
             const labelText = new Text(label, {
                 fontSize: 20,
-                fill: GAME_COLORS.lightBlue,
+                fill: GAME_COLORS.blue2,
             });
             labelText.position.set(valueText.width + 4, Math.floor(valueText.height / 2) - Math.floor(labelText.height / 2));
             container.addChild(labelText);
             return container;
         };
 
-        const list = new List({ type: 'vertical', elementsMargin: 5 });
+        const list = new List({ type: 'vertical', elementsMargin: 10 });
         list.addChild(createStat('+7-8', 'Electrical Damage'));
         list.addChild(createStat('+1.39%', 'Crit chance'));
         list.addChild(createStat('+2%', 'Crit damage'));
         list.addChild(createStat('0.85', 'Headshot damage multiplier'));
         container.addChild(list);
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, list.y + list.height, CONFIG.SECTION_WIDTH, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-        container.addChild(g);
-
-
         return container;
     }
 
@@ -94,7 +115,7 @@ export class ItemLabel extends Container {
         const container = new Container();
         const descriptionText = new Text('A genius among shotguns', {
             fontSize: 20,
-            fill: GAME_COLORS.red1,
+            fill: GAME_COLORS.red2,
         });
         container.addChild(descriptionText);
 
@@ -102,18 +123,17 @@ export class ItemLabel extends Container {
 
         const weightText = new Text('5', {
             fontSize: 22,
-            fill: GAME_COLORS.red1,
+            fill: GAME_COLORS.red2,
         });
-        const priceText = new Text('5', {
+        const priceText = new Text('156', {
             fontSize: 22,
-            fill: GAME_COLORS.yellow,
+            fill: GAME_COLORS.red2,
         });
-        list.position.set(0, descriptionText.height + 10);
+        list.position.set(0, descriptionText.height + 25);
         list.type = 'horizontal';
         list.addChild(weightText);
         list.addChild(priceText);
         container.addChild(list);
-
         return container;
     }
 
@@ -142,14 +162,6 @@ export class ItemLabel extends Container {
         container.addChild(list);
 
         icon.position.set(0, Math.floor(list.height / 2) - Math.floor(icon.height / 2));
-
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, list.y + list.height, CONFIG.SECTION_WIDTH, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-        container.addChild(g);
-
         return container;
     }
 
@@ -157,10 +169,11 @@ export class ItemLabel extends Container {
         const container = new Container();
         const list = new List({ elementsMargin: 10 });
         list.type = 'vertical';
+        list.position.set(15, 15);
         const createItem = (label: string) => {
             const list = new Container();
             const circleG = new Graphics();
-            circleG.beginFill('red');
+            circleG.beginFill(GAME_COLORS.red3);
             circleG.drawCircle(0, 0, 5);
             circleG.endFill();
 
@@ -179,13 +192,6 @@ export class ItemLabel extends Container {
         list.addChild(createItem('Empty mod slot'));
         list.addChild(createItem('Empty mod slot'));
         container.addChild(list);
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, list.y + list.height, CONFIG.SECTION_WIDTH, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-        container.addChild(g);
-
         return container;
     }
 
@@ -196,14 +202,6 @@ export class ItemLabel extends Container {
             fontSize: 18,
         });
         container.addChild(text);
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, text.y + text.height, CONFIG.SECTION_WIDTH, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-
-        container.addChild(g);
-
         return container;
     }
 
@@ -253,18 +251,10 @@ export class ItemLabel extends Container {
 
         const specsList = new List({ elementsMargin: 5 });
         specsList.type = 'vertical';
-        specsList.position.set(mainDmgText.x, mainDmgText.height + 10);
+        specsList.position.set(mainDmgText.x, mainDmgText.height + 14);
         specsList.addChild(createDamageSpec('5-7', ' Damage'));
         specsList.addChild(createDamageSpec('7.54', ' Attacks per second'));
         container.addChild(specsList);
-
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, specsList.y + specsList.height, width, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-
-        container.addChild(g);
 
         return container;
     }
@@ -294,14 +284,6 @@ export class ItemLabel extends Container {
         itemType.position.set(0, itemTitle.height * 2);
 
         container.addChild(itemType);
-
-        const g = new Graphics();
-        g.beginFill(CONFIG.SECTION_BORDER_COLOR);
-        g.drawRect(0, itemType.position.y + itemType.height + 4, width, CONFIG.SECTION_BORDER_WIDTH);
-        g.endFill();
-
-        container.addChild(g);
-        console.log(container.height);
         return container;
     }
 }

@@ -1,3 +1,5 @@
+import { GAME_COLORS } from './styles';
+
 export enum ITEM_RARITY {
     COMMON = 'COMMON',
     RARE = 'RARE',
@@ -16,7 +18,7 @@ export const getColorByItemRarity = (rarity: ItemRarityUnion) => {
         case ITEM_RARITY.EPIC:
             return 'purple';
         case ITEM_RARITY.LEGENDARY:
-            return 'yellow';
+            return GAME_COLORS.legendaryItem;
         default:
             return 'white';
     }
