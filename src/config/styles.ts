@@ -8,4 +8,7 @@ export const GAME_COLORS = {
     black2: '#0b0c15',
     crimson: '#250d15',
     white: 'white',
+    yellowText: {
+        main: '#e1b23f'
+    }
 };

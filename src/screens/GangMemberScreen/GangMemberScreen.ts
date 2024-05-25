@@ -12,6 +12,7 @@ import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { InventoryScrollBar } from './InventoryScrollbar';
 import { ProfileCard } from './ProfileCard';
 import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
+import { ItemLabel } from '../../components/ItemLabel';
 
 export class GangMemberScreen extends ContentContainer {
     constructor() {
@@ -29,6 +30,7 @@ export class GangMemberScreen extends ContentContainer {
         this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
         this.addChild(this.createInventorySlots());
         this.addChild(this.createSkillsSlots());
+        this.addChild(new ItemLabel({ x: 1000, y: 400 }));
     }
 
     private createInventorySlots() {

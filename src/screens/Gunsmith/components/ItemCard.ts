@@ -1,7 +1,8 @@
-import { Container, Text } from 'pixi.js';
+import { Container, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { GAME_COLORS } from '../../../config/styles';
 import { getColorByItemRarity, ItemRarityUnion } from '../../../config/types';
+import { CONFIG } from './ItemCard.const';
 
 interface IItemCard {
     x: number;
@@ -9,77 +10,61 @@ interface IItemCard {
     rarity: ItemRarityUnion;
 }
 
-const RARITY_BAR_WIDTH = 20;
-const HEIGHT = 160;
-const ITEM_CARD_WIDTH = 450;
-const ITEM_TITLE_FONT_SIZE = 18;
-const AMMO_TYPE_SIZE = 25;
-
 export class ItemCard extends Container {
     private highlightColor: string;
 
-    constructor({ x, y, rarity }: IItemCard) {
+    constructor({ x, y, rarity, onHover }: IItemCard) {
         super();
+        this.interactive = true;  // Make the container interactive
+        this.buttonMode = true;   // Change the cursor to a pointer when hovering
+
         this.highlightColor = getColorByItemRarity(rarity);
         this.position.set(x, y);
-        this.setComponents();
 
-        this.onclick = () => {
-            console.log(123);
-        };
+        this.addChild(this.createRarityGraphic());
+        this.addChild(this.createItemCardGraphics());
+        this.addChild(this.createGunImage());
+        this.addChild(this.createLabel());
+
+        this.on('pointermove', () => {
+            console.log('pointermove');
+        });
     }
 
-
-    private setComponents() {
-        this.addChild(this.getRarityGraphic());
-        this.addChild(this.getItemCardGraphic());
-        this.addChild(this.getItemTitle());
-        this.addChild(this.getPriceTag());
-        this.addChild(this.getAmmoTypeGraphic());
-        this.addChild(this.getChipsGraphics());
-        this.addChild(this.getAttachmentsGraphics());
-    }
-
-    public getWidth() {
-        return ITEM_CARD_WIDTH;
-    }
-
-    private getItemCardGraphic() {
-        const x = RARITY_BAR_WIDTH + 5;
-        const y = 0;
-        const width = ITEM_CARD_WIDTH;
-        const height = HEIGHT;
-        const offset = 30;
-
-        const points = [
-            x, y,
-            x, y + height,
-            x + width - offset, y + height,
-            x + width, y + height - offset,
-            x + width, y,
-        ];
-
+    private createGunImage() {
         const g = new Graphics();
-        g.beginFill(GAME_COLORS.black2);
-        g.lineStyle(2, GAME_COLORS.crimson);
-        g.drawPolygon(points);
-        g.endFill();
+        const txt = Texture.from(`guns/sniperRifles/grad`);
+        const gunTxt = new Sprite(txt);
+        gunTxt.width = Math.floor(gunTxt.width * CONFIG.GUN_SCALE.SNIPER);
+        gunTxt.height = Math.floor(gunTxt.height * CONFIG.GUN_SCALE.SNIPER);
+        const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        const y = 0;
+        const height = CONFIG.HEIGHT;
+        const width = CONFIG.ITEM_CARD_WIDTH;
+
+        const gX = x + Math.floor(width / 2) - Math.floor(gunTxt.width / 2);
+        const gY = y + Math.floor(height / 2) - Math.floor(gunTxt.height / 2);
+
+        g.addChild(gunTxt);
+        g.position.set(gX, gY);
         return g;
     }
 
-    private getRarityGraphic() {
+    private createRarityGraphic() {
         const x = 0;
         const y = 0;
-        const width = RARITY_BAR_WIDTH;
-        const height = HEIGHT;
-
+        const width = CONFIG.RARITY_WIDTH;
+        const height = CONFIG.HEIGHT;
+        const offsetHeight = CONFIG.RARITY_INDENT_HEIGHT;
+        const identXOffset = CONFIG.RARITY_IDNENT_OFFEST_X;
+        const identYOffset = CONFIG.RARITY_IDNENT_OFFEST_Y;
         const points = [
             x, y,
 
-            x, y + 70,
-            x + 6, y + 70,
-            x + 6, y + 130,
-            x, y + 135,
+            x, y + identYOffset,
+            x + identXOffset, y + identYOffset + identXOffset,
+            x + identXOffset, y + identYOffset + offsetHeight,
+            x, y + identYOffset + offsetHeight,
 
             x, y + height,
             x + width, y + height,
@@ -94,74 +79,43 @@ export class ItemCard extends Container {
         return g;
     }
 
-
-    private getItemTitle() {
-        const text = new Text('SNIPER-RIFLE', {
-            fill: 'grey',
-            fontSize: ITEM_TITLE_FONT_SIZE,
-            letterSpacing: 1,
-            fontWeight: 'bold',
+    private createLabel() {
+        const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        const y = 0;
+        const height = CONFIG.HEIGHT;
+        const width = CONFIG.ITEM_CARD_WIDTH;
+        const text = new Text('Phantom'.toUpperCase(), {
+            fill: CONFIG.ITEM_LABEL_COLOR,
+            fontSize: CONFIG.ITEM_LABEL_FONT_SIZE,
+            letterSpacing: CONFIG.ITEM_LABEL_LETTER_SPACING,
+            fontWeight: CONFIG.ITEM_LABEL_FONT_WEIGHT,
         });
-        text.position.set(100, HEIGHT - ITEM_TITLE_FONT_SIZE - 10);
+        const textX = x + Math.floor(width / 2) - Math.floor(text.width / 2);
+        const textY = y + Math.floor(height - text.height) - CONFIG.ITEM_LABEL_FONT_SIZE_PADDING_BOTTOM;
+
+        text.position.set(textX, textY);
         return text;
     }
 
-    private getPriceTag() {
+    private createItemCardGraphics() {
         const g = new Graphics();
+        const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        const y = 0;
+        const height = CONFIG.HEIGHT;
+        const width = CONFIG.ITEM_CARD_WIDTH;
+        const sharpOffset = CONFIG.ITEM_CARD_SHARP_OFFSET;
 
-        g.position.set((ITEM_CARD_WIDTH + RARITY_BAR_WIDTH) - 80, 10);
-        g.beginFill();
-        g.lineStyle(1, 'yellow');
-        g.drawRect(0, 0, 70, 25);
+        g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
+        g.lineStyle(CONFIG.ITEM_CARD_BORDER_WIDTH, CONFIG.ITEM_CARD_BORDER_COLOR);
+        g.drawPolygon(
+            x, y,
+            x, y + height,
+            x + width - sharpOffset, y + height,
+            x + width, y + height - sharpOffset,
+            x + width, y,
+        );
         g.endFill();
 
         return g;
-    }
-
-    private getAmmoTypeGraphic() {
-        const g = new Graphics();
-
-        g.position.set(RARITY_BAR_WIDTH + 14, HEIGHT - AMMO_TYPE_SIZE - 12);
-        g.beginFill();
-        g.lineStyle(2, GAME_COLORS.lightBlue);
-        g.drawRect(0, 0, AMMO_TYPE_SIZE, AMMO_TYPE_SIZE);
-        g.endFill();
-        return g;
-    }
-
-    private getChipsGraphics() {
-        const container = new Container();
-
-        container.position.set(RARITY_BAR_WIDTH + 22, 12);
-
-        for (let i = 0; i < 3; i++) {
-            const g = new Graphics();
-            g.beginFill();
-            g.lineStyle(2, 'grey');
-            g.drawCircle(22 * i, 10, 8);
-            g.endFill();
-            container.addChild(g);
-        }
-
-
-        return container;
-    }
-
-    private getAttachmentsGraphics() {
-        const container = new Container();
-
-        container.position.set(ITEM_CARD_WIDTH - 80, 110);
-
-        for (let i = 0; i < 3; i++) {
-            const g = new Graphics();
-            g.beginFill();
-            g.lineStyle(2, 'grey');
-            g.drawRect(26 * i, 10, 20, 20);
-            g.endFill();
-            container.addChild(g);
-        }
-
-
-        return container;
     }
 }

@@ -15,11 +15,11 @@ export class Inventory extends Container {
 
     private createItemTile() {
         const list = new List({ type: 'horizontal' });
-        const card1 = new ItemCard({ x: 0, y: 0, rarity: 'LEGENDARY' });
+        const card1 = new ItemCard({ x: 20, y: 20, rarity: 'LEGENDARY' });
         const card2 = new ItemCard({ x: 0, y: 0, rarity: 'LEGENDARY' });
-        list.addChild(card1);
-        list.addChild(card2);
-        return list;
+        // list.addChild(card1);
+        // list.addChild(card2);
+        return card1
     }
 
     private createContainer(): Graphics {
