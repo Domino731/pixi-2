@@ -1,3 +1,31 @@
+export interface BaseGameItem {
+    name: string;
+    rarity: ItemRarityUnion;
+    type: WeaponTypeUnion;
+    dps: number;
+    damage: number | number[];
+    attackPerSecond: number;
+    reloadSpeed: number;
+    effectiveRange: number;
+    handling: number;
+    magazineCapacity: number;
+    armorPenetration: number;
+    ammo: GunAmmoUnion;
+    technology: GunTechnologyUnion;
+    stats: {
+        electricalDamage: number;
+        critChange: number;
+        critDamage: number;
+        headshotDamageMultiplier: number;
+
+    },
+    attachments: GunAttachmentsUnion[];
+    modificationsSlots: number[];
+    description: string;
+    weight: number;
+    basePrice: number;
+}
+
 export enum ITEM_RARITY {
     common = 'common',
     rare = 'rare',
@@ -6,6 +34,19 @@ export enum ITEM_RARITY {
 }
 
 export type ItemRarityUnion = keyof typeof ITEM_RARITY;
+
+export enum WEAPON_TYPE {
+    pistol = 'pistol',
+    revolver = 'revolver',
+    smg = 'smg',
+    shotgun = 'shotgun',
+    assaultRifle = 'assaultRifle',
+    lmg = 'lmg',
+    precisionRifle = 'precisionRifle',
+    sniperRifle = 'sniperRifle'
+}
+
+export type WeaponTypeUnion = keyof typeof WEAPON_TYPE;
 
 export enum GUN_TECHNOLOGY {
     blade = 'blade',
@@ -27,3 +68,10 @@ export enum GUN_AMMO {
 }
 
 export type GunAmmoUnion = keyof typeof GUN_AMMO;
+
+export enum GUN_ATTACHMENTS {
+    scopes = 'scopes',
+    muzzles = 'muzzles'
+}
+
+export type GunAttachmentsUnion = keyof typeof GUN_ATTACHMENTS;
