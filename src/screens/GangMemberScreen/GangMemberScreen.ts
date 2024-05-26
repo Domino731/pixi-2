@@ -13,6 +13,7 @@ import { InventoryScrollBar } from './InventoryScrollbar';
 import { ProfileCard } from './ProfileCard';
 import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
+import { isPointInRectangle } from '../../utils/shapes';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
@@ -27,7 +28,12 @@ export class GangMemberScreen extends ContentContainer {
             x: CONFIG.INVENTORY_SELECTION_BAR_X,
             y: CONFIG.INVENTORY_SELECTION_BAR_Y,
         }));
-        this.inventoryItemLabel = new ItemLabel({ x: 0, y: 0 });
+        this.inventoryItemLabel = new ItemLabel({
+            x: 0, y: 0, onPointerLeave: () => {
+                this.removeChild(this.inventoryItemLabel);
+                this.isInventoryItemLabelVisible = false;
+            },
+        });
         this.addChild(new Inventory({
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
@@ -37,7 +43,16 @@ export class GangMemberScreen extends ContentContainer {
                 this.inventoryItemLabel.position.set((tx + 30) - this.inventoryItemLabel.width, ty);
                 this.addChild(this.inventoryItemLabel);
             },
-            onInventoryItemPointerLeave: () => {
+            onInventoryItemPointerLeave: (e) => {
+                const isItemLabelHovered = isPointInRectangle(
+                    e.client.x,
+                    e.client.y,
+                    this.inventoryItemLabel.position.x,
+                    this.inventoryItemLabel.position.y,
+                    this.inventoryItemLabel.width,
+                    this.inventoryItemLabel.height,
+                );
+                if (isItemLabelHovered) return;
                 this.removeChild(this.inventoryItemLabel);
                 this.isInventoryItemLabelVisible = false;
             },
