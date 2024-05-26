@@ -4,18 +4,21 @@ import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
 
 export class Inventory extends Container {
-    constructor({ x, y, onInventoryItemHover }: InventoryOptions) {
+    constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave }: InventoryOptions) {
         super();
         this.position.set(x, y);
         this.addChild(this.createContainer());
-        this.addChild(this.createItemTile(onInventoryItemHover));
+        this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave));
 
     }
 
-    private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover']) {
+    private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
         const card1 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
                 onInventoryItemHover(e, card1);
+            },
+            onPointerLeave: (e) => {
+                onInventoryItemPointerLeave(e, card1);
             },
         });
         return card1;

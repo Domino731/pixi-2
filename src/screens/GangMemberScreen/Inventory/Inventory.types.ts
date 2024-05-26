@@ -5,4 +5,5 @@ export interface InventoryOptions {
     x: number;
     y: number;
     onInventoryItemHover: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
+    onInventoryItemPointerLeave: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
 }

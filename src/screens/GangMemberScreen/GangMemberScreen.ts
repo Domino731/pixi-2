@@ -15,7 +15,7 @@ import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
 
 export class GangMemberScreen extends ContentContainer {
-    private inventoryItemLabel: ItemLabel = new ItemLabel({ x: 0, y: 0 });
+    private inventoryItemLabel: ItemLabel;
     private isInventoryItemLabelVisible: boolean = false;
 
     constructor() {
@@ -27,6 +27,7 @@ export class GangMemberScreen extends ContentContainer {
             x: CONFIG.INVENTORY_SELECTION_BAR_X,
             y: CONFIG.INVENTORY_SELECTION_BAR_Y,
         }));
+        this.inventoryItemLabel = new ItemLabel({ x: 0, y: 0 });
         this.addChild(new Inventory({
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
@@ -35,6 +36,10 @@ export class GangMemberScreen extends ContentContainer {
                 const { tx, ty } = item.worldTransform;
                 this.inventoryItemLabel.position.set((tx + 30) - this.inventoryItemLabel.width, ty);
                 this.addChild(this.inventoryItemLabel);
+            },
+            onInventoryItemPointerLeave: () => {
+                this.removeChild(this.inventoryItemLabel);
+                this.isInventoryItemLabelVisible = false;
             },
         }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));

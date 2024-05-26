@@ -9,15 +9,15 @@ interface IItemCard {
     y: number;
     rarity: ItemRarityUnion;
     onPointerOver: (e: FederatedPointerEvent) => void;
+    onPointerLeave: (e: FederatedPointerEvent) => void;
 }
 
 export class ItemCard extends Container {
     private highlightColor: string;
 
-    constructor({ x, y, rarity, onPointerOver }: IItemCard) {
+    constructor({ x, y, rarity, onPointerOver, onPointerLeave }: IItemCard) {
         super();
-        this.interactive = true;  // Make the container interactive
-        this.buttonMode = true;   // Change the cursor to a pointer when hovering
+        this.interactive = true;
 
         this.highlightColor = getColorByItemRarity(rarity);
         this.position.set(x, y);
@@ -30,8 +30,8 @@ export class ItemCard extends Container {
         this.on('pointerover', (e) => {
             onPointerOver(e);
         });
-        this.on('pointermove', () => {
-            // console.log('pointermove');
+        this.on('pointerleave', (e) => {
+            onPointerLeave(e);
         });
     }
 
