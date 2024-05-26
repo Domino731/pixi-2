@@ -1,4 +1,4 @@
-import { Container, Sprite, Text, Texture } from 'pixi.js';
+import { Container, FederatedPointerEvent, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { GAME_COLORS } from '../../../config/styles';
 import { getColorByItemRarity, ItemRarityUnion } from '../../../config/types';
@@ -8,12 +8,13 @@ interface IItemCard {
     x: number;
     y: number;
     rarity: ItemRarityUnion;
+    onPointerOver: (e: FederatedPointerEvent) => void;
 }
 
 export class ItemCard extends Container {
     private highlightColor: string;
 
-    constructor({ x, y, rarity, onHover }: IItemCard) {
+    constructor({ x, y, rarity, onPointerOver }: IItemCard) {
         super();
         this.interactive = true;  // Make the container interactive
         this.buttonMode = true;   // Change the cursor to a pointer when hovering
@@ -26,8 +27,11 @@ export class ItemCard extends Container {
         this.addChild(this.createGunImage());
         this.addChild(this.createLabel());
 
+        this.on('pointerover', (e) => {
+            onPointerOver(e);
+        });
         this.on('pointermove', () => {
-            console.log('pointermove');
+            // console.log('pointermove');
         });
     }
 

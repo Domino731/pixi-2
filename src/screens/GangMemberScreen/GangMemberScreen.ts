@@ -15,6 +15,9 @@ import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
 
 export class GangMemberScreen extends ContentContainer {
+    private inventoryItemLabel: ItemLabel = new ItemLabel({ x: 0, y: 0 });
+    private isInventoryItemLabelVisible: boolean = false;
+
     constructor() {
         super();
         this.addChild(this.createSectionBar());
@@ -24,13 +27,21 @@ export class GangMemberScreen extends ContentContainer {
             x: CONFIG.INVENTORY_SELECTION_BAR_X,
             y: CONFIG.INVENTORY_SELECTION_BAR_Y,
         }));
-        this.addChild(new Inventory({ x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y }));
+        this.addChild(new Inventory({
+            x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
+            onInventoryItemHover: (_, item) => {
+                if (this.isInventoryItemLabelVisible) return;
+                this.isInventoryItemLabelVisible = true;
+                const { tx, ty } = item.worldTransform;
+                this.inventoryItemLabel.position.set((tx + 30) - this.inventoryItemLabel.width, ty);
+                this.addChild(this.inventoryItemLabel);
+            },
+        }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
         this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
         this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
         this.addChild(this.createInventorySlots());
         this.addChild(this.createSkillsSlots());
-        this.addChild(new ItemLabel({ x: 1000, y: 100 }));
     }
 
     private createInventorySlots() {
