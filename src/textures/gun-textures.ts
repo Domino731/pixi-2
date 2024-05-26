@@ -1,5 +1,5 @@
 import { Texture } from 'pixi.js';
-import { GUN_TECHNOLOGY, GunTechnologyUnion } from '../models/items';
+import { GUN_AMMO, GUN_TECHNOLOGY, GunAmmoUnion, GunTechnologyUnion } from '../models/items';
 
 export const getGunTechnologyTexture = (technology: GunTechnologyUnion) => {
     switch (technology) {
@@ -18,5 +18,21 @@ export const getGunTechnologyTexture = (technology: GunTechnologyUnion) => {
         default:
             console.error('default value returned from getGunTechnologyTexture() function');
             return Texture.from(`guns/technologies/throwable`);
+    }
+};
+
+export const getGunAmmoTexture = (ammo: GunAmmoUnion) => {
+    switch (ammo) {
+        case GUN_AMMO.handgun:
+            return Texture.from(`guns/ammo/handgun`);
+        case GUN_AMMO.rifle:
+            return Texture.from(`guns/ammo/rifle`);
+        case GUN_AMMO.shotgun:
+            return Texture.from(`guns/ammo/shotgun`);
+        case GUN_AMMO.sniper:
+            return Texture.from(`guns/ammo/sniper`);
+        default:
+            console.error('default value returned from getGunAmmoTexture() function');
+            return Texture.from(`guns/ammo/handgun`);
     }
 };

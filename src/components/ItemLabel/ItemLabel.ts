@@ -4,7 +4,10 @@ import { List } from '@pixi/ui';
 import { CONFIG } from './ItemLabel.const';
 import { getColorByItemRarity } from '../../config/types';
 import { GAME_COLORS } from '../../config/styles';
-import { getGunTechnologyTexture } from '../../textures/gun-textures';
+import { getGunAmmoTexture, getGunTechnologyTexture } from '../../textures/gun-textures';
+import { getCommonTexture } from '../../textures/common-textures';
+import { COMMON_TEXTURES_NAMES } from '../../textures/common-textures.const';
+import { getGunAmmoText } from '../../utils/gun';
 
 export class ItemLabel extends Container {
     constructor({ x, y }: ItemLabelOptions) {
@@ -122,18 +125,25 @@ export class ItemLabel extends Container {
 
         const list = new List({ elementsMargin: CONFIG.SECTION_WIDTH / 2 });
 
-        const weightText = new Text('5', {
-            fontSize: 22,
-            fill: GAME_COLORS.red2,
-        });
-        const priceText = new Text('156', {
-            fontSize: 22,
-            fill: GAME_COLORS.red2,
-        });
+        const createIcon = (label: string, iconTxt: Texture, color: string) => {
+            const container = new Container();
+            const text = new Text(label, {
+                fontSize: 22,
+                fill: color,
+            });
+            const icon = new Sprite(iconTxt);
+            icon.width = 26;
+            icon.height = 26;
+            text.position.set(icon.width + 8, Math.floor(icon.height / 2) - Math.floor(text.height / 2));
+            container.addChild(icon);
+            container.addChild(text);
+            return container;
+        };
+
         list.position.set(0, descriptionText.height + 25);
         list.type = 'horizontal';
-        list.addChild(weightText);
-        list.addChild(priceText);
+        list.addChild(createIcon('5', getCommonTexture(COMMON_TEXTURES_NAMES.weight), GAME_COLORS.red2));
+        list.addChild(createIcon('125', getCommonTexture(COMMON_TEXTURES_NAMES.euroDollar), GAME_COLORS.yellow));
         container.addChild(list);
         return container;
     }
@@ -223,11 +233,19 @@ export class ItemLabel extends Container {
         mainDmgDecimalText.position.set(mainDmgText.width + CONFIG.DAMAGE_SECTION_MAIN_DAMAGE_DECIMAL_FONT_X_OFFSET, yOffset + CONFIG.DAMAGE_SECTION_MAIN_DAMAGE_DECIMAL_FONT_Y_OFFSET);
         container.addChild(mainDmgDecimalText);
 
-        const ammoText = new Text('511', {
+        const ammoText = new Text(getGunAmmoText('handgun'), {
             fontSize: CONFIG.DAMAGE_SECTION_AMMO_FONT_SIZE,
             fill: CONFIG.DAMAGE_SECTION_AMMO_FONT_COLOR,
         });
         ammoText.position.set(width - ammoText.width, yOffset);
+
+        const ammoTxt = getGunAmmoTexture('handgun');
+        const ammo = new Sprite(ammoTxt);
+        ammo.width = 70;
+        ammo.height = 70;
+        ammo.position.set(ammoText.position.x - ammo.width, -20);
+        container.addChild(ammo);
+
         container.addChild(ammoText);
 
         const createDamageSpec = (range: string, label: string) => {

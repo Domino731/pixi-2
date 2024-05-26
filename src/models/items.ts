@@ -17,3 +17,13 @@ export enum GUN_TECHNOLOGY {
 }
 
 export type GunTechnologyUnion = keyof typeof GUN_TECHNOLOGY;
+
+
+export enum GUN_AMMO {
+    handgun = 'handgun',
+    rifle = 'rifle',
+    shotgun = 'shotgun',
+    sniper = 'sniper'
+}
+
+export type GunAmmoUnion = keyof typeof GUN_AMMO;
