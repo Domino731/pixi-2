@@ -4,6 +4,7 @@ import { List } from '@pixi/ui';
 import { CONFIG } from './ItemLabel.const';
 import { getColorByItemRarity } from '../../config/types';
 import { GAME_COLORS } from '../../config/styles';
+import { getGunTechnologyTexture } from '../../textures/gun-textures';
 
 export class ItemLabel extends Container {
     constructor({ x, y }: ItemLabelOptions) {
@@ -140,11 +141,8 @@ export class ItemLabel extends Container {
     private createItemTypeSection() {
         const container = new Container();
 
-        const icon = new Graphics();
-        icon.beginFill('red');
-        icon.drawRect(0, 0, 30, 30);
-        icon.endFill();
-
+        const iconT = getGunTechnologyTexture('blade');
+        const icon = new Sprite(iconT);
         container.addChild(icon);
 
         const typeText = new Text('Smart', {
