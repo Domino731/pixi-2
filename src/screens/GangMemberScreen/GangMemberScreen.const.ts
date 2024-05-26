@@ -10,6 +10,8 @@ const horizontalPadding = 40;
 const verticalPadding = 40;
 
 export const CONFIG = {
+    HIDE_INVENTORY_ITEM_LABEL_DELAY: 500,
+
     HORIZONTAL_PADDING: horizontalPadding,
 
     INVENTORY_X: GAME.WINDOW_WIDTH - (INVENTORY_SCROLL_CONFIG.WIDTH + 24) - INVENTORY_CONFIG.WIDTH - horizontalPadding,

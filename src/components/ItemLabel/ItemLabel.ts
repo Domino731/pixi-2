@@ -10,12 +10,13 @@ import { COMMON_TEXTURES_NAMES } from '../../textures/common-textures.const';
 import { getGunAmmoText } from '../../utils/gun';
 
 export class ItemLabel extends Container {
-    constructor({ x, y, onPointerLeave }: ItemLabelOptions) {
+    constructor({ x, y, onPointerLeave, onPointerOver }: ItemLabelOptions) {
         super();
         this.interactive = true;
         this.position.set(x, y);
         this.addChild(this.createItemsList());
         this.on('pointerleave', onPointerLeave);
+        this.on('pointerover', onPointerOver);
     }
 
     private createItemsList() {

@@ -18,6 +18,7 @@ import { isPointInRectangle } from '../../utils/shapes';
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
     private isInventoryItemLabelVisible: boolean = false;
+    private inventoryItemLabelTimeout: ReturnType<typeof setTimeout>;
 
     constructor() {
         super();
@@ -30,14 +31,21 @@ export class GangMemberScreen extends ContentContainer {
         }));
         this.inventoryItemLabel = new ItemLabel({
             x: 0, y: 0, onPointerLeave: () => {
-                this.removeChild(this.inventoryItemLabel);
-                this.isInventoryItemLabelVisible = false;
+                this.inventoryItemLabelTimeout = setTimeout(() => {
+                    this.removeChild(this.inventoryItemLabel);
+                    this.isInventoryItemLabelVisible = false;
+                }, CONFIG.HIDE_INVENTORY_ITEM_LABEL_DELAY);
+            },
+            onPointerOver: () => {
+                clearTimeout(this.inventoryItemLabelTimeout);
             },
         });
         this.addChild(new Inventory({
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
+                clearTimeout(this.inventoryItemLabelTimeout);
                 if (this.isInventoryItemLabelVisible) return;
+
                 this.isInventoryItemLabelVisible = true;
                 const { tx, ty } = item.worldTransform;
                 this.inventoryItemLabel.position.set((tx + 30) - this.inventoryItemLabel.width, ty);
@@ -53,8 +61,11 @@ export class GangMemberScreen extends ContentContainer {
                     this.inventoryItemLabel.height,
                 );
                 if (isItemLabelHovered) return;
-                this.removeChild(this.inventoryItemLabel);
-                this.isInventoryItemLabelVisible = false;
+                this.inventoryItemLabelTimeout = setTimeout(() => {
+                    this.removeChild(this.inventoryItemLabel);
+                    this.isInventoryItemLabelVisible = false;
+                }, CONFIG.HIDE_INVENTORY_ITEM_LABEL_DELAY);
+
             },
         }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
