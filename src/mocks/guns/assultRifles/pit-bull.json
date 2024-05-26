@@ -1,0 +1,72 @@
+{
+  "name": "ARASAKA HJSH-18 MASAMUNE",
+  "description": "Power Assault Rifle manufactured by Arasaka",
+  "characteristics": "Based on the Nowaki from the early 21st century, the Masamune is a high-quality assault rifle designed in the 2050s. Like its predecessor, it fires exclusively in highly accurate, three-round bursts.[1] The weapon has a 24-round magazine with an average reload time.[2][3] In the lore, the Masumane is waterproof and can be used underwater.[4]\n\nIt is possible to install a Scope and Muzzle attachment.",
+  "databaseEntry": "The Masamune is not just a rifle but a work of fine art. Designed in the 50's and manufactured from the best, most resilient materials, the Masamune is great for all conditions, while also being surprisingly light. Every single one of the Masamune's elements, down to the tiniest screws and bolts, were quality-ensured by a legion of Arasaka engineers – and you can feel it. Not only is it light to handle, but it's intuitive to use – even for first-time users. And to top it all off, it comes with state-of-the-art software and holographic sights and a three-round burst mode",
+  "manufacturer": "arasaka",
+  "type": "assault_rifle",
+  "technology": "power",
+  "attachments": [
+    "scope",
+    "muzzle"
+  ],
+  "stats": {
+    "attackSpeed": 5.9,
+    "dps": 47.0,
+    "reloadSpeed": 2.4,
+    "effectiveRange": 48.0,
+    "handling": 8.3,
+    "magazineCapacity": 24,
+    "headshotDamageMultiplier": 125,
+    "armorPenetration": 25
+  },
+  "baseVariant": {
+    "name": "military"
+  },
+  "variants": [
+    {
+      "name": "Military"
+    },
+    {
+      "name": "Neon"
+    },
+    {
+      "name": "Pimp"
+    },
+    {
+      "name": "Trauma Team"
+    },
+    {
+      "name": "Prejudice"
+    }
+  ],
+  "crafting": [
+    {
+      "tier": 3,
+      "materials": [
+        {
+          "amount": 30,
+          "id": "tier_3_component"
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "materials": [
+        {
+          "amount": 30,
+          "id": "tier_4_component"
+        }
+      ]
+    },
+    {
+      "tier": 5,
+      "materials": [
+        {
+          "amount": 30,
+          "id": "tier_5_component"
+        }
+      ]
+    }
+  ]
+}
