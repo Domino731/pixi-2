@@ -15,8 +15,10 @@ export interface ItemCardOptions {
     rarity: ItemRarityUnion;
     onPointerOver: (e: FederatedPointerEvent) => void;
     onPointerLeave: (e: FederatedPointerEvent) => void;
+    onClick: (e: FederatedPointerEvent) => void;
     size: ItemCardSizeUnion;
     item: ItemCardItem;
+    isMarked: boolean;
 }
 
 export interface ItemCardItem {

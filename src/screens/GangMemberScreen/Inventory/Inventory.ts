@@ -23,6 +23,9 @@ export class Inventory extends Container {
             onPointerLeave: (e) => {
                 onInventoryItemPointerLeave(e, card1);
             },
+            onClick: (e) => {
+                console.log(123);
+            },
             size: 'lg',
             item: {
                 label: 'Phantom',
@@ -38,6 +41,8 @@ export class Inventory extends Container {
             size: 'md',
             item: {
                 label: 'Phantom',
+            }, onClick: (e) => {
+                console.log(123);
             },
         });
         const card3 = new ItemCard({
@@ -50,6 +55,8 @@ export class Inventory extends Container {
             size: 'sm',
             item: {
                 label: 'Phantom',
+            }, onClick: (e) => {
+                console.log(123);
             },
         });
         list.addChild(card1);

@@ -3,15 +3,18 @@ import { Graphics } from '@pixi/graphics';
 import { getColorByItemRarity } from '../../../config/types';
 import { CONFIG } from './ItemCard.const';
 import { ITEM_CARD_SIZE, ItemCardItem, ItemCardOptions, ItemCardSizeUnion } from './ItemCard.types';
+import { GAME_COLORS } from '../../../config/styles';
 
 export class ItemCard extends Container {
     private highlightColor: string;
     private readonly size: ItemCardSizeUnion;
     private readonly itemCardWidth: number;
     private readonly item: ItemCardItem;
+    private isMarked: boolean;
 
-    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size, item }: ItemCardOptions) {
+    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size, item, onClick, isMarked }: ItemCardOptions) {
         super();
+        this.isMarked = isMarked;
         this.item = item;
         this.size = size;
         this.itemCardWidth = this.getItemCardWidth();
@@ -25,11 +28,10 @@ export class ItemCard extends Container {
         this.addChild(this.createGunImage());
         this.addChild(this.createLabel());
 
-        this.on('pointerover', (e) => {
-            onPointerOver(e);
-        });
-        this.on('pointerleave', (e) => {
-            onPointerLeave(e);
+        this.on('pointerover', onPointerOver);
+        this.on('pointerleave', onPointerLeave);
+        this.on('click', (e) => {
+            onClick(e);
         });
     }
 
@@ -126,6 +128,52 @@ export class ItemCard extends Container {
             x + width - sharpOffset, y + height,
             x + width, y + height - sharpOffset,
             x + width, y,
+        );
+        g.endFill();
+
+        let leftMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        let leftMarkedY = 0;
+        const leftMarkedSize = 15;
+        const leftMarkedBorderWidth = 3;
+
+        g.beginFill(GAME_COLORS.lightBlue);
+        g.lineStyle(0, GAME_COLORS.lightBlue);
+        g.drawPolygon(
+            leftMarkedX, leftMarkedY,
+            leftMarkedX, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY,
+        );
+        g.endFill();
+
+        leftMarkedY += leftMarkedBorderWidth;
+        leftMarkedX += leftMarkedBorderWidth;
+
+        g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
+        g.lineStyle(0, GAME_COLORS.lightBlue);
+        g.drawPolygon(
+            leftMarkedX, leftMarkedY,
+            leftMarkedX, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY,
+        );
+        g.endFill();
+
+
+        const rightMakredSize = 30;
+        const rightMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP + width - rightMakredSize;
+        const rightMarkedY = height - rightMakredSize;
+        const rightMarkedThicknes = 12;
+
+        g.beginFill(GAME_COLORS.lightBlue);
+        g.lineStyle(0, GAME_COLORS.lightBlue);
+        g.drawPolygon(
+            rightMarkedX, rightMarkedY + rightMakredSize,
+
+            rightMarkedX + rightMarkedThicknes, rightMarkedY + rightMakredSize,
+            rightMarkedX + rightMakredSize, rightMarkedY + rightMarkedThicknes,
+
+            rightMarkedX + rightMakredSize, rightMarkedY,
         );
         g.endFill();
 

@@ -91,9 +91,6 @@ export class GangMemberScreen extends ContentContainer {
         if (yEnd > windowHeight) {
             baseY -= yEnd - windowHeight;
         }
-        console.log(baseY);
-        console.log(yEnd);
-        console.log(windowHeight);
         this.inventoryItemLabel.position.set(baseX, baseY);
     }
 
