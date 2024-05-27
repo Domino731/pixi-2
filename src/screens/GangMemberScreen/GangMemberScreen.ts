@@ -15,6 +15,8 @@ import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
 import { isPointInRectangle } from '../../utils/shapes';
 import { ItemCard } from '../Gunsmith/components/ItemCard';
+import { windows } from 'rimraf';
+import { GAME } from '../../config/game';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
@@ -51,7 +53,7 @@ export class GangMemberScreen extends ContentContainer {
 
                 this.isInventoryItemLabelVisible = true;
                 const { tx, ty } = item.worldTransform;
-                this.inventoryItemLabel.position.set((tx + 30) - this.inventoryItemLabel.width, ty);
+                this.showInventoryItemLabel(tx, ty);
                 this.addChild(this.inventoryItemLabel);
             },
             onInventoryItemPointerLeave: (e) => {
@@ -76,6 +78,23 @@ export class GangMemberScreen extends ContentContainer {
         this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
         this.addChild(this.createInventorySlots());
         this.addChild(this.createSkillsSlots());
+    }
+
+    private showInventoryItemLabel(tx: number, ty: number) {
+        const baseX = (tx + 30) - this.inventoryItemLabel.width;
+        let baseY = ty;
+
+        const labelHeight = this.inventoryItemLabel.height;
+        const windowHeight = GAME.WINDOW_HEIGHT;
+        let yEnd = baseY + labelHeight;
+
+        if (yEnd > windowHeight) {
+            baseY -= yEnd - windowHeight;
+        }
+        console.log(baseY);
+        console.log(yEnd);
+        console.log(windowHeight);
+        this.inventoryItemLabel.position.set(baseX, baseY);
     }
 
     private createInventorySlots() {
