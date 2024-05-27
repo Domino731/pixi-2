@@ -14,11 +14,13 @@ import { ProfileCard } from './ProfileCard';
 import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
 import { isPointInRectangle } from '../../utils/shapes';
+import { ItemCard } from '../Gunsmith/components/ItemCard';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
     private isInventoryItemLabelVisible: boolean = false;
     private inventoryItemLabelTimeout: ReturnType<typeof setTimeout>;
+    private currentItemCard: ItemCard | null = null;
 
     constructor() {
         super();
@@ -44,7 +46,8 @@ export class GangMemberScreen extends ContentContainer {
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
                 clearTimeout(this.inventoryItemLabelTimeout);
-                if (this.isInventoryItemLabelVisible) return;
+                if (this.isInventoryItemLabelVisible && item == this.currentItemCard) return;
+                this.currentItemCard = item;
 
                 this.isInventoryItemLabelVisible = true;
                 const { tx, ty } = item.worldTransform;

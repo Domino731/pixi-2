@@ -14,7 +14,7 @@ export class Inventory extends Container {
     }
 
     private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
-        const list = new List({ type: 'vertical' });
+        const list = new List({ type: 'vertical', elementsMargin: 20 });
         list.position.set(20, 20);
         const card1 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
@@ -24,28 +24,38 @@ export class Inventory extends Container {
                 onInventoryItemPointerLeave(e, card1);
             },
             size: 'lg',
+            item: {
+                label: 'Phantom',
+            },
         });
         const card2 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                onInventoryItemHover(e, card1);
+                onInventoryItemHover(e, card2);
             },
             onPointerLeave: (e) => {
-                onInventoryItemPointerLeave(e, card1);
+                onInventoryItemPointerLeave(e, card2);
             },
             size: 'md',
+            item: {
+                label: 'Phantom',
+            },
         });
         const card3 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                onInventoryItemHover(e, card1);
+                onInventoryItemHover(e, card3);
             },
             onPointerLeave: (e) => {
-                onInventoryItemPointerLeave(e, card1);
+                onInventoryItemPointerLeave(e, card3);
             },
             size: 'sm',
+            item: {
+                label: 'Phantom',
+            },
         });
         list.addChild(card1);
         list.addChild(card2);
         list.addChild(card3);
+
         return list;
     }
 

@@ -16,4 +16,9 @@ export interface ItemCardOptions {
     onPointerOver: (e: FederatedPointerEvent) => void;
     onPointerLeave: (e: FederatedPointerEvent) => void;
     size: ItemCardSizeUnion;
+    item: ItemCardItem;
+}
+
+export interface ItemCardItem {
+    label: string;
 }

@@ -2,15 +2,19 @@ import { Container, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
 import { getColorByItemRarity } from '../../../config/types';
 import { CONFIG } from './ItemCard.const';
-import { ITEM_CARD_SIZE, ItemCardOptions, ItemCardSizeUnion } from './ItemCard.types';
+import { ITEM_CARD_SIZE, ItemCardItem, ItemCardOptions, ItemCardSizeUnion } from './ItemCard.types';
 
 export class ItemCard extends Container {
     private highlightColor: string;
     private readonly size: ItemCardSizeUnion;
+    private readonly itemCardWidth: number;
+    private readonly item: ItemCardItem;
 
-    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size }: ItemCardOptions) {
+    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size, item }: ItemCardOptions) {
         super();
+        this.item = item;
         this.size = size;
+        this.itemCardWidth = this.getItemCardWidth();
         this.interactive = true;
 
         this.highlightColor = getColorByItemRarity(rarity);
@@ -38,7 +42,7 @@ export class ItemCard extends Container {
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = CONFIG.ITEM_CARD_MAX_WIDTH;
+        const width = this.itemCardWidth;
 
         const gX = x + Math.floor(width / 2) - Math.floor(gunTxt.width / 2);
         const gY = y + Math.floor(height / 2) - Math.floor(gunTxt.height / 2);
@@ -81,8 +85,8 @@ export class ItemCard extends Container {
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = CONFIG.ITEM_CARD_MAX_WIDTH;
-        const text = new Text('Phantom'.toUpperCase(), {
+        const width = this.itemCardWidth;
+        const text = new Text(this.item.label.toUpperCase(), {
             fill: CONFIG.ITEM_LABEL_COLOR,
             fontSize: CONFIG.ITEM_LABEL_FONT_SIZE,
             letterSpacing: CONFIG.ITEM_LABEL_LETTER_SPACING,
@@ -111,7 +115,7 @@ export class ItemCard extends Container {
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = this.getItemCardWidth();
+        const width = this.itemCardWidth;
         const sharpOffset = CONFIG.ITEM_CARD_SHARP_OFFSET;
 
         g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
