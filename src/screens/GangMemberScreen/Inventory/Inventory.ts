@@ -2,6 +2,7 @@ import { Container, Graphics } from 'pixi.js';
 import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
+import { List } from '@pixi/ui';
 
 export class Inventory extends Container {
     constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave }: InventoryOptions) {
@@ -13,6 +14,8 @@ export class Inventory extends Container {
     }
 
     private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
+        const list = new List({ type: 'vertical' });
+        list.position.set(20, 20);
         const card1 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
                 onInventoryItemHover(e, card1);
@@ -20,8 +23,30 @@ export class Inventory extends Container {
             onPointerLeave: (e) => {
                 onInventoryItemPointerLeave(e, card1);
             },
+            size: 'lg',
         });
-        return card1;
+        const card2 = new ItemCard({
+            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
+                onInventoryItemHover(e, card1);
+            },
+            onPointerLeave: (e) => {
+                onInventoryItemPointerLeave(e, card1);
+            },
+            size: 'md',
+        });
+        const card3 = new ItemCard({
+            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
+                onInventoryItemHover(e, card1);
+            },
+            onPointerLeave: (e) => {
+                onInventoryItemPointerLeave(e, card1);
+            },
+            size: 'sm',
+        });
+        list.addChild(card1);
+        list.addChild(card2);
+        list.addChild(card3);
+        return list;
     }
 
     private createContainer(): Graphics {

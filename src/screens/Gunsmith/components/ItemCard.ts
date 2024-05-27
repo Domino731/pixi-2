@@ -1,22 +1,16 @@
-import { Container, FederatedPointerEvent, Sprite, Text, Texture } from 'pixi.js';
+import { Container, Sprite, Text, Texture } from 'pixi.js';
 import { Graphics } from '@pixi/graphics';
-import { GAME_COLORS } from '../../../config/styles';
-import { getColorByItemRarity, ItemRarityUnion } from '../../../config/types';
+import { getColorByItemRarity } from '../../../config/types';
 import { CONFIG } from './ItemCard.const';
-
-interface IItemCard {
-    x: number;
-    y: number;
-    rarity: ItemRarityUnion;
-    onPointerOver: (e: FederatedPointerEvent) => void;
-    onPointerLeave: (e: FederatedPointerEvent) => void;
-}
+import { ITEM_CARD_SIZE, ItemCardOptions, ItemCardSizeUnion } from './ItemCard.types';
 
 export class ItemCard extends Container {
     private highlightColor: string;
+    private readonly size: ItemCardSizeUnion;
 
-    constructor({ x, y, rarity, onPointerOver, onPointerLeave }: IItemCard) {
+    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size }: ItemCardOptions) {
         super();
+        this.size = size;
         this.interactive = true;
 
         this.highlightColor = getColorByItemRarity(rarity);
@@ -44,7 +38,7 @@ export class ItemCard extends Container {
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = CONFIG.ITEM_CARD_WIDTH;
+        const width = CONFIG.ITEM_CARD_MAX_WIDTH;
 
         const gX = x + Math.floor(width / 2) - Math.floor(gunTxt.width / 2);
         const gY = y + Math.floor(height / 2) - Math.floor(gunTxt.height / 2);
@@ -87,7 +81,7 @@ export class ItemCard extends Container {
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = CONFIG.ITEM_CARD_WIDTH;
+        const width = CONFIG.ITEM_CARD_MAX_WIDTH;
         const text = new Text('Phantom'.toUpperCase(), {
             fill: CONFIG.ITEM_LABEL_COLOR,
             fontSize: CONFIG.ITEM_LABEL_FONT_SIZE,
@@ -101,12 +95,23 @@ export class ItemCard extends Container {
         return text;
     }
 
+    private getItemCardWidth() {
+        switch (this.size) {
+            case ITEM_CARD_SIZE.sm:
+                return Math.floor(CONFIG.ITEM_CARD_MAX_WIDTH / 3);
+            case ITEM_CARD_SIZE.md:
+                return Math.floor(CONFIG.ITEM_CARD_MAX_WIDTH / 2);
+            default:
+                return CONFIG.ITEM_CARD_MAX_WIDTH;
+        }
+    }
+
     private createItemCardGraphics() {
         const g = new Graphics();
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         const y = 0;
         const height = CONFIG.HEIGHT;
-        const width = CONFIG.ITEM_CARD_WIDTH;
+        const width = this.getItemCardWidth();
         const sharpOffset = CONFIG.ITEM_CARD_SHARP_OFFSET;
 
         g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
