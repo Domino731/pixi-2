@@ -13,9 +13,29 @@ export class Inventory extends Container {
 
     }
 
+    private getItemCard(size) {
+        const card1 = new ItemCard({
+            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
+                // onInventoryItemHover(e, card1);
+            },
+            onPointerLeave: (e) => {
+                // onInventoryItemPointerLeave(e, card1);
+            },
+            onClick: (e) => {
+                console.log(123);
+            },
+            isMarked: false,
+            size,
+            item: {
+                label: 'Phantom',
+            },
+        });
+        return card1;
+    }
+
     private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
-        const list = new List({ type: 'vertical', elementsMargin: 20 });
-        list.position.set(20, 20);
+
+
         const card1 = new ItemCard({
             x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
                 onInventoryItemHover(e, card1);
@@ -26,6 +46,7 @@ export class Inventory extends Container {
             onClick: (e) => {
                 console.log(123);
             },
+            isMarked: false,
             size: 'lg',
             item: {
                 label: 'Phantom',
@@ -44,24 +65,32 @@ export class Inventory extends Container {
             }, onClick: (e) => {
                 console.log(123);
             },
+            isMarked: false,
         });
-        const card3 = new ItemCard({
-            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                onInventoryItemHover(e, card3);
-            },
-            onPointerLeave: (e) => {
-                onInventoryItemPointerLeave(e, card3);
-            },
-            size: 'sm',
-            item: {
-                label: 'Phantom',
-            }, onClick: (e) => {
-                console.log(123);
-            },
-        });
-        list.addChild(card1);
-        list.addChild(card2);
-        list.addChild(card3);
+
+        const elementsMargin = 16;
+        const list = new List({ type: 'vertical', elementsMargin });
+        list.position.set(20, 20);
+        const list4 = new List({ type: 'horizontal', elementsMargin });
+        list4.addChild(this.getItemCard('sm'));
+        list4.addChild(this.getItemCard('sm'));
+        list4.addChild(this.getItemCard('sm'));
+        list4.addChild(this.getItemCard('sm'));
+
+        const list3 = new List({ type: 'horizontal', elementsMargin });
+        console.log('lg width', this.getItemCard('lg').width);
+        console.log('md width', this.getItemCard('md').width);
+        console.log('sm width', this.getItemCard('sm').width);
+        list3.addChild(this.getItemCard('md'));
+        list3.addChild(this.getItemCard('md'));
+        list3.addChild(this.getItemCard('md'));
+
+        const list2 = new List({ type: 'horizontal', elementsMargin });
+        list2.addChild(this.getItemCard('lg'));
+        list2.addChild(this.getItemCard('lg'));
+        list.addChild(list2);
+        list.addChild(list3);
+        list.addChild(list4);
 
         return list;
     }
