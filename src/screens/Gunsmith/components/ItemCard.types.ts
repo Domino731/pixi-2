@@ -19,6 +19,7 @@ export interface ItemCardOptions {
     size: ItemCardSizeUnion;
     item: ItemCardItem;
     isMarked: boolean;
+    onActionButtonClick: () => void;
 }
 
 export interface ItemCardItem {

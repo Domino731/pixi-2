@@ -4,6 +4,7 @@ import { getColorByItemRarity } from '../../../config/types';
 import { CONFIG } from './ItemCard.const';
 import { ITEM_CARD_SIZE, ItemCardItem, ItemCardOptions, ItemCardSizeUnion } from './ItemCard.types';
 import { GAME_COLORS } from '../../../config/styles';
+import { Button } from '@pixi/ui';
 
 export class ItemCard extends Container {
     private highlightColor: string;
@@ -11,8 +12,20 @@ export class ItemCard extends Container {
     private readonly itemCardWidth: number;
     private readonly item: ItemCardItem;
     private isMarked: boolean;
+    private actionButton: Container;
 
-    constructor({ x, y, rarity, onPointerOver, onPointerLeave, size, item, onClick, isMarked }: ItemCardOptions) {
+    constructor({
+                    x,
+                    y,
+                    rarity,
+                    onPointerOver,
+                    onPointerLeave,
+                    size,
+                    item,
+                    onClick,
+                    isMarked,
+                    onActionButtonClick,
+                }: ItemCardOptions) {
         super();
         this.isMarked = isMarked;
         this.item = item;
@@ -28,12 +41,43 @@ export class ItemCard extends Container {
         this.addChild(this.createItemCardGraphics());
         this.addChild(this.createGunImage());
         this.addChild(this.createLabel());
+        this.actionButton = this.createActionButton(onActionButtonClick);
 
-        this.on('pointerover', onPointerOver);
-        this.on('pointerleave', onPointerLeave);
+        this.on('pointerover', (e) => {
+            onPointerOver(e);
+            this.addChild(this.actionButton);
+        });
+        this.on('pointerleave', (e) => {
+            onPointerLeave(e);
+            this.removeChild(this.actionButton);
+        });
         this.on('click', (e) => {
             onClick(e);
         });
+    }
+
+    private createActionButton(onClick: () => void) {
+        const g = new Graphics();
+
+        const offset = CONFIG.ACTION_BTN_OFFSET;
+        const size = CONFIG.ACTION_BTN_SIZE;
+        const x = this.width - size - offset;
+        const y = offset;
+
+        g.beginFill(CONFIG.ACTION_BTN_BACKGROUND);
+        g.lineStyle(CONFIG.ACTION_BTN_BORDER_WIDTH, CONFIG.ACTION_BTN_BORDER_COLOR);
+        g.drawPolygon(
+            x, y,
+            x, y + size,
+            x + size, y + size,
+            x + size, y,
+        );
+        g.endFill();
+
+
+        const btn = new Button(g);
+        btn.onPress.connect(onClick);
+        return btn.view;
     }
 
     private createGunImage() {
