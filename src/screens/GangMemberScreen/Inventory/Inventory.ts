@@ -3,6 +3,7 @@ import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
 import { List } from '@pixi/ui';
+import { ClothesItems } from '../../../modules/items/Clothes';
 
 export class Inventory extends Container {
     constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave }: InventoryOptions) {
@@ -10,7 +11,7 @@ export class Inventory extends Container {
         this.position.set(x, y);
         this.addChild(this.createContainer());
         this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave));
-
+        ClothesItems.get('12');
     }
 
     private getItemCard(size) {
