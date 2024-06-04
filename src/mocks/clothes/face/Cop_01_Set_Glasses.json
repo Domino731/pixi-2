@@ -1,0 +1,20 @@
+{
+  "id": "Cop_01_Set_Glasses",
+  "name": "Holo-tinted badge goggles",
+  "description": null,
+  "overview": "These goggles are part of the Cop set. It has no special stats, other than its unique appearance.",
+  "textureMale": "clothes/face/Cop_01_Set_GlassesM",
+  "textureFemale": "clothes/face/Cop_01_Set_GlassesF",
+  "general": {
+    "type": "face",
+    "style": "NEOMILITARISM",
+    "rarityTier": 5
+  },
+  "modifier": {
+  },
+  "weight": 0.1,
+  "quote": {
+    "text": "Give it up, punk. And I don't want to hear some sob story about how it was \"society\" that drove you to this. I just want to see that gun on the ground. Right now... before I give you an extra nostril.",
+    "author": "Sgt. Max Hammerman, NCPD"
+  }
+}

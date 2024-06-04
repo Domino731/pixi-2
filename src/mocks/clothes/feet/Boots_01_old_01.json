@@ -1,0 +1,19 @@
+{
+  "id": "Boots_01_old_01",
+  "name": "Titanium-layer platform boots",
+  "description": null,
+  "overview": "A pair of old brown leather, studded platform boots.",
+  "textureMale": "clothes/feet/Boots_01_old_01M",
+  "textureFemale": "clothes/feet/Boots_01_old_01F",
+  "general": {
+    "type": "feet",
+    "style": "ENTROPISM"
+  },
+  "modifier": {
+  },
+  "weight": 0.5,
+  "quote": {
+    "text": "Don't need to look good alone. It's what you pair with them that matters.",
+    "author": null
+  }
+}

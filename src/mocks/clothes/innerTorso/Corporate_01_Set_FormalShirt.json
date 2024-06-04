@@ -1,0 +1,20 @@
+{
+  "id": "Corporate_01_Set_FormalShirt",
+  "name": "Carbonweave silk corporate shirt",
+  "description": null,
+  "overview": "A formal shirt that is part of the Corporate set. It has no special stats, other than its unique appearance.",
+  "textureMale": "clothes/innerTorso/Corporate_01_Set_FormalShirtM",
+  "textureFemale": "clothes/innerTorso/Corporate_01_Set_FormalShirtF",
+  "general": {
+    "type": "innerTorso",
+    "style": "NEOMILITARISM",
+    "rarityTier": 5
+  },
+  "modifier": {
+  },
+  "weight": 0.9,
+  "quote": {
+    "text": "All the money ain't worth frack. You play this game for power. The power to get things done; to make the big decisions; to affect things. You make a phone call, and the next thing you know, you're telling the president of some bushleague Euronation that he'd better play it your way, or he's history.",
+    "author": "An Unidentified Corporate"
+  }
+}

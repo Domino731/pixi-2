@@ -1,0 +1,20 @@
+{
+  "id": "Coat_01_basic_02",
+  "name": "AT-AK reinforced biker coat",
+  "description": null,
+  "overview": "A graying blue reinforced biker coat branded by the AT-AK brand.",
+  "textureMale": "clothes/outerTorso/Coat_01_basic_02M",
+  "textureFemale": "clothes/outerTorso/Coat_01_basic_02F",
+  "general": {
+    "manufacturer": "AT-AK",
+    "type": "outerTorso",
+    "style": "KITSCH"
+  },
+  "modifier": {
+  },
+  "weight": 2.4,
+  "quote": {
+    "text": "Flaps like a motherfucker in the wind.",
+    "author": null
+  }
+}

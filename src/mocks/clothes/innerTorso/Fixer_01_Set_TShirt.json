@@ -1,0 +1,20 @@
+{
+  "id": "Fixer_01_Set_TShirt",
+  "name": "Heat-resistant aramid-weave fixer bustier",
+  "description": null,
+  "overview": "This equipment is part of the Fixer set. It has a male and a female variant. The male version is a shirt, while the female version is bustier. It has no special stats, other than its unique appearance.",
+  "textureMale": "clothes/innerTorso/Fixer_01_Set_TShirtM",
+  "textureFemale": "clothes/innerTorso/Fixer_01_Set_TShirtF",
+  "general": {
+    "type": "innerTorso",
+    "style": "NEOKITSCH",
+    "rarityTier": 5
+  },
+  "modifier": {
+  },
+  "weight": 1.7,
+  "quote": {
+    "text": "Don't give me this \"Robin Hood\" stuff. I'm doin' a job, no more. I give people what they want, an' they pay me out. Maybe I even a few scores here and there, but that's good for business. I got a slogan... \"How much you pay me?\"",
+    "author": "Phil \"Nacho\" Hernandez, Fixer"
+  }
+}

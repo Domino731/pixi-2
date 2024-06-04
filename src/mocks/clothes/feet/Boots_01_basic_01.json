@@ -1,0 +1,19 @@
+{
+  "id": "Boots_01_basic_01",
+  "name": "Reinforced Uniware platform boots",
+  "description": null,
+  "overview": "A pair of black leather, studded platform boots.",
+  "textureMale": "clothes/feet/Boots_01_basic_01M",
+  "textureFemale": "clothes/feet/Boots_01_basic_01F",
+  "general": {
+    "type": "feet",
+    "style": "KITSCH"
+  },
+  "modifier": {
+  },
+  "weight": 0.5,
+  "quote": {
+    "text": "Casual, if not a bit cliché.",
+    "author": null
+  }
+}

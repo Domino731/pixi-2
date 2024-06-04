@@ -1,0 +1,19 @@
+{
+  "id": "Coat_01_basic_01",
+  "name": "Spunky Monkey aramid coat",
+  "description": null,
+  "overview": "A graying red leather aramid coat branded by the Spunky Monkey brand.",
+  "textureMale": "clothes/outerTorso/Coat_01_basic_01M",
+  "textureFemale": "clothes/outerTorso/Coat_01_basic_01F",
+  "general": {
+    "type": "outerTorso",
+    "style": "KITSCH"
+  },
+  "modifier": {
+  },
+  "weight": 2.4,
+  "quote": {
+    "text": "This thing falling apart is a matter of months, not years.",
+    "author": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "Helmet_12_rich_02",
+  "name": "Modular ballistic mask",
+  "description": "Composite ballistic mask with infrared sensor",
+  "overview": "A closed black and green mask with green camera and black balaclava.",
+  "textureMale": "clothes/head/Helmet_12_rich_02M",
+  "textureFemale": "clothes/head/Helmet_12_rich_02F",
+  "general": {
+    "type": "head",
+    "style": "NEOMILITARISM"
+  },
+  "modifier": {
+    "meleeDamageReduction": [
+      3,
+      7
+    ]
+  },
+  "weight": 0.2
+}

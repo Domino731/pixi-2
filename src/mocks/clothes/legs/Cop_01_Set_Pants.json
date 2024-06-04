@@ -1,0 +1,20 @@
+{
+  "id": "Cop_01_Set_Pants",
+  "name": "Anti-puncture neotac pants with composite lining",
+  "description": null,
+  "overview": "These pants are part of the Cop set. It has no special stats, other than its unique appearance.",
+  "textureMale": "clothes/legs/Cop_01_Set_PantsM",
+  "textureFemale": "clothes/legs/Cop_01_Set_PantsF",
+  "general": {
+    "type": "legs",
+    "style": "NEOMILITARISM",
+    "rarityTier": 5
+  },
+  "modifier": {
+  },
+  "weight": 0.7,
+  "quote": {
+    "text": "Give it up, punk. And I don't want to hear some sob story about how it was \"society\" that drove you to this. I just want to see that gun on the ground. Right now... before I give you an extra nostril",
+    "author": "Sgt. Max Hammerman, NCPD"
+  }
+}
