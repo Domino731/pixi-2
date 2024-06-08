@@ -17,27 +17,15 @@ export class ItemTile extends Container {
     }
 
     public addItemTexture(texture: Texture) {
-        console.log('add texture');
         if (this.itemTextureContainer.children[0]) {
             this.itemTextureContainer.removeChildAt(0);
         }
-
         const g = new Graphics();
-
-        // const txt = Texture.from(`guns/sniperRifles/grad`);
         const gunTxt = new Sprite(texture);
-        gunTxt.width = Math.floor(gunTxt.width * 0.5);
-        gunTxt.height = Math.floor(gunTxt.height * 0.5);
-        const x = 0;
-        const y = 0;
-        const height = 0;
-        const width = 0;
-
-        const gX = x + Math.floor(width / 2) - Math.floor(gunTxt.width / 2);
-        const gY = y + Math.floor(height / 2) - Math.floor(gunTxt.height / 2);
-
+        gunTxt.width = Math.floor(gunTxt.width * 0.4);
+        gunTxt.height = Math.floor(gunTxt.height * 0.4);
         g.addChild(gunTxt);
-        g.position.set(gX, gY);
+        g.position.set(4, 0);
         this.itemTextureContainer.addChild(g);
     }
 
