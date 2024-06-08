@@ -14,6 +14,8 @@ export class ItemCard extends Container {
     private isMarked: boolean;
     private actionButton: Container;
     private itemTexture: Texture;
+    private isMarkedColor = GAME_COLORS.lightBlue;
+    private isMarkedContainer = new Container();
 
     constructor({
                     x,
@@ -42,10 +44,15 @@ export class ItemCard extends Container {
 
         this.addChild(this.createRarityGraphic());
         this.addChild(this.createItemCardGraphics());
+        this.addChild(this.isMarkedContainer);
         this.addChild(this.createGunImage());
         if (this.size !== ITEM_CARD_SIZE.sm) {
             this.addChild(this.createLabel());
         }
+        if (this.isMarked) {
+            this.isMarkedContainer.addChild(this.createIsMarkedGraphics());
+        }
+
 
         this.actionButton = this.createActionButton(onActionButtonClick);
 
@@ -60,6 +67,21 @@ export class ItemCard extends Container {
         this.on('click', (e) => {
             onClick(e);
         });
+    }
+
+    public setIsMarked(v: boolean) {
+        this.isMarked = v;
+        if (v) {
+            if (this.isMarkedContainer.children[0]) {
+                this.isMarkedContainer.removeChildAt(0);
+            }
+            this.isMarkedContainer.addChild(this.createIsMarkedGraphics());
+        } else {
+            if (this.isMarkedContainer.children[0]) {
+                this.isMarkedContainer.removeChildAt(0);
+            }
+        }
+
     }
 
     private createActionButton(onClick: () => void) {
@@ -165,6 +187,61 @@ export class ItemCard extends Container {
         }
     }
 
+    private createIsMarkedGraphics() {
+        const g = new Graphics();
+        const x = 0;
+        const y = 0;
+        g.position.set(x, y);
+        const height = CONFIG.HEIGHT;
+        const width = this.itemCardWidth;
+        let leftMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        let leftMarkedY = 0;
+        const leftMarkedSize = 15;
+        const leftMarkedBorderWidth = 3;
+
+        g.beginFill(this.isMarkedColor);
+        g.lineStyle(0, this.isMarkedColor);
+        g.drawPolygon(
+            leftMarkedX, leftMarkedY,
+            leftMarkedX, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY,
+        );
+        g.endFill();
+
+        leftMarkedY += leftMarkedBorderWidth;
+        leftMarkedX += leftMarkedBorderWidth;
+
+        g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
+        g.lineStyle(0, this.isMarkedColor);
+        g.drawPolygon(
+            leftMarkedX, leftMarkedY,
+            leftMarkedX, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+            leftMarkedX + leftMarkedSize, leftMarkedY,
+        );
+        g.endFill();
+
+
+        const rightMakredSize = 30;
+        const rightMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP + width - rightMakredSize;
+        const rightMarkedY = height - rightMakredSize;
+        const rightMarkedThicknes = 12;
+
+        g.beginFill(this.isMarkedColor);
+        g.lineStyle(0, this.isMarkedColor);
+        g.drawPolygon(
+            rightMarkedX, rightMarkedY + rightMakredSize,
+
+            rightMarkedX + rightMarkedThicknes, rightMarkedY + rightMakredSize,
+            rightMarkedX + rightMakredSize, rightMarkedY + rightMarkedThicknes,
+
+            rightMarkedX + rightMakredSize, rightMarkedY,
+        );
+        g.endFill();
+        return g;
+    }
+
     private createItemCardGraphics() {
         const g = new Graphics();
         const x = CONFIG.RARITY_WIDTH + CONFIG.GAP;
@@ -189,51 +266,51 @@ export class ItemCard extends Container {
             return g;
         }
 
-        let leftMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP;
-        let leftMarkedY = 0;
-        const leftMarkedSize = 15;
-        const leftMarkedBorderWidth = 3;
-
-        g.beginFill(GAME_COLORS.lightBlue);
-        g.lineStyle(0, GAME_COLORS.lightBlue);
-        g.drawPolygon(
-            leftMarkedX, leftMarkedY,
-            leftMarkedX, leftMarkedY + leftMarkedSize,
-            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
-            leftMarkedX + leftMarkedSize, leftMarkedY,
-        );
-        g.endFill();
-
-        leftMarkedY += leftMarkedBorderWidth;
-        leftMarkedX += leftMarkedBorderWidth;
-
-        g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
-        g.lineStyle(0, GAME_COLORS.lightBlue);
-        g.drawPolygon(
-            leftMarkedX, leftMarkedY,
-            leftMarkedX, leftMarkedY + leftMarkedSize,
-            leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
-            leftMarkedX + leftMarkedSize, leftMarkedY,
-        );
-        g.endFill();
-
-
-        const rightMakredSize = 30;
-        const rightMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP + width - rightMakredSize;
-        const rightMarkedY = height - rightMakredSize;
-        const rightMarkedThicknes = 12;
-
-        g.beginFill(GAME_COLORS.lightBlue);
-        g.lineStyle(0, GAME_COLORS.lightBlue);
-        g.drawPolygon(
-            rightMarkedX, rightMarkedY + rightMakredSize,
-
-            rightMarkedX + rightMarkedThicknes, rightMarkedY + rightMakredSize,
-            rightMarkedX + rightMakredSize, rightMarkedY + rightMarkedThicknes,
-
-            rightMarkedX + rightMakredSize, rightMarkedY,
-        );
-        g.endFill();
+        // let leftMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP;
+        // let leftMarkedY = 0;
+        // const leftMarkedSize = 15;
+        // const leftMarkedBorderWidth = 3;
+        //
+        // g.beginFill(this.isMarkedColor);
+        // g.lineStyle(0, this.isMarkedColor);
+        // g.drawPolygon(
+        //     leftMarkedX, leftMarkedY,
+        //     leftMarkedX, leftMarkedY + leftMarkedSize,
+        //     leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+        //     leftMarkedX + leftMarkedSize, leftMarkedY,
+        // );
+        // g.endFill();
+        //
+        // leftMarkedY += leftMarkedBorderWidth;
+        // leftMarkedX += leftMarkedBorderWidth;
+        //
+        // g.beginFill(CONFIG.ITEM_CARD_BACKGROUND);
+        // g.lineStyle(0, this.isMarkedColor);
+        // g.drawPolygon(
+        //     leftMarkedX, leftMarkedY,
+        //     leftMarkedX, leftMarkedY + leftMarkedSize,
+        //     leftMarkedX + leftMarkedSize, leftMarkedY + leftMarkedSize,
+        //     leftMarkedX + leftMarkedSize, leftMarkedY,
+        // );
+        // g.endFill();
+        //
+        //
+        // const rightMakredSize = 30;
+        // const rightMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP + width - rightMakredSize;
+        // const rightMarkedY = height - rightMakredSize;
+        // const rightMarkedThicknes = 12;
+        //
+        // g.beginFill(this.isMarkedColor);
+        // g.lineStyle(0, this.isMarkedColor);
+        // g.drawPolygon(
+        //     rightMarkedX, rightMarkedY + rightMakredSize,
+        //
+        //     rightMarkedX + rightMarkedThicknes, rightMarkedY + rightMakredSize,
+        //     rightMarkedX + rightMakredSize, rightMarkedY + rightMarkedThicknes,
+        //
+        //     rightMarkedX + rightMakredSize, rightMarkedY,
+        // );
+        // g.endFill();
 
         return g;
     }
