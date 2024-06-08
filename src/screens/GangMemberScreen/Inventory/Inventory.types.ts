@@ -1,6 +1,6 @@
 import { FederatedPointerEvent } from 'pixi.js';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
-import { GangMemberInventoryData } from '../GangMemberScreen.types';
+import { GangMemberInventoryData, GangMemberInventoryItem } from '../GangMemberScreen.types';
 
 export interface InventoryOptions {
     x: number;
@@ -8,4 +8,5 @@ export interface InventoryOptions {
     onInventoryItemHover: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
     onInventoryItemPointerLeave: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
     inventoryItems: GangMemberInventoryData;
+    onClothCardActionBtnClick: (item: GangMemberInventoryItem) => void;
 }

@@ -184,6 +184,11 @@ export class ItemCard extends Container {
         );
         g.endFill();
 
+
+        if (!this.isMarked) {
+            return g;
+        }
+
         let leftMarkedX = CONFIG.RARITY_WIDTH + CONFIG.GAP;
         let leftMarkedY = 0;
         const leftMarkedSize = 15;

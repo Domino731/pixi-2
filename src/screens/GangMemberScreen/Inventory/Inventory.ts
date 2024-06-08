@@ -10,15 +10,26 @@ import { GangMemberInventoryData } from '../GangMemberScreen.types';
 export class Inventory extends Container {
     private inventoryItems: GangMemberInventoryData;
 
-    constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave, inventoryItems }: InventoryOptions) {
+    constructor({
+                    x,
+                    y,
+                    onInventoryItemHover,
+                    onInventoryItemPointerLeave,
+                    inventoryItems,
+                    onClothCardActionBtnClick,
+                }: InventoryOptions) {
         super();
         this.inventoryItems = inventoryItems;
         this.position.set(x, y);
         this.addChild(this.createContainer());
-        this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave));
+        this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave, onClothCardActionBtnClick));
     }
 
-    private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
+    private createItemTile(
+        onInventoryItemHover: InventoryOptions['onInventoryItemHover'],
+        onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave'],
+        onClothCardActionBtnClick: InventoryOptions['onClothCardActionBtnClick'],
+    ) {
         const elementsMargin = 16;
         const list = new List({ type: 'vertical', elementsMargin });
         list.position.set(20, 20);
@@ -26,10 +37,10 @@ export class Inventory extends Container {
         let rowList = new List({ type: 'horizontal', elementsMargin });
         this.inventoryItems.clothes.forEach((el, index) => {
 
-            const cloth: Cloth | undefined = ClothesItems.get(el.id);
+            const cloth: Cloth | undefined = ClothesItems.get(el.itemId);
             const card = new ItemCard({
                 onActionButtonClick(): void {
-                    console.log(123);
+                    onClothCardActionBtnClick(el);
                 },
                 x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
                     onInventoryItemHover(e, card);
@@ -43,7 +54,7 @@ export class Inventory extends Container {
                 }, onClick: (e) => {
                     console.log(123);
                 },
-                isMarked: false,
+                isMarked: el.isEquipped,
                 texture: cloth.getTexture('male'),
             });
 

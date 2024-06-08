@@ -1,9 +1,11 @@
-import { Container, Graphics, Text } from 'pixi.js';
+import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
 import { ItemTileOptions } from './ItemTile.types';
 import { CONFIG } from './ItemTile.const';
 import { textUtils } from '../../../utils/text';
 
 export class ItemTile extends Container {
+    private itemTextureContainer: Container = new Container();
+
     constructor({ x, y, label }: ItemTileOptions) {
         super();
         this.position.set(x, y);
@@ -11,6 +13,32 @@ export class ItemTile extends Container {
         if (label !== undefined) {
             this.addChild(this.createLabel(label));
         }
+        this.addChild(this.itemTextureContainer);
+    }
+
+    public addItemTexture(texture: Texture) {
+        console.log('add texture');
+        if (this.itemTextureContainer.children[0]) {
+            this.itemTextureContainer.removeChildAt(0);
+        }
+
+        const g = new Graphics();
+
+        // const txt = Texture.from(`guns/sniperRifles/grad`);
+        const gunTxt = new Sprite(texture);
+        gunTxt.width = Math.floor(gunTxt.width * 0.5);
+        gunTxt.height = Math.floor(gunTxt.height * 0.5);
+        const x = 0;
+        const y = 0;
+        const height = 0;
+        const width = 0;
+
+        const gX = x + Math.floor(width / 2) - Math.floor(gunTxt.width / 2);
+        const gY = y + Math.floor(height / 2) - Math.floor(gunTxt.height / 2);
+
+        g.addChild(gunTxt);
+        g.position.set(gX, gY);
+        this.itemTextureContainer.addChild(g);
     }
 
     private createLabel(label: number) {

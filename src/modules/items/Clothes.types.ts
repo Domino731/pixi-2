@@ -1,6 +1,7 @@
 export enum ClothesType {
     feet = 'feet',
     head = 'head',
+    face = 'face',
     innerTorso = 'innerTorso',
     legs = 'legs',
     outerTorso = 'outerTorso'

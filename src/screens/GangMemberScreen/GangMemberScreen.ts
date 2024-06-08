@@ -6,7 +6,7 @@ import { GangsListBar } from './GangsListBar';
 import { InventorySelectionBar } from './InventorySelectionBar';
 import { ItemTile } from './ItemTile/ItemTile';
 import { Inventory } from './Inventory';
-import { CONFIG, InventorySlots, SkillsSlots } from './GangMemberScreen.const';
+import { CONFIG, SkillsSlots } from './GangMemberScreen.const';
 import { Container } from 'pixi.js';
 import { CONFIG as ITEM_TILE_CONFIG } from './ItemTile/ItemTile.const';
 import { InventoryScrollBar } from './InventoryScrollbar';
@@ -15,9 +15,10 @@ import { ProfileToggleBar } from './ProfileToggleBar/ProfileToggleBar';
 import { ItemLabel } from '../../components/ItemLabel';
 import { isPointInRectangle } from '../../utils/shapes';
 import { ItemCard } from '../Gunsmith/components/ItemCard';
-import { windows } from 'rimraf';
 import { GAME } from '../../config/game';
 import { GangMemberInventoryData } from './GangMemberScreen.types';
+import { ClothesType } from '../../modules/items/Clothes.types';
+import { ClothesItems } from '../../modules/items/Clothes';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
@@ -26,21 +27,28 @@ export class GangMemberScreen extends ContentContainer {
     private currentItemCard: ItemCard | null = null;
     private inventoryData: GangMemberInventoryData = {
         clothes: [
-            { id: 'Cop_01_Set_Glasses' },
-            { id: 'Corporate_01_Set_Glasses' },
-            { id: 'Boots_01_basic_01' },
-            { id: 'Boots_01_old_01' },
-            { id: 'Helmet_12_rich_02' },
-            { id: 'Helmet_12_rich_03' },
-            { id: 'Corporate_01_Set_FormalShirt' },
-            { id: 'Fixer_01_Set_TShirt' },
-            { id: 'Cop_01_Set_Pants' },
-            { id: 'Corporate_01_Set_Pants' },
-            { id: 'Coat_01_basic_01' },
-            { id: 'Coat_01_basic_02' },
+            { id: '1', itemId: 'Cop_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
+            { id: '2', itemId: 'Corporate_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
+            { id: '3', itemId: 'Boots_01_basic_01', isEquipped: false, type: ClothesType.feet },
+            { id: '4', itemId: 'Boots_01_old_01', isEquipped: false, type: ClothesType.feet },
+            { id: '4', itemId: 'Helmet_12_rich_02', isEquipped: false, type: ClothesType.head },
+            { id: '5', itemId: 'Helmet_12_rich_03', isEquipped: false, type: ClothesType.head },
+            { id: '6', itemId: 'Corporate_01_Set_FormalShirt', isEquipped: false, type: ClothesType.innerTorso },
+            { id: '7', itemId: 'Fixer_01_Set_TShirt', isEquipped: false, type: ClothesType.innerTorso },
+            { id: '8', itemId: 'Cop_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
+            { id: '9', itemId: 'Corporate_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
+            { id: '10', itemId: 'Coat_01_basic_01', isEquipped: false, type: ClothesType.outerTorso },
+            { id: '11', itemId: 'Coat_01_basic_02', isEquipped: true, type: ClothesType.outerTorso },
         ],
     };
-
+    private inventorySlots = {
+        [ClothesType.face]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.head]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.outerTorso]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.innerTorso]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.legs]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.feet]: new ItemTile({ x: 0, y: 0 }),
+    };
 
     constructor() {
         super();
@@ -89,7 +97,10 @@ export class GangMemberScreen extends ContentContainer {
                     this.removeChild(this.inventoryItemLabel);
                     this.isInventoryItemLabelVisible = false;
                 }, CONFIG.HIDE_INVENTORY_ITEM_LABEL_DELAY);
-
+            },
+            onClothCardActionBtnClick: (item) => {
+                const clothItem = ClothesItems.get(item.itemId);
+                this.inventorySlots[item.type].addItemTexture(clothItem.getTexture('male'));
             },
         }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
@@ -116,11 +127,9 @@ export class GangMemberScreen extends ContentContainer {
     private createInventorySlots() {
         const container = new Container();
         container.position.set(CONFIG.INVENTORY_SLOTS_X, CONFIG.INVENTORY_SLOTS_Y);
-        InventorySlots.forEach((_, i) => {
-            container.addChild(new ItemTile({
-                x: 0,
-                y: (i * ITEM_TILE_CONFIG.SIZE) + (i * CONFIG.INVENTORY_SLOTS_GAP),
-            }));
+        Object.values(this.inventorySlots).forEach((el, i) => {
+            el.position.set(0, (i * ITEM_TILE_CONFIG.SIZE) + (i * CONFIG.INVENTORY_SLOTS_GAP));
+            container.addChild(el);
         });
 
         return container;
