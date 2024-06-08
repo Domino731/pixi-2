@@ -1,5 +1,5 @@
 import { ItemRarityUnion } from '../../../config/types';
-import { FederatedPointerEvent } from 'pixi.js';
+import { FederatedPointerEvent, Texture } from 'pixi.js';
 
 export enum ITEM_CARD_SIZE {
     lg = 'lg',
@@ -20,6 +20,7 @@ export interface ItemCardOptions {
     item: ItemCardItem;
     isMarked: boolean;
     onActionButtonClick: () => void;
+    texture: Texture;
 }
 
 export interface ItemCardItem {

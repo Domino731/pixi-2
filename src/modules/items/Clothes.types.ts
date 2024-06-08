@@ -1,5 +1,3 @@
-import { Cloth } from './Clothes';
-
 export enum ClothesType {
     feet = 'feet',
     head = 'head',

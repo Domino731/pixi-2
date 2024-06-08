@@ -3,96 +3,57 @@ import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
 import { List } from '@pixi/ui';
-import { ClothesItems } from '../../../modules/items/Clothes';
+import { Cloth, ClothesItems } from '../../../modules/items/Clothes';
+import { GangMemberInventoryData } from '../GangMemberScreen.types';
+
 
 export class Inventory extends Container {
-    constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave }: InventoryOptions) {
+    private inventoryItems: GangMemberInventoryData;
+
+    constructor({ x, y, onInventoryItemHover, onInventoryItemPointerLeave, inventoryItems }: InventoryOptions) {
         super();
+        this.inventoryItems = inventoryItems;
         this.position.set(x, y);
         this.addChild(this.createContainer());
         this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave));
-        ClothesItems.get('12');
-    }
-
-    private getItemCard(size) {
-        const card1 = new ItemCard({
-            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                // onInventoryItemHover(e, card1);
-            },
-            onPointerLeave: (e) => {
-                // onInventoryItemPointerLeave(e, card1);
-            },
-            onClick: (e) => {
-                console.log(123);
-            },
-            isMarked: false,
-            size,
-            item: {
-                label: 'Phantom',
-            },
-        });
-        return card1;
     }
 
     private createItemTile(onInventoryItemHover: InventoryOptions['onInventoryItemHover'], onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave']) {
-
-
-        const card1 = new ItemCard({
-            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                onInventoryItemHover(e, card1);
-            },
-            onPointerLeave: (e) => {
-                onInventoryItemPointerLeave(e, card1);
-            },
-            onClick: (e) => {
-                console.log(123);
-            },
-            isMarked: false,
-            size: 'lg',
-            item: {
-                label: 'Phantom',
-            },
-        });
-        const card2 = new ItemCard({
-            x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
-                onInventoryItemHover(e, card2);
-            },
-            onPointerLeave: (e) => {
-                onInventoryItemPointerLeave(e, card2);
-            },
-            size: 'md',
-            item: {
-                label: 'Phantom',
-            }, onClick: (e) => {
-                console.log(123);
-            },
-            isMarked: false,
-        });
-
         const elementsMargin = 16;
         const list = new List({ type: 'vertical', elementsMargin });
         list.position.set(20, 20);
-        const list4 = new List({ type: 'horizontal', elementsMargin });
-        list4.addChild(this.getItemCard('sm'));
-        list4.addChild(this.getItemCard('sm'));
-        list4.addChild(this.getItemCard('sm'));
-        list4.addChild(this.getItemCard('sm'));
+        let size = 'sm';
+        let rowList = new List({ type: 'horizontal', elementsMargin });
+        this.inventoryItems.clothes.forEach((el, index) => {
 
-        const list3 = new List({ type: 'horizontal', elementsMargin });
-        console.log('lg width', this.getItemCard('lg').width);
-        console.log('md width', this.getItemCard('md').width);
-        console.log('sm width', this.getItemCard('sm').width);
-        list3.addChild(this.getItemCard('md'));
-        list3.addChild(this.getItemCard('md'));
-        list3.addChild(this.getItemCard('md'));
+            const cloth: Cloth | undefined = ClothesItems.get(el.id);
+            const card = new ItemCard({
+                onActionButtonClick(): void {
+                    console.log(123);
+                },
+                x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
+                    onInventoryItemHover(e, card);
+                },
+                onPointerLeave: (e) => {
+                    onInventoryItemPointerLeave(e, card);
+                },
+                size: size,
+                item: {
+                    label: 'Phantom',
+                }, onClick: (e) => {
+                    console.log(123);
+                },
+                isMarked: false,
+                texture: cloth.getTexture('male'),
+            });
 
-        const list2 = new List({ type: 'horizontal', elementsMargin });
-        list2.addChild(this.getItemCard('lg'));
-        list2.addChild(this.getItemCard('lg'));
-        list.addChild(list2);
-        list.addChild(list3);
-        list.addChild(list4);
-
+            rowList.addChild(card);
+            if (size === 'sm' && (index + 1) % 6 === 0) {
+                list.addChild(rowList);
+                rowList = new List({ type: 'horizontal', elementsMargin });
+            }
+        });
+        list.addChild(rowList);
         return list;
     }
 

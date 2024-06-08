@@ -17,12 +17,30 @@ import { isPointInRectangle } from '../../utils/shapes';
 import { ItemCard } from '../Gunsmith/components/ItemCard';
 import { windows } from 'rimraf';
 import { GAME } from '../../config/game';
+import { GangMemberInventoryData } from './GangMemberScreen.types';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
     private isInventoryItemLabelVisible: boolean = false;
     private inventoryItemLabelTimeout: ReturnType<typeof setTimeout>;
     private currentItemCard: ItemCard | null = null;
+    private inventoryData: GangMemberInventoryData = {
+        clothes: [
+            { id: 'Cop_01_Set_Glasses' },
+            { id: 'Corporate_01_Set_Glasses' },
+            { id: 'Boots_01_basic_01' },
+            { id: 'Boots_01_old_01' },
+            { id: 'Helmet_12_rich_02' },
+            { id: 'Helmet_12_rich_03' },
+            { id: 'Corporate_01_Set_FormalShirt' },
+            { id: 'Fixer_01_Set_TShirt' },
+            { id: 'Cop_01_Set_Pants' },
+            { id: 'Corporate_01_Set_Pants' },
+            { id: 'Coat_01_basic_01' },
+            { id: 'Coat_01_basic_02' },
+        ],
+    };
+
 
     constructor() {
         super();
@@ -45,6 +63,7 @@ export class GangMemberScreen extends ContentContainer {
             },
         });
         this.addChild(new Inventory({
+            inventoryItems: this.inventoryData,
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
                 clearTimeout(this.inventoryItemLabelTimeout);

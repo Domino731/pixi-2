@@ -30,11 +30,11 @@ export class Cloth {
         this.textureMaleSrc = options.textureMaleSrc;
     }
 
-    private getTexture(sex: ClothSexUnion) {
+    public getTexture(sex: ClothSexUnion) {
         return Texture.from(sex === ClothSex.male ? this.textureMaleSrc : this.textureFemaleSrc);
     }
 
-    private getSprite(sex: ClothSexUnion) {
+    public getSprite(sex: ClothSexUnion) {
         return new Sprite(Texture.from(sex === ClothSex.male ? this.textureMaleSrc : this.textureFemaleSrc));
     }
 }
@@ -47,9 +47,12 @@ export class ClothesItems {
 
     private static createClothes() {
         const clothes: Record<string, Cloth> = {};
+        const ids = [];
         Object.values(clothesConfigs).map(el => {
+            ids.push(el.id);
             clothes[el.id] = new Cloth({
                 id: el.id,
+                description: el.description ?? null,
                 // @ts-ignore
                 generalData: el.general,
                 modifiers: el.modifier,
@@ -65,6 +68,7 @@ export class ClothesItems {
                 textureFemaleSrc: el.textureFemale,
             });
         });
+        console.log(ids);
         return clothes;
     }
 
