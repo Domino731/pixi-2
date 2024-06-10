@@ -8,5 +8,5 @@ export interface InventoryOptions {
     onInventoryItemHover: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
     onInventoryItemPointerLeave: (e: FederatedPointerEvent, itemCard: ItemCard) => void;
     inventoryItems: GangMemberInventoryData;
-    onClothCardActionBtnClick: (item: GangMemberInventoryItem) => void;
+    onClothCardActionBtnClick: (item: GangMemberInventoryItem, itemCard: ItemCard) => void;
 }

@@ -40,8 +40,7 @@ export class Inventory extends Container {
             const cloth: Cloth | undefined = ClothesItems.get(el.itemId);
             const card = new ItemCard({
                 onActionButtonClick(): void {
-                    card.setIsMarked(true);
-                    onClothCardActionBtnClick(el);
+                    onClothCardActionBtnClick(el, card);
                 },
                 x: 20, y: 20, rarity: 'LEGENDARY', onPointerOver: (e) => {
                     onInventoryItemHover(e, card);

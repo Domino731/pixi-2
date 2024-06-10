@@ -101,12 +101,14 @@ export class GangMemberScreen extends ContentContainer {
                     this.isInventoryItemLabelVisible = false;
                 }, CONFIG.HIDE_INVENTORY_ITEM_LABEL_DELAY);
             },
-            onClothCardActionBtnClick: (item) => {
+            onClothCardActionBtnClick: (item, itemCard) => {
                 const clothItem = ClothesItems.get(item.itemId);
+                itemCard.setIsMarked(true);
                 this.inventorySlots[item.type].addItemTexture(clothItem.getTexture('male'));
                 this.inventorySlots[item.type].showCloseIcon(() => {
                     this.inventorySlots[item.type].removeItemTexture();
                     this.inventorySlots[item.type].removeCloseIcon();
+                    itemCard.setIsMarked(false);
                 });
             },
         }));
