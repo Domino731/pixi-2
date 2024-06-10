@@ -42,7 +42,10 @@ export class GangMemberScreen extends ContentContainer {
         ],
     };
     private inventorySlots = {
-        [ClothesType.face]: new ItemTile({ x: 0, y: 0 }),
+        [ClothesType.face]: new ItemTile({
+            x: 0, y: 0, onCloseIconClick: () => {
+            },
+        }),
         [ClothesType.head]: new ItemTile({ x: 0, y: 0 }),
         [ClothesType.outerTorso]: new ItemTile({ x: 0, y: 0 }),
         [ClothesType.innerTorso]: new ItemTile({ x: 0, y: 0 }),
@@ -101,6 +104,10 @@ export class GangMemberScreen extends ContentContainer {
             onClothCardActionBtnClick: (item) => {
                 const clothItem = ClothesItems.get(item.itemId);
                 this.inventorySlots[item.type].addItemTexture(clothItem.getTexture('male'));
+                this.inventorySlots[item.type].showCloseIcon(() => {
+                    this.inventorySlots[item.type].removeItemTexture();
+                    this.inventorySlots[item.type].removeCloseIcon();
+                });
             },
         }));
         this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
