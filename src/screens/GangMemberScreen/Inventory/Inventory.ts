@@ -2,7 +2,7 @@ import { Container, Graphics } from 'pixi.js';
 import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
-import { List } from '@pixi/ui';
+import { List, ScrollBox } from '@pixi/ui';
 import { Cloth, ClothesItems } from '../../../modules/items/Clothes';
 import { GangMemberInventoryData } from '../GangMemberScreen.types';
 
@@ -31,12 +31,15 @@ export class Inventory extends Container {
         onClothCardActionBtnClick: InventoryOptions['onClothCardActionBtnClick'],
     ) {
         const elementsMargin = 16;
+        const scrollbox = new ScrollBox({
+            width: 910,
+            height: CONFIG.HEIGHT - 50,
+        });
         const list = new List({ type: 'vertical', elementsMargin });
-        list.position.set(20, 20);
+        scrollbox.position.set(20, 20);
         let size = 'sm';
         let rowList = new List({ type: 'horizontal', elementsMargin });
         this.inventoryItems.clothes.forEach((el, index) => {
-
             const cloth: Cloth | undefined = ClothesItems.get(el.itemId);
             const card = new ItemCard({
                 onActionButtonClick(): void {
@@ -65,7 +68,9 @@ export class Inventory extends Container {
             }
         });
         list.addChild(rowList);
-        return list;
+        console.log(list.width);
+        scrollbox.addItem(list);
+        return scrollbox;
     }
 
     private createContainer(): Graphics {

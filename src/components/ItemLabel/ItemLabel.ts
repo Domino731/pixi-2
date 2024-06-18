@@ -15,8 +15,13 @@ export class ItemLabel extends Container {
         this.interactive = true;
         this.position.set(x, y);
         this.addChild(this.createItemsList());
-        this.on('pointerleave', onPointerLeave);
-        this.on('pointerover', onPointerOver);
+        if (onPointerLeave) {
+            this.on('pointerleave', onPointerLeave);
+        }
+        if (onPointerOver) {
+            this.on('pointerover', onPointerOver);
+        }
+
     }
 
     private createItemsList() {
