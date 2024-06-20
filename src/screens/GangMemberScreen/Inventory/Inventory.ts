@@ -37,7 +37,17 @@ export class Inventory extends Container {
 
     public changeInventoryList(inventorySection: InventorySectionUnion) {
         this.inventoryItems = [];
-        if (inventorySection === InventorySection.CLOTHES) {
+        if (inventorySection === InventorySection.JUNK) {
+            this.inventoryItems = this.inventoryItemsByType.junk;
+        } else if (inventorySection === InventorySection.GUN) {
+            this.inventoryItems = this.inventoryItemsByType.gun;
+        } else if (inventorySection === InventorySection.MELEE) {
+            this.inventoryItems = this.inventoryItemsByType.melee;
+        } else if (inventorySection === InventorySection.SUPPLIES) {
+            this.inventoryItems = this.inventoryItemsByType.supplies;
+        } else if (inventorySection === InventorySection.MODIFICATIONS) {
+            this.inventoryItems = this.inventoryItemsByType.modifications;
+        } else if (inventorySection === InventorySection.CLOTHES) {
             this.inventoryItems = this.inventoryItemsByType.clothes;
         }
 

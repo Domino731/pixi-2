@@ -33,7 +33,7 @@ export class InventorySelectionBar extends Container {
         return g;
     }
 
-    private createButton(x: number, y: number, iconSrc: string, onChange: () => void) {
+    private createButton(x: number, y: number, iconSrc: string, inventorySection: InventorySectionUnion, onChange: InventorySelectionBarOptions['onChange']) {
         const g = new Graphics();
         const width = CONFIG.BUTTON_WIDTH;
         const height = CONFIG.HEIGHT - (2 * CONFIG.VERTICAL_PADDING);
@@ -50,9 +50,13 @@ export class InventorySelectionBar extends Container {
         icon.position.set(iconPositionX, iconPositionY);
         g.addChild(icon);
 
+        if (inventorySection === InventorySection.CLOTHES) {
+            icon.tint = 0xFFFF00;
+        }
+
         const btn = new Button(g);
         btn.onPress.connect(() => {
-            onChange();
+            onChange(inventorySection);
             this.icons.forEach(el => el.tint = 'white');
             icon.tint = 0xFFFF00;
         });
@@ -63,7 +67,7 @@ export class InventorySelectionBar extends Container {
         const container = new Container();
         INVENTORY_SECTIONS.forEach((el, i) => {
             const buttonX = i * CONFIG.BUTTON_WIDTH + (i * CONFIG.BUTTONS_GAP) + CONFIG.HORIZONTAL_PADDING;
-            this.addChild(this.createButton(buttonX, CONFIG.VERTICAL_PADDING, el.icon, () => onChange(el.section)));
+            this.addChild(this.createButton(buttonX, CONFIG.VERTICAL_PADDING, el.icon, el.section, onChange));
             if (i === INVENTORY_SECTIONS.length - 1) return;
             const lineX = buttonX + CONFIG.BUTTON_WIDTH + Math.floor(CONFIG.BUTTONS_GAP / 2);
             this.addChild(this.createGapLine(lineX, CONFIG.VERTICAL_PADDING));

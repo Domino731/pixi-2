@@ -26,6 +26,11 @@ export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabelTimeout: ReturnType<typeof setTimeout>;
     private currentItemCard: ItemCard | null = null;
     private inventoryData: GangMemberInventoryData = {
+        junk: [],
+        gun: [],
+        melee: [],
+        supplies: [],
+        modifications: [],
         clothes: [
             { id: '1', itemId: 'Cop_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
             { id: '2', itemId: 'Corporate_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
@@ -39,45 +44,6 @@ export class GangMemberScreen extends ContentContainer {
             { id: '9', itemId: 'Corporate_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
             { id: '10', itemId: 'Coat_01_basic_01', isEquipped: false, type: ClothesType.outerTorso },
             { id: '11', itemId: 'Coat_01_basic_02', isEquipped: true, type: ClothesType.outerTorso },
-
-            { id: '12', itemId: 'Cop_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '23', itemId: 'Corporate_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '34', itemId: 'Boots_01_basic_01', isEquipped: false, type: ClothesType.feet },
-            { id: '45', itemId: 'Boots_01_old_01', isEquipped: false, type: ClothesType.feet },
-            { id: '46', itemId: 'Helmet_12_rich_02', isEquipped: false, type: ClothesType.head },
-            { id: '57', itemId: 'Helmet_12_rich_03', isEquipped: false, type: ClothesType.head },
-            { id: '68', itemId: 'Corporate_01_Set_FormalShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '79', itemId: 'Fixer_01_Set_TShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '80', itemId: 'Cop_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '99', itemId: 'Corporate_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '101', itemId: 'Coat_01_basic_01', isEquipped: false, type: ClothesType.outerTorso },
-            { id: '111', itemId: 'Coat_01_basic_02', isEquipped: true, type: ClothesType.outerTorso },
-
-            { id: '121', itemId: 'Cop_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '231', itemId: 'Corporate_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '341', itemId: 'Boots_01_basic_01', isEquipped: false, type: ClothesType.feet },
-            { id: '451', itemId: 'Boots_01_old_01', isEquipped: false, type: ClothesType.feet },
-            { id: '461', itemId: 'Helmet_12_rich_02', isEquipped: false, type: ClothesType.head },
-            { id: '571', itemId: 'Helmet_12_rich_03', isEquipped: false, type: ClothesType.head },
-            { id: '681', itemId: 'Corporate_01_Set_FormalShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '791', itemId: 'Fixer_01_Set_TShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '801', itemId: 'Cop_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '991', itemId: 'Corporate_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '1011', itemId: 'Coat_01_basic_01', isEquipped: false, type: ClothesType.outerTorso },
-            { id: '1111', itemId: 'Coat_01_basic_02', isEquipped: true, type: ClothesType.outerTorso },
-
-            { id: '1212', itemId: 'Cop_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '2312', itemId: 'Corporate_01_Set_Glasses', isEquipped: false, type: ClothesType.face },
-            { id: '3412', itemId: 'Boots_01_basic_01', isEquipped: false, type: ClothesType.feet },
-            { id: '4512', itemId: 'Boots_01_old_01', isEquipped: false, type: ClothesType.feet },
-            { id: '4612', itemId: 'Helmet_12_rich_02', isEquipped: false, type: ClothesType.head },
-            { id: '5712', itemId: 'Helmet_12_rich_03', isEquipped: false, type: ClothesType.head },
-            { id: '6812', itemId: 'Corporate_01_Set_FormalShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '7912', itemId: 'Fixer_01_Set_TShirt', isEquipped: false, type: ClothesType.innerTorso },
-            { id: '8012', itemId: 'Cop_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '9912', itemId: 'Corporate_01_Set_Pants', isEquipped: false, type: ClothesType.legs },
-            { id: '10112', itemId: 'Coat_01_basic_01', isEquipped: false, type: ClothesType.outerTorso },
-            { id: '11112', itemId: 'Coat_01_basic_02', isEquipped: true, type: ClothesType.outerTorso },
         ],
     };
     private inventorySlots = {
