@@ -16,12 +16,3 @@ export const CONFIG = {
     GAP_LINE_COLOR: GAME_COLORS.red1,
     BUTTON_ICON_SIZE: 46,
 };
-
-export const INVENTORY_SECTIONS = [
-    { icon: 'icons/map/junk' },
-    { icon: 'icons/map/gun-vendor' },
-    { icon: 'icons/map/melee-vendor' },
-    { icon: 'icons/map/clothes' },
-    { icon: 'icons/map/food' },
-    { icon: 'icons/map/ripperdoc' },
-];

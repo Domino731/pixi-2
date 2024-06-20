@@ -91,20 +91,13 @@ export class GangMemberScreen extends ContentContainer {
         [ClothesType.legs]: new ItemTile({ x: 0, y: 0 }),
         [ClothesType.feet]: new ItemTile({ x: 0, y: 0 }),
     };
+    private inventory: Inventory;
 
     constructor() {
         super();
         this.addChild(this.createSectionBar());
         this.addChild(new GangsListBar());
-
-        this.addChild(new InventorySelectionBar({
-            x: CONFIG.INVENTORY_SELECTION_BAR_X,
-            y: CONFIG.INVENTORY_SELECTION_BAR_Y,
-        }));
-        this.inventoryItemLabel = new ItemLabel({
-            x: 0, y: 0,
-        });
-        this.addChild(new Inventory({
+        this.inventory = new Inventory({
             inventoryItems: this.inventoryData,
             x: CONFIG.INVENTORY_X, y: CONFIG.INVENTORY_Y,
             onInventoryItemHover: (_, item) => {
@@ -114,7 +107,7 @@ export class GangMemberScreen extends ContentContainer {
 
                 this.isInventoryItemLabelVisible = true;
                 const { tx, ty } = item.worldTransform;
-                this.showInventoryItemLabel(tx, ty);
+                this.showInventoryItemLabel(tx, ty, item.getItemId());
                 this.addChild(this.inventoryItemLabel);
             },
             onInventoryItemPointerLeave: (e) => {
@@ -142,15 +135,26 @@ export class GangMemberScreen extends ContentContainer {
                     itemCard.setIsMarked(false);
                 });
             },
+        });
+        this.addChild(new InventorySelectionBar({
+            x: CONFIG.INVENTORY_SELECTION_BAR_X,
+            y: CONFIG.INVENTORY_SELECTION_BAR_Y,
+            onChange: (inventorySection) => {
+                this.inventory.changeInventoryList(inventorySection);
+            },
         }));
-        this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
-        this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
-        this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
-        this.addChild(this.createInventorySlots());
-        this.addChild(this.createSkillsSlots());
+        this.inventoryItemLabel = new ItemLabel({
+            x: 0, y: 0,
+        });
+        this.addChild(this.inventory);
+        // this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
+        // this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
+        // this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
+        // this.addChild(this.createInventorySlots());
+        // this.addChild(this.createSkillsSlots());
     }
 
-    private showInventoryItemLabel(tx: number, ty: number) {
+    private showInventoryItemLabel(tx: number, ty: number, itemId: string) {
         const xOffset = -25;
         const baseX = (tx + xOffset) - this.inventoryItemLabel.width;
         let baseY = ty;
@@ -162,6 +166,7 @@ export class GangMemberScreen extends ContentContainer {
         if (yEnd > windowHeight) {
             baseY -= yEnd - windowHeight;
         }
+        this.inventoryItemLabel.changeItemData(itemId);
         this.inventoryItemLabel.position.set(baseX, baseY);
     }
 

@@ -4,11 +4,17 @@ import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
 import { List, ScrollBox } from '@pixi/ui';
 import { Cloth, ClothesItems } from '../../../modules/items/Clothes';
-import { GangMemberInventoryData } from '../GangMemberScreen.types';
+import { GangMemberInventoryData, GangMemberInventoryItem } from '../GangMemberScreen.types';
+import { InventorySection, InventorySectionUnion } from '../GangMemberScreen.const';
 
 
 export class Inventory extends Container {
-    private inventoryItems: GangMemberInventoryData;
+    private inventoryItemsByType: GangMemberInventoryData;
+    private inventoryItems: Array<GangMemberInventoryItem> = [];
+    private onInventoryItemHover: InventoryOptions['onInventoryItemHover'];
+    private onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave'];
+    private onClothCardActionBtnClick: InventoryOptions['onClothCardActionBtnClick'];
+    private listContainer: Container = new Container();
 
     constructor({
                     x,
@@ -19,17 +25,32 @@ export class Inventory extends Container {
                     onClothCardActionBtnClick,
                 }: InventoryOptions) {
         super();
-        this.inventoryItems = inventoryItems;
+        this.onInventoryItemHover = onInventoryItemHover;
+        this.onInventoryItemPointerLeave = onInventoryItemPointerLeave;
+        this.onClothCardActionBtnClick = onClothCardActionBtnClick;
+        this.inventoryItemsByType = inventoryItems;
         this.position.set(x, y);
         this.addChild(this.createContainer());
-        this.addChild(this.createItemTile(onInventoryItemHover, onInventoryItemPointerLeave, onClothCardActionBtnClick));
+        this.addChild(this.listContainer);
+        this.changeInventoryList(InventorySection.CLOTHES);
     }
 
-    private createItemTile(
-        onInventoryItemHover: InventoryOptions['onInventoryItemHover'],
-        onInventoryItemPointerLeave: InventoryOptions['onInventoryItemPointerLeave'],
-        onClothCardActionBtnClick: InventoryOptions['onClothCardActionBtnClick'],
-    ) {
+    public changeInventoryList(inventorySection: InventorySectionUnion) {
+        this.inventoryItems = [];
+        if (inventorySection === InventorySection.CLOTHES) {
+            this.inventoryItems = this.inventoryItemsByType.clothes;
+        }
+
+        if (this.listContainer.children[0]) {
+            this.listContainer.removeChildAt(0);
+        }
+        this.listContainer.addChild(this.createItemTile());
+    }
+
+    private createItemTile() {
+        const onInventoryItemHover = this.onInventoryItemHover;
+        const onInventoryItemPointerLeave = this.onInventoryItemPointerLeave;
+        const onClothCardActionBtnClick = this.onClothCardActionBtnClick;
         const elementsMargin = 16;
         const scrollbox = new ScrollBox({
             width: 910,
@@ -39,7 +60,7 @@ export class Inventory extends Container {
         scrollbox.position.set(20, 20);
         let size = 'sm';
         let rowList = new List({ type: 'horizontal', elementsMargin });
-        this.inventoryItems.clothes.forEach((el, index) => {
+        this.inventoryItems.forEach((el, index) => {
             const cloth: Cloth | undefined = ClothesItems.get(el.itemId);
             const card = new ItemCard({
                 onActionButtonClick(): void {
@@ -54,6 +75,7 @@ export class Inventory extends Container {
                 size: size,
                 item: {
                     label: 'Phantom',
+                    id: el.itemId,
                 }, onClick: (e) => {
                     console.log(123);
                 },
@@ -79,9 +101,6 @@ export class Inventory extends Container {
         const x = 0;
         const y = 0;
         const sharpOffsetLeft = CONFIG.SHARP_OFFSET_LEFT;
-        const sharpOffsetRight = CONFIG.SHARP_OFFSET_RIGHT;
-        const indentBottomOffset = CONFIG.INDENT_BOTTOM_OFFSET;
-        const indentHeight = CONFIG.INDENT_HEIGHT;
 
         const g = new Graphics();
         g.beginFill(CONFIG.BACKGROUND);
@@ -89,16 +108,9 @@ export class Inventory extends Container {
         g.drawPolygon(
             x + sharpOffsetLeft, y,
             x, y + sharpOffsetLeft,
-
             x, y + height - sharpOffsetLeft,
             x + sharpOffsetLeft, y + height,
-
             x + width, y + height,
-
-            x + width, y + height - indentBottomOffset,
-            x + width - sharpOffsetRight, y + height - indentBottomOffset - sharpOffsetRight,
-            x + width - sharpOffsetRight, y + height - indentBottomOffset - indentHeight,
-            x + width, y + height - indentBottomOffset - indentHeight,
             x + width, y,
         );
         g.endFill();

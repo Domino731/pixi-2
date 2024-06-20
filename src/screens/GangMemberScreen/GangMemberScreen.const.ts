@@ -44,3 +44,15 @@ export const InventorySlots = [
 ];
 
 export const SkillsSlots = [1, 2, 3, 4];
+
+export enum InventorySection {
+    JUNK = 'JUNK',
+    GUN = 'GUN',
+    MELEE = 'MELEE',
+    CLOTHES = 'CLOTHES',
+    SUPPLIES = 'SUPPLIES',
+    MODIFICATIONS = 'MODIFICATIONS'
+
+}
+
+export type InventorySectionUnion = keyof typeof InventorySection;

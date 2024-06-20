@@ -25,4 +25,5 @@ export interface ItemCardOptions {
 
 export interface ItemCardItem {
     label: string;
+    id: string;
 }

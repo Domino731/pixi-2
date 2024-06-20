@@ -8,6 +8,7 @@ import { getGunAmmoTexture, getGunTechnologyTexture } from '../../textures/gun-t
 import { getCommonTexture } from '../../textures/common-textures';
 import { COMMON_TEXTURES_NAMES } from '../../textures/common-textures.const';
 import { getGunAmmoText } from '../../utils/gun';
+import { Cloth, ClothesItems } from '../../modules/items/Clothes';
 
 export class ItemLabel extends Container {
     constructor({ x, y, onPointerLeave, onPointerOver }: ItemLabelOptions) {
@@ -22,6 +23,11 @@ export class ItemLabel extends Container {
             this.on('pointerover', onPointerOver);
         }
 
+    }
+
+    public changeItemData(itemId: string) {
+        const cloth: Cloth | undefined = ClothesItems.get(itemId);
+        console.log('CLOTH', cloth);
     }
 
     private createItemsList() {

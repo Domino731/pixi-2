@@ -1,17 +1,28 @@
 import { Container, Graphics, Sprite, Texture } from 'pixi.js';
-import { CONFIG, INVENTORY_SECTIONS } from './InventorySelectionBar.const';
+import { CONFIG } from './InventorySelectionBar.const';
 import { Button } from '@pixi/ui';
 import { InventorySelectionBarOptions } from './InventorySelectionBar.types';
+import { InventorySection, InventorySectionUnion } from '../GangMemberScreen.const';
+
+
+const INVENTORY_SECTIONS: Array<{ icon: string; section: InventorySectionUnion }> = [
+    { icon: 'icons/map/junk', section: InventorySection.JUNK },
+    { icon: 'icons/map/gun-vendor', section: InventorySection.GUN },
+    { icon: 'icons/map/melee-vendor', section: InventorySection.MELEE },
+    { icon: 'icons/map/clothes', section: InventorySection.CLOTHES },
+    { icon: 'icons/map/food', section: InventorySection.SUPPLIES },
+    { icon: 'icons/map/ripperdoc', section: InventorySection.MODIFICATIONS },
+];
 
 export class InventorySelectionBar extends Container {
     private icons: Sprite[];
 
-    constructor({ x, y }: InventorySelectionBarOptions) {
+    constructor({ x, y, onChange }: InventorySelectionBarOptions) {
         super();
         this.icons = [];
         this.position.set(x, y);
         this.addChild(this.createBar());
-        this.addChild(this.createButtonsList());
+        this.addChild(this.createButtonsList(onChange));
     }
 
     private createGapLine(x: number, y: number) {
@@ -22,7 +33,7 @@ export class InventorySelectionBar extends Container {
         return g;
     }
 
-    private createButton(x: number, y: number, iconSrc: string) {
+    private createButton(x: number, y: number, iconSrc: string, onChange: () => void) {
         const g = new Graphics();
         const width = CONFIG.BUTTON_WIDTH;
         const height = CONFIG.HEIGHT - (2 * CONFIG.VERTICAL_PADDING);
@@ -41,17 +52,18 @@ export class InventorySelectionBar extends Container {
 
         const btn = new Button(g);
         btn.onPress.connect(() => {
+            onChange();
             this.icons.forEach(el => el.tint = 'white');
             icon.tint = 0xFFFF00;
         });
         return btn.view;
     }
 
-    private createButtonsList() {
+    private createButtonsList(onChange: InventorySelectionBarOptions['onChange']) {
         const container = new Container();
         INVENTORY_SECTIONS.forEach((el, i) => {
             const buttonX = i * CONFIG.BUTTON_WIDTH + (i * CONFIG.BUTTONS_GAP) + CONFIG.HORIZONTAL_PADDING;
-            this.addChild(this.createButton(buttonX, CONFIG.VERTICAL_PADDING, el.icon));
+            this.addChild(this.createButton(buttonX, CONFIG.VERTICAL_PADDING, el.icon, () => onChange(el.section)));
             if (i === INVENTORY_SECTIONS.length - 1) return;
             const lineX = buttonX + CONFIG.BUTTON_WIDTH + Math.floor(CONFIG.BUTTONS_GAP / 2);
             this.addChild(this.createGapLine(lineX, CONFIG.VERTICAL_PADDING));

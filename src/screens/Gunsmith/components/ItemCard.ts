@@ -84,6 +84,10 @@ export class ItemCard extends Container {
 
     }
 
+    public getItemId() {
+        return this.item.id;
+    }
+
     private createActionButton(onClick: () => void) {
         const g = new Graphics();
 
@@ -151,7 +155,6 @@ export class ItemCard extends Container {
         ];
 
         const g = new Graphics();
-        console.log(this.highlightColor);
         g.beginFill(this.highlightColor);
         g.drawPolygon(points);
         g.endFill();
