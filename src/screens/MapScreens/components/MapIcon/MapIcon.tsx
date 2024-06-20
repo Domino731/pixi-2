@@ -47,7 +47,7 @@ export class MapIcon extends Container {
             case MAP_ICON.RIPPERDOC:
                 return new Sprite(Texture.from('icons/map/ripperdoc'));
             case MAP_ICON.FOOD:
-                return new Sprite(Texture.from('icons/map/food'));
+                return new Sprite(Texture.from('icons/map/consumables'));
             default:
                 console.error(`MapIcon.getIcon(): no match for ${this.iconName}`);
                 return new Sprite(Texture.from('icons/map/gun-vendor'));

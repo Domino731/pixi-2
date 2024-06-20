@@ -10,7 +10,7 @@ const INVENTORY_SECTIONS: Array<{ icon: string; section: InventorySectionUnion }
     { icon: 'icons/map/gun-vendor', section: InventorySection.GUN },
     { icon: 'icons/map/melee-vendor', section: InventorySection.MELEE },
     { icon: 'icons/map/clothes', section: InventorySection.CLOTHES },
-    { icon: 'icons/map/food', section: InventorySection.SUPPLIES },
+    { icon: 'icons/map/consumables', section: InventorySection.SUPPLIES },
     { icon: 'icons/map/ripperdoc', section: InventorySection.MODIFICATIONS },
 ];
 
