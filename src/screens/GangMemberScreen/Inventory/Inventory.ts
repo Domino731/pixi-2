@@ -3,7 +3,7 @@ import { CONFIG } from './Inventory.const';
 import { InventoryOptions } from './Inventory.types';
 import { ItemCard } from '../../Gunsmith/components/ItemCard';
 import { List, ScrollBox } from '@pixi/ui';
-import { Cloth, ClothesItems } from '../../../modules/items/Clothes';
+import { Cloth, ClothesItems } from '../../../modules/items/clothes/Clothes';
 import { GangMemberInventoryData, GangMemberInventoryItem } from '../GangMemberScreen.types';
 import { InventorySection, InventorySectionUnion } from '../GangMemberScreen.const';
 

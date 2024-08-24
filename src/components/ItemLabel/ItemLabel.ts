@@ -8,14 +8,17 @@ import { getGunAmmoTexture, getGunTechnologyTexture } from '../../textures/gun-t
 import { getCommonTexture } from '../../textures/common-textures';
 import { COMMON_TEXTURES_NAMES } from '../../textures/common-textures.const';
 import { getGunAmmoText } from '../../utils/gun';
-import { Cloth, ClothesItems } from '../../modules/items/Clothes';
+import { Cloth, ClothesItems } from '../../modules/items/clothes/Clothes';
 
 export class ItemLabel extends Container {
+    private contentContainer = new Container();
+
     constructor({ x, y, onPointerLeave, onPointerOver }: ItemLabelOptions) {
         super();
         this.interactive = true;
         this.position.set(x, y);
-        this.addChild(this.createItemsList());
+        this.addChild(this.contentContainer);
+        // this.contentContainer.addChild(this.createItemsList());
         if (onPointerLeave) {
             this.on('pointerleave', onPointerLeave);
         }

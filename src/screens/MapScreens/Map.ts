@@ -1,11 +1,11 @@
-import { Container } from 'pixi.js';
-import { MapPanel } from './MapPanel/MapPanel';
-import { Map2000 } from './Maps/2000/Map2000';
-import { Map500 } from './Maps/500/Map500';
-import { Map1000 } from './Maps/1000/Map1000';
-import { Map200 } from './Maps/200/map200';
-import { Map4000 } from './Maps/4000/Map4000';
-import { Navigation } from './Navigation';
+import {Container} from 'pixi.js';
+import {MapPanel} from './MapPanel/MapPanel';
+import {Map2000} from './Maps/2000/Map2000';
+import {Map500} from './Maps/500/Map500';
+import {Map1000} from './Maps/1000/Map1000';
+import {Map200} from './Maps/200/map200';
+import {Map4000} from './Maps/4000/Map4000';
+import {Navigation} from './Navigation';
 
 export class CityMap extends Container {
     private mapPanel: MapPanel;
@@ -25,6 +25,7 @@ export class CityMap extends Container {
         super();
         this.mapPanel = new MapPanel(this);
         this.navigation = new Navigation();
+        this.currentMap.position.set(-2500, -600)
         this.addChild(this.currentMap);
         this.addChild(this.mapPanel);
         this.addChild(this.navigation);

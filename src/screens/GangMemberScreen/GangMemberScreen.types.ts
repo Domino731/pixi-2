@@ -1,4 +1,4 @@
-import { ClothesTypeUnion } from '../../modules/items/Clothes.types';
+import { ClothesTypeUnion } from '../../modules/items/clothes/Clothes.types';
 
 export interface GangMemberInventoryItem {
     itemId: string;

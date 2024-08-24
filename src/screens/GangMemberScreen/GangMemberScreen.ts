@@ -17,8 +17,8 @@ import { isPointInRectangle } from '../../utils/shapes';
 import { ItemCard } from '../Gunsmith/components/ItemCard';
 import { GAME } from '../../config/game';
 import { GangMemberInventoryData } from './GangMemberScreen.types';
-import { ClothesType } from '../../modules/items/Clothes.types';
-import { ClothesItems } from '../../modules/items/Clothes';
+import { ClothesType } from '../../modules/items/clothes/Clothes.types';
+import { ClothesItems } from '../../modules/items/clothes/Clothes';
 
 export class GangMemberScreen extends ContentContainer {
     private inventoryItemLabel: ItemLabel;
@@ -113,11 +113,11 @@ export class GangMemberScreen extends ContentContainer {
             x: 0, y: 0,
         });
         this.addChild(this.inventory);
-        // this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
-        // this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
-        // this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
-        // this.addChild(this.createInventorySlots());
-        // this.addChild(this.createSkillsSlots());
+        this.addChild(new InventoryScrollBar({ x: CONFIG.INVENTORY_SCROLL_X, y: CONFIG.INVENTORY_SCROLL_Y }));
+        this.addChild(new ProfileCard({ x: CONFIG.PROFILE_CARD_X, y: CONFIG.PROFILE_CARD_Y }));
+        this.addChild(new ProfileToggleBar({ x: CONFIG.PROFILE_TOGGLE_BAR_X, y: CONFIG.PROFILE_TOGGLE_BAR_Y }));
+        this.addChild(this.createInventorySlots());
+        this.addChild(this.createSkillsSlots());
     }
 
     private showInventoryItemLabel(tx: number, ty: number, itemId: string) {
