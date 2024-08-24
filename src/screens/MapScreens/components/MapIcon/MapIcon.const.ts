@@ -33,7 +33,8 @@ export enum MAP_ICON {
     AUTOFIXER_TERMINAL = "AUTOFIXER_TERMINAL",
     AgentSaboteur = "AgentSaboteur",
     ORGANIZED_CRIME = 'ORGANIZED_CRIME',
-    LAND_MARK = 'LAND_MARK'
+    LAND_MARK = 'LAND_MARK',
+    SEARCH_RECOVER = 'SEARCH_RECOVER',
 }
 
 export const mapIconColors = {

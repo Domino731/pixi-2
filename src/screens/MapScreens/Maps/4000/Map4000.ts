@@ -271,6 +271,230 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(i12);
         const i13 = new MapIcon({x: 2668, y: 2181, name: MAP_ICON.FOOD, label: 'Food'});
         this.mapContainer.addChild(i13);
+        const lci1 = new MapIcon({x: 2545, y: 1866, name: MAP_ICON.DROP_POINT, label: ''});
+        this.fooIcon = lci1;
+        this.mapContainer.addChild(lci1);
+        const lci2 = new MapIcon({x: 2614, y: 1842, name: MAP_ICON.FAST_TRAVEL, label: 'California & Cartwright'});
+        this.fooIcon = lci2;
+        this.mapContainer.addChild(lci2);
+        const lci3 = new MapIcon({x: 2716, y: 1866, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci3;
+        this.mapContainer.addChild(lci3);
+        const lci4 = new MapIcon({x: 2674, y: 1890, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci4;
+        this.mapContainer.addChild(lci4);
+        const lci5 = new MapIcon({x: 2599, y: 2109, name: MAP_ICON.PSYCHO, label: 'Little China'});
+        this.fooIcon = lci5;
+        this.mapContainer.addChild(lci5);
+        const lci6 = new MapIcon({x: 2704, y: 2094, name: MAP_ICON.LAND_MARK, label: 'Deravaja Dojo'});
+        this.fooIcon = lci6;
+        this.mapContainer.addChild(lci6);
+        const lci7 = new MapIcon({x: 2704, y: 2100, name: MAP_ICON.SOS_MERC_NEEDED, label: 'Bloodsport'});
+        this.fooIcon = lci7;
+        this.mapContainer.addChild(lci7);
+        const lci8 = new MapIcon({x: 2647, y: 2139, name: MAP_ICON.FAST_TRAVEL, label: 'Clarendon St'});
+        this.fooIcon = lci8;
+        this.mapContainer.addChild(lci8);
+        const lci9 = new MapIcon({x: 2668, y: 2277, name: MAP_ICON.REPORTED_CRIME, label: 'WORLDLY POSSESSION'});
+        this.fooIcon = lci9;
+        this.mapContainer.addChild(lci9);
+        const lci10 = new MapIcon({x: 2680, y: 2184, name: MAP_ICON.SEARCH_RECOVER, label: 'PLAYING FOR KEEPS'});
+        this.fooIcon = lci10;
+        this.mapContainer.addChild(lci10);
+        const lci11 = new MapIcon({x: 2701, y: 2232, name: MAP_ICON.DROP_POINT, label: ''});
+        this.fooIcon = lci11;
+        this.mapContainer.addChild(lci11);
+        const lci12 = new MapIcon({x: 2779, y: 2103, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci12;
+        this.mapContainer.addChild(lci12);
+        const lci13 = new MapIcon({x: 2806, y: 1923, name: MAP_ICON.AgentSaboteur, label: 'THE HEISENBERG PRINCIPLE'});
+        this.fooIcon = lci13;
+        this.mapContainer.addChild(lci13);
+        const lci14 = new MapIcon({x: 2809, y: 1905, name: MAP_ICON.DROP_POINT, label: ''});
+        this.fooIcon = lci14;
+        this.mapContainer.addChild(lci14);
+        const lci15 = new MapIcon({x: 2866, y: 1812, name: MAP_ICON.DROP_POINT, label: ''});
+        this.fooIcon = lci15;
+        this.mapContainer.addChild(lci15);
+        const lci16 = new MapIcon({x: 2896, y: 1752, name: MAP_ICON.FAST_TRAVEL, label: 'DRAKE AVE'});
+        this.fooIcon = lci16;
+        this.mapContainer.addChild(lci16);
+        const lci17 = new MapIcon({x: 2932, y: 1734, name: MAP_ICON.ORGANIZED_CRIME, label: 'OPPOSITES ATTRACT'});
+        this.fooIcon = lci17;
+        this.mapContainer.addChild(lci17);
+        const lci18 = new MapIcon({x: 3031, y: 1782, name: MAP_ICON.FAST_TRAVEL, label: 'Metro: Med Center'});
+        this.fooIcon = lci18;
+        this.mapContainer.addChild(lci18);
+        const lci19 = new MapIcon({x: 3121, y: 1764, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci19;
+        this.mapContainer.addChild(lci19);
+        const lci20 = new MapIcon({x: 3112, y: 1881, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci20;
+        this.mapContainer.addChild(lci20);
+        const lci21 = new MapIcon({x: 3100, y: 1989, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci21;
+        this.mapContainer.addChild(lci21);
+        const lci22 = new MapIcon({x: 2953, y: 1905, name: MAP_ICON.FAST_TRAVEL, label: 'Goldsmith St'});
+        this.fooIcon = lci22;
+        this.mapContainer.addChild(lci22);
+        const lci23 = new MapIcon({x: 2938, y: 1950, name: MAP_ICON.ASSAULT, label: ''});
+        this.fooIcon = lci23;
+        this.mapContainer.addChild(lci23);
+        const lci24 = new MapIcon({x: 2905, y: 1935, name: MAP_ICON.DROP_POINT, label: ''});
+        this.fooIcon = lci24;
+        this.mapContainer.addChild(lci24);
+        const lci25 = new MapIcon({x: 2893, y: 1974, name: MAP_ICON.ORGANIZED_CRIME, label: 'TYGERS BY THE TAIL'});
+        this.fooIcon = lci25;
+        this.mapContainer.addChild(lci25);
+        const lci26 = new MapIcon({
+            x: 2893,
+            y: 1923,
+            name: MAP_ICON.ORGANIZED_CRIME,
+            label: 'Metro: Farrier & Ferguson'
+        });
+        this.fooIcon = lci26;
+        this.mapContainer.addChild(lci26);
+        const lci27 = new MapIcon({
+            x: 2860, y: 2280,
+            name: MAP_ICON.FAST_TRAVEL,
+            label: 'RIOT'
+        });
+        this.fooIcon = lci27;
+        this.mapContainer.addChild(lci27);
+        const lci28 = new MapIcon({
+            x: 2869, y: 2277,
+            name: MAP_ICON.BAR,
+            label: 'RIOT'
+        });
+        this.fooIcon = lci28;
+        this.mapContainer.addChild(lci28);
+        const lci29 = new MapIcon({
+            x: 2965, y: 2280,
+            name: MAP_ICON.DROP_POINT,
+            label: ''
+        });
+        this.fooIcon = lci29;
+        this.mapContainer.addChild(lci29);
+        const lci30 = new MapIcon({
+            x: 3001, y: 2268,
+            name: MAP_ICON.BAR,
+            label: 'Afterlife'
+        });
+        this.fooIcon = lci30;
+        this.mapContainer.addChild(lci30);
+        const lci31 = new MapIcon({
+            x: 3031, y: 2253,
+            name: MAP_ICON.METRO,
+            label: 'Metro: Ellison Plaza'
+        });
+        this.fooIcon = lci31;
+        this.mapContainer.addChild(lci31);
+        const lci32 = new MapIcon({
+            x: 3049, y: 2256,
+            name: MAP_ICON.METRO,
+            label: 'Metro: Ellison St'
+        });
+        this.fooIcon = lci32;
+        this.mapContainer.addChild(lci32);
+        const lci33 = new MapIcon({
+            x: 3082, y: 2139,
+            name: MAP_ICON.TARROT,
+            label: 'The Sun'
+        });
+        this.fooIcon = lci33;
+        this.mapContainer.addChild(lci33);
+        const lci34 = new MapIcon({
+            x: 3001, y: 2133,
+            name: MAP_ICON.METRO,
+            label: 'Metro: Megabuilding H10'
+        });
+        this.fooIcon = lci34;
+        this.mapContainer.addChild(lci34);
+        const lci35 = new MapIcon({
+            x: 2998, y: 2154,
+            name: MAP_ICON.METRO,
+            label: 'Metro: ZOCALO'
+        });
+        this.fooIcon = lci35;
+        this.mapContainer.addChild(lci35);
+        const lci36 = new MapIcon({
+            x: 2965, y: 2184,
+            name: MAP_ICON.TARROT,
+            label: 'The Chariot'
+        });
+        this.fooIcon = lci36;
+        this.mapContainer.addChild(lci36);
+        const lci37 = new MapIcon({
+            x: 2998, y: 2250,
+            name: MAP_ICON.TARROT,
+            label: 'The Empress'
+        });
+        this.fooIcon = lci37;
+        this.mapContainer.addChild(lci37);
+        const lci38 = new MapIcon({
+            x: 2986, y: 2235,
+            name: MAP_ICON.FAST_TRAVEL,
+            label: 'Afterlife'
+        });
+        this.fooIcon = lci38;
+        this.mapContainer.addChild(lci38);
+        const lci39 = new MapIcon({
+            x: 2935, y: 2130,
+            name: MAP_ICON.TARROT,
+            label: 'The World'
+        });
+        this.fooIcon = lci39;
+        this.mapContainer.addChild(lci39);
+        const lci40 = new MapIcon({
+            x: 2932, y: 2106,
+            name: MAP_ICON.FAST_TRAVEL,
+            label: 'Bradbury & Buran'
+        });
+        this.fooIcon = lci40;
+        this.mapContainer.addChild(lci40);
+        const lci41 = new MapIcon({
+            x: 2968, y: 2052,
+            name: MAP_ICON.ASSAULT,
+            label: ''
+        });
+        this.fooIcon = lci41;
+        this.mapContainer.addChild(lci41);
+        const lci42 = new MapIcon({
+            x: 3016, y: 2085,
+            name: MAP_ICON.DROP_POINT,
+            label: ''
+        });
+        this.fooIcon = lci42;
+        this.mapContainer.addChild(lci42);
+        const lci43 = new MapIcon({
+            x: 3031, y: 2100,
+            name: MAP_ICON.DROP_POINT,
+            label: ''
+        });
+        this.fooIcon = lci43;
+        this.mapContainer.addChild(lci43);
+        const lci44 = new MapIcon({
+            x: 3043, y: 2100,
+            name: MAP_ICON.TARROT,
+            label: 'The Fool'
+        });
+        this.fooIcon = lci44;
+        this.mapContainer.addChild(lci44);
+        const lci45 = new MapIcon({
+            x: 3040, y: 2094,
+            name: MAP_ICON.APARTMENT,
+            label: ''
+        });
+        this.fooIcon = lci45;
+        this.mapContainer.addChild(lci45);
+        const lci46 = new MapIcon({
+            x: 3040, y: 2085,
+            name: MAP_ICON.FAST_TRAVEL,
+            label: 'Megabuilding H10: Atrium'
+        });
+        this.fooIcon = lci46;
+        this.mapContainer.addChild(lci46);
+
         // Kabuki
         const i14 = new MapIcon({x: 3286, y: 1981, name: MAP_ICON.JUNK, label: 'Junk'});
         this.mapContainer.addChild(i14);
