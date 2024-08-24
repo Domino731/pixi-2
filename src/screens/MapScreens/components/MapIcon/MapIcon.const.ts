@@ -35,6 +35,7 @@ export enum MAP_ICON {
     ORGANIZED_CRIME = 'ORGANIZED_CRIME',
     LAND_MARK = 'LAND_MARK',
     SEARCH_RECOVER = 'SEARCH_RECOVER',
+    GUN_FOR_HIRE = 'GUN_FOR_HIRE'
 }
 
 export const mapIconColors = {
