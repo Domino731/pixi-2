@@ -7,6 +7,10 @@ import {Container, Graphics, Text} from 'pixi.js';
 
 export class Map4000 extends MapFactory {
     private fooIcon: Container = null;
+    private currentLine: Container = new Container();
+    private currentCords = [
+        3340, 853,
+        2480, 1061];
 
     constructor() {
         super({
@@ -14,8 +18,40 @@ export class Map4000 extends MapFactory {
             tilesWidth: 30,
             tilesHeight: 30,
         });
-        this.setDistricts();
-        this.iconMove();
+        this.addChild(this.currentLine)
+        this.mapContainer.addChild(this.currentLine);
+        // this.setDistricts();
+        // this.iconMove();
+        this.lineMove();
+        this.setWatsonDistrict();
+    }
+
+    private lineMove() {
+        const velocity = 1;
+
+        window.addEventListener("keydown", (event) => {
+            let lastPointY = this.currentCords[this.currentCords.length - 1];
+            let lastPointX = this.currentCords[this.currentCords.length - 2];
+            switch (event.key) {
+                case "ArrowUp":
+                    lastPointY -= velocity;
+                    break;
+                case "ArrowDown":
+                    lastPointY += velocity;
+                    break;
+                case "ArrowLeft":
+                    lastPointX -= velocity
+                    break;
+                case "ArrowRight":
+                    lastPointX += velocity;
+                    break;
+                default:
+                    console.log(`Key pressed: ${event.key}`);
+            }
+            this.currentCords[this.currentCords.length - 1] = lastPointY;
+            this.currentCords[this.currentCords.length - 2] = lastPointX;
+            this.setWatsonDistrict();
+        });
     }
 
     private iconMove() {
@@ -51,59 +87,26 @@ export class Map4000 extends MapFactory {
         });
     }
 
-    private setDistricts() {
-        this.setWatsonDistrict();
-    }
-
     private setWatsonDistrict() {
-        const g = new Graphics();
-        g.beginFill(0xFF0000, 0);
-        g.lineStyle(3, 'red');
-        g.drawPolygon([
-            3227, 470,
-            3537, 528,
-            3681, 612,
-            3978, 1338,
-            3862, 1429,
-            3818, 1562,
-            3815, 1661,
-            3745, 1757,
-            3751, 1774,
-            3507, 1864,
-            3357, 1989,
-            3357, 2180,
-            3310, 2230,
-            3310, 2360,
-            3250, 2444,
-            2544, 2444,
-            2433, 1969,
-            1773, 1790,
-            1870, 1150,
-            2340, 853,
-            2670, 838,
-            2840, 628,
-        ]);
-        // g.drawPolygon([
-        //     1000, 200,
-        // ]);
-        g.endFill();
-
-
+        this.currentLine.removeChildren();
         const text = new Text('Watson', {
             fill: GAME_COLORS.yellow,
             stroke: GAME_COLORS.black2,
             strokeThickness: 2,
             fontSize: 22,
         });
-        text.position.set(2870, 1450);
-        g.addChild(text);
+        const g = new Graphics();
 
-        this.mapContainer.addChild(g);
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(this.currentCords);
+        g.endFill();
 
-        this.setArasakaShoreline();
-        this.setLittleChinaBorder();
-        this.setKabukiBorder();
-        this.setNorthsideBorder();
+        this.currentLine.addChild(g);
+    }
+
+    private setDistricts() {
+        this.setWatsonDistrict();
     }
 
 
