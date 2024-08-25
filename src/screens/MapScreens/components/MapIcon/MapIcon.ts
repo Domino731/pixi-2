@@ -1,7 +1,9 @@
-import { Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
-import { MapIconOptions, MapIconUnion, MapIconVariantsUnion } from './MapIcon.types';
-import { MAP_ICON, MAP_ICON_VARIANTS, mapIconColors } from './MapIcon.const';
-import { Button } from '@pixi/ui';
+import {Container, Graphics, Rectangle, Sprite, Text, Texture} from 'pixi.js';
+import {MapIconOptions, MapIconUnion, MapIconVariantsUnion} from './MapIcon.types';
+import {MAP_ICON, MAP_ICON_VARIANTS, mapIconColors} from './MapIcon.const';
+import {Button} from '@pixi/ui';
+import {createAppTexture} from "../../../../main";
+import {GAME_COLORS} from "../../../../config/styles";
 
 const x = 0;
 const y = 0;
@@ -12,13 +14,16 @@ const tooltipHeight = 26;
 const tooltipSharpOffset = 8;
 const tooltipPaddingHorizontal = 10;
 
+const iconWidth = 68;
+const iconHeight = 89;
+
 export class MapIcon extends Container {
     private readonly variant: MapIconVariantsUnion;
     private readonly iconName: MapIconUnion;
     private readonly tooltip: Graphics;
     private readonly label: string;
 
-    constructor({ x, y, variant = MAP_ICON_VARIANTS.VENDOR, name = MAP_ICON.GUN_VENDOR, label }: MapIconOptions) {
+    constructor({x, y, variant = MAP_ICON_VARIANTS.VENDOR, name = MAP_ICON.GUN_VENDOR, label}: MapIconOptions) {
         super();
         this.variant = variant;
         this.iconName = name;
@@ -29,29 +34,14 @@ export class MapIcon extends Container {
     }
 
     private getIcon() {
-        switch (this.iconName) {
-            case MAP_ICON.NETRUNNER:
-                return new Sprite(Texture.from('icons/map/netrunner'));
-            case MAP_ICON.MELEE_VENDOR:
-                return new Sprite(Texture.from('icons/map/melee-vendor'));
-            case MAP_ICON.JUNK:
-                return new Sprite(Texture.from('icons/map/junk'));
-            case MAP_ICON.MED_POINT:
-                return new Sprite(Texture.from('icons/map/med-point'));
-            case MAP_ICON.FIXER:
-                return new Sprite(Texture.from('icons/map/fixer'));
-            case MAP_ICON.CLOTHES:
-                return new Sprite(Texture.from('icons/map/clothes'));
-            case MAP_ICON.GUN_VENDOR:
-                return new Sprite(Texture.from('icons/map/gun-vendor'));
-            case MAP_ICON.RIPPERDOC:
-                return new Sprite(Texture.from('icons/map/ripperdoc'));
-            case MAP_ICON.FOOD:
-                return new Sprite(Texture.from('icons/map/consumables'));
-            default:
-                console.error(`MapIcon.getIcon(): no match for ${this.iconName}`);
-                return new Sprite(Texture.from('icons/map/gun-vendor'));
-        }
+        const x = 0;
+        const y = 0;
+        const width = iconWidth;
+        const height = iconHeight;
+        const baseTexture = Texture.from('icons/map/netrunner');
+        const texture = new Texture(baseTexture, new Rectangle(x, y, width, height));
+        const sprite = new Sprite(texture);
+        return sprite;
     }
 
     private createTooltip() {
@@ -85,26 +75,48 @@ export class MapIcon extends Container {
         return tooltip;
     }
 
-    private setGraphics() {
+    private getIconGraphics() {
         const g = new Graphics();
+        const x = 36;
+        const y = 4;
+        g.position.set(-35, -4)
+        g.beginFill(...GAME_COLORS.transparent);
         const icon = this.getIcon();
-        icon.width = width - padding;
-        icon.height = height - padding;
-        g.beginFill(mapIconColors[this.variant].bg);
-        g.lineStyle(1, mapIconColors[this.variant].border);
+        const texture2 = createAppTexture(icon);
+        g.beginTextureFill({texture: texture2})
         g.drawPolygon([
             x, y,
-            x, y + height,
 
-            x + (width / 2), y + width + 10,
+            x + (iconWidth / 2) - 2, y - 32,
+            x + (iconWidth / 2) - 2, y - 90,
 
-            x + width, y + height,
-            x + width, y,
+            x - (iconWidth / 2), y - 90,
+            x - (iconWidth / 2), y - 32,
+            // 60, 60
         ]);
         g.endFill();
-        icon.position.set(2, 2);
-        g.addChild(icon);
+        return g;
+    }
 
+    private setGraphics() {
+        const g = new Graphics();
+        const x = 0;
+        const y = 0;
+        g.position.set(0, 0)
+        g.beginFill(...GAME_COLORS.transparent);
+        g.drawPolygon([
+            x, y,
+
+            x + (iconWidth / 2) - 2, y - 32,
+            x + (iconWidth / 2) - 2, y - 90,
+
+            x - (iconWidth / 2), y - 90,
+            x - (iconWidth / 2), y - 32,
+        ]);
+        g.addChild(this.getIconGraphics())
+        g.endFill();
+
+        g.scale.set(0.3, 0.3)
         const btn = new Button(g);
 
         btn.onPress.connect(() => {
@@ -112,12 +124,13 @@ export class MapIcon extends Container {
         });
 
         btn.onOut.connect(() => {
-            const index = btn.view.getChildIndex(this.tooltip);
-            btn.view.removeChildAt(index);
+            // TODO: tooltip
+            // const index = btn.view.getChildIndex(this.tooltip);
+            // btn.view.removeChildAt(index);
         });
 
         btn.onHover.connect(() => {
-            btn.view.addChild(this.tooltip);
+            // btn.view.addChild(this.tooltip);
         });
 
         this.addChild(btn.view);

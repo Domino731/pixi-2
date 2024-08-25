@@ -21,6 +21,10 @@ export class CityMap extends Container {
     private currentMapIndex: 'extraSmall' | 'small' | 'medium' | 'big' | 'large' = 'large';
     private currentMap = this.maps[this.currentMapIndex];
 
+    private minScale = 0.5; // Minimum scale limit
+    private maxScale = 2.0; // Maximum scale limit
+    private zoomSpeed = 0.1; // Speed of zooming
+
     constructor() {
         super();
         this.mapPanel = new MapPanel(this);
@@ -29,6 +33,28 @@ export class CityMap extends Container {
         this.addChild(this.currentMap);
         this.addChild(this.mapPanel);
         this.addChild(this.navigation);
+
+        this.interactive = true;
+        this.on('wheel', this.onScroll.bind(this));
+        this.currentMap.scale.set(1.594404900000001, 1.594404900000001)
+    }
+
+    private onScroll(event: WheelEvent): void {
+        // Zoom in or out based on the scroll direction
+        const zoomFactor = event.deltaY < 0 ? (1 + this.zoomSpeed) : (1 - this.zoomSpeed);
+        this.zoom(zoomFactor);
+    }
+
+    private zoom(zoomFactor: number): void {
+        // Calculate the new scale
+        const newScaleX = this.currentMap.scale.x * zoomFactor;
+        const newScaleY = this.currentMap.scale.y * zoomFactor;
+
+        // Ensure the scale is within the min/max bounds
+        if (newScaleX >= this.minScale && newScaleX <= this.maxScale) {
+            console.log(newScaleX, newScaleY)
+            this.currentMap.scale.set(newScaleX, newScaleY);
+        }
     }
 
     public zoomIn() {

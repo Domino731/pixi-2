@@ -1,10 +1,10 @@
 import 'pixi-spine';
 
-import { Application, Sprite } from 'pixi.js';
-import { initAssets } from './utils/assets';
-import { Navigation } from './utils/navigation';
-import { sound } from '@pixi/sound';
-import { GangMemberScreen } from './screens/GangMemberScreen';
+import {Application, Sprite} from 'pixi.js';
+import {initAssets} from './utils/assets';
+import {Navigation} from './utils/navigation';
+import {sound} from '@pixi/sound';
+import {GangMemberScreen} from './screens/GangMemberScreen';
 import {CityMap} from "./screens/MapScreens/Map";
 
 /** The PixiJS app Application instance, shared across the project */
