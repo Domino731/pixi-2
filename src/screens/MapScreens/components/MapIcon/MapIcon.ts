@@ -1,15 +1,10 @@
 import {Container, Graphics, Rectangle, Sprite, Text, Texture} from 'pixi.js';
 import {MapIconOptions, MapIconUnion, MapIconVariantsUnion} from './MapIcon.types';
-import {MAP_ICON, MAP_ICON_VARIANTS, mapIconColors} from './MapIcon.const';
+import {MAP_ICON, MAP_ICON_VARIANTS, MAP_ICONS_CONFIG, mapIconColors} from './MapIcon.const';
 import {Button} from '@pixi/ui';
 import {createAppTexture} from "../../../../main";
 import {GAME_COLORS} from "../../../../config/styles";
 
-const x = 0;
-const y = 0;
-const width = 28;
-const height = 28;
-const padding = 4;
 const tooltipHeight = 26;
 const tooltipSharpOffset = 8;
 const tooltipPaddingHorizontal = 10;
@@ -23,7 +18,7 @@ export class MapIcon extends Container {
     private readonly tooltip: Graphics;
     private readonly label: string;
 
-    constructor({x, y, variant = MAP_ICON_VARIANTS.VENDOR, name = MAP_ICON.GUN_VENDOR, label}: MapIconOptions) {
+    constructor({x, y, variant = MAP_ICON_VARIANTS.VENDOR, name = MAP_ICON.ASSAULT, label}: MapIconOptions) {
         super();
         this.variant = variant;
         this.iconName = name;
@@ -35,7 +30,7 @@ export class MapIcon extends Container {
 
     private getIcon() {
         const x = 0;
-        const y = 0;
+        const y = MAP_ICONS_CONFIG[this.iconName].y
         const width = iconWidth;
         const height = iconHeight;
         const baseTexture = Texture.from('icons/map/netrunner');
