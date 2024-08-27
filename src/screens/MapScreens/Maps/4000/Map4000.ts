@@ -9,8 +9,30 @@ export class Map4000 extends MapFactory {
     private fooIcon: Container = null;
     private currentLine: Container = new Container();
     private currentCords = [
-        3340, 853,
-        3480, 561];
+        3480, 471,
+        3786, 521,
+        3942, 613,
+        4234, 1349,
+        4128, 1428,
+        4069, 1557,
+        4069, 1661,
+        4001, 1752,
+        4005, 1771,
+        3750, 1870,
+        3614, 1992,
+        3614, 2164,
+        3573, 2221,
+        3573, 2356,
+        3515, 2446,
+        3320, 2458,
+        2807, 2458,
+        2671, 1964,
+        2048, 1775,
+        2128, 1142,
+        2586, 868,
+        2924, 836,
+        3102, 629
+    ];
 
     constructor() {
         super({
@@ -32,6 +54,7 @@ export class Map4000 extends MapFactory {
         window.addEventListener("keydown", (event) => {
             let lastPointY = this.currentCords[this.currentCords.length - 1];
             let lastPointX = this.currentCords[this.currentCords.length - 2];
+            console.log(event.key);
             switch (event.key) {
                 case "ArrowUp":
                     lastPointY -= velocity;
@@ -44,6 +67,9 @@ export class Map4000 extends MapFactory {
                     break;
                 case "ArrowRight":
                     lastPointX += velocity;
+                    break;
+                case "Enter":
+                    console.log(this.currentCords[this.currentCords.length - 2], this.currentCords[this.currentCords.length - 1])
                     break;
                 default:
                     console.log(`Key pressed: ${event.key}`);
