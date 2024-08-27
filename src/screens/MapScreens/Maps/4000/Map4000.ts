@@ -10,7 +10,7 @@ export class Map4000 extends MapFactory {
     private currentLine: Container = new Container();
     private currentCords = [
         3340, 853,
-        2480, 1061];
+        3480, 561];
 
     constructor() {
         super({
