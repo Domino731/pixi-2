@@ -1,7 +1,7 @@
 import {GAME_COLORS} from '../../../../config/styles';
 import {MapFactory} from '../MapFactory';
 import {
-    ArasakaShorelineLineCords, KabukiLineCords,
+    ArasakaShorelineLineCords, CentreCords, KabukiLineCords,
     LittleChinaLineCords, NorthsideCords,
     texturePathsMap4000,
     WatsonDistrictLineCords
@@ -13,29 +13,30 @@ export class Map4000 extends MapFactory {
     private currentLine: Container = new Container();
     private watsonDistrictContainer: Container = new Container();
     private centreDistrictContainer: Container = new Container();
+    private heywoodDistrictContainer: Container = new Container();
     private arasakaShoreLine: Container = new Container();
     private littleChinaContainer: Container = new Container();
     private kabukiContainer: Container = new Container();
     private northsideContainer: Container = new Container();
 
     private currentCords = [
-        2403, 2467,
-        2591, 2614,
-        2807, 2458,
-        3320, 2458,
-        3515, 2446,
         3725, 2762,
-        3576, 2974,
-        3478, 2993,
-        3501, 3040,
-        3449, 3220,
-        3363, 3282,
-        3223, 3282,
-        3131, 3198,
-        3069, 3055,
+        3753, 2879,
+        3969, 3074,
+        3987, 3107,
+        3356, 3965,
+        2654, 3984,
+        2364, 3863,
+        2408, 3073,
         2442, 3037,
-        2367, 2779,
-        2226, 2638
+        3069, 3055,
+        3131, 3198,
+        3223, 3282,
+        3363, 3282,
+        3449, 3220,
+        3501, 3040,
+        3478, 2993,
+        3576, 2974,
     ]
 
     constructor() {
@@ -53,6 +54,7 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(this.watsonDistrictContainer);
         this.mapContainer.addChild(this.watsonDistrictContainer);
         this.mapContainer.addChild(this.centreDistrictContainer);
+        this.mapContainer.addChild(this.heywoodDistrictContainer);
         this.lineMove();
         this.setWatsonDistrict();
         this.setArasakaShoreline();
@@ -60,6 +62,7 @@ export class Map4000 extends MapFactory {
         this.setKabukiBorder();
         this.setNorthsideBorder();
         this.setCentreDistrict();
+        this.setHeywoodDistrict()
     }
 
     private lineMove() {
@@ -90,7 +93,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setCentreDistrict();
+            this.setHeywoodDistrict()
         });
     }
 
@@ -158,10 +161,28 @@ export class Map4000 extends MapFactory {
 
         g.beginFill(...GAME_COLORS.transparent)
         g.lineStyle(3, 'red');
-        g.drawPolygon(this.currentCords);
+        g.drawPolygon(CentreCords);
         g.endFill();
 
         this.centreDistrictContainer.addChild(g);
+    }
+
+    private setHeywoodDistrict() {
+        this.heywoodDistrictContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(this.currentCords);
+        g.endFill();
+
+        this.heywoodDistrictContainer.addChild(g);
     }
 
 
