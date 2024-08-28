@@ -1,7 +1,7 @@
 import {GAME_COLORS} from '../../../../config/styles';
 import {MapFactory} from '../MapFactory';
 import {
-    ArasakaShorelineLineCords, CentreCords, KabukiLineCords,
+    ArasakaShorelineLineCords, CentreCords, HeywoodDistrictCords, KabukiLineCords,
     LittleChinaLineCords, NorthsideCords,
     texturePathsMap4000,
     WatsonDistrictLineCords
@@ -179,7 +179,7 @@ export class Map4000 extends MapFactory {
 
         g.beginFill(...GAME_COLORS.transparent)
         g.lineStyle(3, 'red');
-        g.drawPolygon(this.currentCords);
+        g.drawPolygon(HeywoodDistrictCords);
         g.endFill();
 
         this.heywoodDistrictContainer.addChild(g);
