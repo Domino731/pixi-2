@@ -1,38 +1,27 @@
 import {GAME_COLORS} from '../../../../config/styles';
-import {MapIcon} from '../../components/MapIcon/MapIcon';
-import {MAP_ICON} from '../../components/MapIcon/MapIcon.const';
 import {MapFactory} from '../MapFactory';
-import {texturePathsMap4000} from './Map4000.const';
+import {
+    ArasakaShorelineLineCords, KabukiLineCords,
+    LittleChinaLineCords, NorthsideCords,
+    texturePathsMap4000,
+    WatsonDistrictLineCords
+} from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
 
 export class Map4000 extends MapFactory {
     private fooIcon: Container = null;
     private currentLine: Container = new Container();
+    private watsonDistrictContainer: Container = new Container();
+    private centreDistrictContainer: Container = new Container();
+    private arasakaShoreLine: Container = new Container();
+    private littleChinaContainer: Container = new Container();
+    private kabukiContainer: Container = new Container();
+    private northsideContainer: Container = new Container();
+
     private currentCords = [
-        3480, 471,
-        3786, 521,
-        3942, 613,
-        4234, 1349,
-        4128, 1428,
-        4069, 1557,
-        4069, 1661,
-        4001, 1752,
-        4005, 1771,
-        3750, 1870,
-        3614, 1992,
-        3614, 2164,
-        3573, 2221,
-        3573, 2356,
-        3515, 2446,
-        3320, 2458,
-        2807, 2458,
-        2671, 1964,
-        2048, 1775,
-        2128, 1142,
-        2586, 868,
-        2924, 836,
-        3102, 629
-    ];
+        2403, 2467,
+        2591, 2614
+    ]
 
     constructor() {
         super({
@@ -42,10 +31,20 @@ export class Map4000 extends MapFactory {
         });
         this.addChild(this.currentLine)
         this.mapContainer.addChild(this.currentLine);
-        // this.setDistricts();
-        // this.iconMove();
+        this.mapContainer.addChild(this.arasakaShoreLine);
+        this.mapContainer.addChild(this.littleChinaContainer);
+        this.mapContainer.addChild(this.kabukiContainer);
+        this.mapContainer.addChild(this.northsideContainer);
+        this.mapContainer.addChild(this.watsonDistrictContainer);
+        this.mapContainer.addChild(this.watsonDistrictContainer);
+        this.mapContainer.addChild(this.centreDistrictContainer);
         this.lineMove();
         this.setWatsonDistrict();
+        this.setArasakaShoreline();
+        this.setLittleChinaBorder();
+        this.setKabukiBorder();
+        this.setNorthsideBorder();
+        this.setCentreDistrict();
     }
 
     private lineMove() {
@@ -76,7 +75,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setWatsonDistrict();
+            this.setCentreDistrict();
         });
     }
 
@@ -113,8 +112,27 @@ export class Map4000 extends MapFactory {
         });
     }
 
+    // DISTRICTS
     private setWatsonDistrict() {
-        this.currentLine.removeChildren();
+        this.watsonDistrictContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(WatsonDistrictLineCords);
+        g.endFill();
+
+        this.watsonDistrictContainer.addChild(g);
+    }
+
+    private setCentreDistrict() {
+        this.centreDistrictContainer.removeChildren();
         const text = new Text('Watson', {
             fill: GAME_COLORS.yellow,
             stroke: GAME_COLORS.black2,
@@ -128,8 +146,9 @@ export class Map4000 extends MapFactory {
         g.drawPolygon(this.currentCords);
         g.endFill();
 
-        this.currentLine.addChild(g);
+        this.centreDistrictContainer.addChild(g);
     }
+
 
     private setDistricts() {
         this.setWatsonDistrict();
@@ -137,20 +156,11 @@ export class Map4000 extends MapFactory {
 
 
     private setArasakaShoreline() {
+        this.arasakaShoreLine.removeChildren();
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
-        g.drawPolygon([
-            2340, 853,
-            2480, 1061,
-            2447, 1147,
-            2502, 1241,
-            2593, 1240,
-            2863, 1730,
-            2433, 1969,
-            1773, 1790,
-            1870, 1150,
-        ]);
+        g.drawPolygon(ArasakaShorelineLineCords);
         g.endFill();
 
         const text = new Text('Arasaka waterfront', {
@@ -161,22 +171,15 @@ export class Map4000 extends MapFactory {
         });
         text.position.set(2270, 1400);
         g.addChild(text);
-        this.mapContainer.addChild(g);
+        this.arasakaShoreLine.addChild(g);
     }
 
     private setLittleChinaBorder() {
+        this.littleChinaContainer.removeChildren();
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
-        g.drawPolygon([
-            3310, 2360,
-            3140, 2360,
-            3167, 1741,
-            2863, 1730,
-            2433, 1969,
-            2544, 2444,
-            3250, 2444,
-        ]);
+        g.drawPolygon(LittleChinaLineCords);
         g.endFill();
 
         const text = new Text('Little china', {
@@ -188,35 +191,15 @@ export class Map4000 extends MapFactory {
         text.position.set(2840, 2080);
         g.addChild(text);
 
-        this.mapContainer.addChild(g);
+        this.littleChinaContainer.addChild(g);
     }
 
     private setKabukiBorder() {
+        this.kabukiContainer.removeChildren();
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
-        g.drawPolygon([
-            3310, 2360,
-            3140, 2360,
-            3167, 1741,
-            3113, 1683,
-            3084, 1583,
-            3184, 1523,
-            3281, 1527,
-
-            3371, 1473,
-            3477, 1557,
-            3451, 1667,
-            3483, 1739,
-            3507, 1864,
-            3357, 1989,
-            3357, 2180,
-            3310, 2230,
-            // 2863, 1730,
-            // 2433, 1969,
-            // 2544, 2444,
-            // 3250, 2444,
-        ]);
+        g.drawPolygon(KabukiLineCords);
         g.endFill();
 
         const text = new Text('Kabuki', {
@@ -227,43 +210,17 @@ export class Map4000 extends MapFactory {
         });
         text.position.set(3260, 1900);
         g.addChild(text);
-        this.mapContainer.addChild(g);
+        this.kabukiContainer.addChild(g);
     }
 
     private setNorthsideBorder() {
+        this.northsideContainer.removeChildren();
         const g = new Graphics();
         g.beginFill(0xFF0000, 0);
         g.lineStyle(3, 'red');
-        g.drawPolygon([
-            3227, 470,
-            3537, 528,
-            3681, 612,
-            3978, 1338,
-            3862, 1429,
-            3818, 1562,
-            3815, 1661,
-            3745, 1757,
-            3751, 1774,
-            3507, 1864,
-            3483, 1739,
-            3451, 1667,
-            3477, 1557,
-            3371, 1473,
-            3281, 1527,
-            3184, 1523,
-            3084, 1583,
-            3113, 1683,
-            3167, 1741,
-            2863, 1730,
-            2593, 1240,
-            2502, 1241,
-            2447, 1147, 2480, 1061,
-            2340, 853,
-            2670, 838,
-            2840, 628,
-
-
-        ]);
+        g.drawPolygon(
+            NorthsideCords
+        );
         g.endFill();
 
         const text = new Text('Northside', {
@@ -275,7 +232,7 @@ export class Map4000 extends MapFactory {
         text.position.set(3170, 1100);
         g.addChild(text);
 
-        this.mapContainer.addChild(g);
+        this.northsideContainer.addChild(g);
     }
 
 }
