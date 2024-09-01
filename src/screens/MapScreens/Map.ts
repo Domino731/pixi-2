@@ -29,14 +29,14 @@ export class CityMap extends Container {
         super();
         this.mapPanel = new MapPanel(this);
         this.navigation = new Navigation();
-        this.currentMap.position.set(-2300, -1200)
+        this.currentMap.position.set(-2900, -2600)
         this.addChild(this.currentMap);
         this.addChild(this.mapPanel);
         this.addChild(this.navigation);
 
         this.interactive = true;
         this.on('wheel', this.onScroll.bind(this));
-        this.currentMap.scale.set(1.594404900000001, 1.594404900000001)
+        this.currentMap.scale.set(0.8473321344609005, 0.8473321344609005)
     }
 
     private onScroll(event: WheelEvent): void {

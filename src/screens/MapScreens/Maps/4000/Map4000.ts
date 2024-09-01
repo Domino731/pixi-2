@@ -1,10 +1,10 @@
 import {GAME_COLORS} from '../../../../config/styles';
 import {MapFactory} from '../MapFactory';
 import {
-    ArasakaShorelineLineCords, CentreCords, HeywoodDistrictCords, KabukiLineCords,
+    ArasakaShorelineLineCords, CentreCords, CorporatePlaza, DowntownCords, Glen, HeywoodDistrictCords, KabukiLineCords,
     LittleChinaLineCords, NorthsideCords,
-    texturePathsMap4000,
-    WatsonDistrictLineCords
+    texturePathsMap4000, VistalDelRay,
+    WatsonDistrictLineCords, Wellsprings
 } from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
 
@@ -18,25 +18,23 @@ export class Map4000 extends MapFactory {
     private littleChinaContainer: Container = new Container();
     private kabukiContainer: Container = new Container();
     private northsideContainer: Container = new Container();
-
+    private downtownContainer: Container = new Container();
+    private corporatePlaza: Container = new Container();
+    private vistaDelRayContainer = new Container();
+    private wellspringsContainer = new Container();
+    private glenContainer = new Container();
+    private santoDomingoContainer = new Container();
     private currentCords = [
-        3725, 2762,
-        3753, 2879,
-        3969, 3074,
-        3987, 3107,
-        3356, 3965,
-        2654, 3984,
-        2364, 3863,
-        2408, 3073,
-        2442, 3037,
+        2903, 3050,
         3069, 3055,
         3131, 3198,
         3223, 3282,
         3363, 3282,
         3449, 3220,
-        3501, 3040,
-        3478, 2993,
-        3576, 2974,
+        3466, 3417,
+        3563, 3684,
+        3356, 3965,
+        2903, 3977,
     ]
 
     constructor() {
@@ -55,6 +53,12 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(this.watsonDistrictContainer);
         this.mapContainer.addChild(this.centreDistrictContainer);
         this.mapContainer.addChild(this.heywoodDistrictContainer);
+        this.mapContainer.addChild(this.downtownContainer);
+        this.mapContainer.addChild(this.corporatePlaza);
+        this.mapContainer.addChild(this.vistaDelRayContainer);
+        this.mapContainer.addChild(this.wellspringsContainer);
+        this.mapContainer.addChild(this.glenContainer);
+        this.mapContainer.addChild(this.santoDomingoContainer);
         this.lineMove();
         this.setWatsonDistrict();
         this.setArasakaShoreline();
@@ -62,7 +66,13 @@ export class Map4000 extends MapFactory {
         this.setKabukiBorder();
         this.setNorthsideBorder();
         this.setCentreDistrict();
-        this.setHeywoodDistrict()
+        this.setHeywoodDistrict();
+        this.setDowntown();
+        this.setCorporatePlaza();
+        this.setVistaDelRay();
+        this.setWellsprings();
+        this.setGlen();
+        this.setSantoDomingo();
     }
 
     private lineMove() {
@@ -93,7 +103,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setHeywoodDistrict()
+            this.setSantoDomingo();
         });
     }
 
@@ -183,6 +193,98 @@ export class Map4000 extends MapFactory {
         g.endFill();
 
         this.heywoodDistrictContainer.addChild(g);
+    }
+
+    private setDowntown() {
+        this.downtownContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(DowntownCords);
+        g.endFill();
+
+        this.downtownContainer.addChild(g);
+    }
+
+    private setCorporatePlaza() {
+        this.corporatePlaza.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(CorporatePlaza);
+        g.endFill();
+
+        this.corporatePlaza.addChild(g);
+    }
+
+    private setVistaDelRay() {
+        this.vistaDelRayContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(2, 'red');
+        g.drawPolygon(VistalDelRay);
+        g.endFill();
+
+        this.vistaDelRayContainer.addChild(g);
+    }
+
+    private setWellsprings() {
+        this.wellspringsContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Wellsprings);
+        g.endFill();
+
+        this.wellspringsContainer.addChild(g);
+    }
+
+    private setGlen() {
+        this.glenContainer.removeChildren();
+        const g = new Graphics();
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Glen);
+        g.endFill();
+        this.glenContainer.addChild(g);
+    }
+
+    private setSantoDomingo() {
+        this.santoDomingoContainer.removeChildren();
+        const g = new Graphics();
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(this.currentCords);
+        g.endFill();
+        this.santoDomingoContainer.addChild(g);
     }
 
 
