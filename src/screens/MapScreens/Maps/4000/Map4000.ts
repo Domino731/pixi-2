@@ -1,10 +1,21 @@
 import {GAME_COLORS} from '../../../../config/styles';
 import {MapFactory} from '../MapFactory';
 import {
-    ArasakaShorelineLineCords, CentreCords, CorporatePlaza, DowntownCords, Glen, HeywoodDistrictCords, KabukiLineCords,
-    LittleChinaLineCords, NorthsideCords,
-    texturePathsMap4000, VistalDelRay,
-    WatsonDistrictLineCords, Wellsprings
+    ArasakaShorelineLineCords,
+    Arroro,
+    CentreCords,
+    CorporatePlaza,
+    DowntownCords,
+    Glen,
+    HeywoodDistrictCords,
+    KabukiLineCords,
+    LittleChinaLineCords, MorroRock,
+    NorthsideCords, RanchoCoronado,
+    SantoDomingo,
+    texturePathsMap4000,
+    VistalDelRay,
+    WatsonDistrictLineCords,
+    Wellsprings
 } from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
 
@@ -24,17 +35,19 @@ export class Map4000 extends MapFactory {
     private wellspringsContainer = new Container();
     private glenContainer = new Container();
     private santoDomingoContainer = new Container();
+    private arroyoContainer = new Container();
+    private ranchoCoronadoContainer = new Container();
+    private morroRockContainer = new Container();
     private currentCords = [
-        2903, 3050,
-        3069, 3055,
-        3131, 3198,
-        3223, 3282,
-        3363, 3282,
-        3449, 3220,
-        3466, 3417,
-        3563, 3684,
-        3356, 3965,
-        2903, 3977,
+        713, 2110,
+        2062, 2110,
+        2321, 2276,
+        2321, 2431,
+        2063, 2863,
+        1424, 3453,
+        718, 3442,
+        588, 3294,
+        588, 2257
     ]
 
     constructor() {
@@ -59,6 +72,9 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(this.wellspringsContainer);
         this.mapContainer.addChild(this.glenContainer);
         this.mapContainer.addChild(this.santoDomingoContainer);
+        this.mapContainer.addChild(this.arroyoContainer);
+        this.mapContainer.addChild(this.ranchoCoronadoContainer);
+        this.mapContainer.addChild(this.morroRockContainer);
         this.lineMove();
         this.setWatsonDistrict();
         this.setArasakaShoreline();
@@ -73,6 +89,9 @@ export class Map4000 extends MapFactory {
         this.setWellsprings();
         this.setGlen();
         this.setSantoDomingo();
+        this.setArroyo();
+        this.setRanchoCoronado();
+        this.setMorroRock();
     }
 
     private lineMove() {
@@ -103,7 +122,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setSantoDomingo();
+            this.setMorroRock();
         });
     }
 
@@ -282,11 +301,40 @@ export class Map4000 extends MapFactory {
         const g = new Graphics();
         g.beginFill(...GAME_COLORS.transparent)
         g.lineStyle(3, 'red');
-        g.drawPolygon(this.currentCords);
+        g.drawPolygon(SantoDomingo);
         g.endFill();
         this.santoDomingoContainer.addChild(g);
     }
 
+    private setArroyo() {
+        this.arroyoContainer.removeChildren();
+        const g = new Graphics();
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Arroro);
+        g.endFill();
+        this.arroyoContainer.addChild(g);
+    }
+
+    private setRanchoCoronado() {
+        this.ranchoCoronadoContainer.removeChildren();
+        const g = new Graphics();
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(RanchoCoronado);
+        g.endFill();
+        this.ranchoCoronadoContainer.addChild(g);
+    }
+
+    private setMorroRock() {
+        this.morroRockContainer.removeChildren();
+        const g = new Graphics();
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(MorroRock);
+        g.endFill();
+        this.morroRockContainer.addChild(g);
+    }
 
     private setDistricts() {
         this.setWatsonDistrict();

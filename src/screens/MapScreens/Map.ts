@@ -29,7 +29,7 @@ export class CityMap extends Container {
         super();
         this.mapPanel = new MapPanel(this);
         this.navigation = new Navigation();
-        this.currentMap.position.set(-2900, -2600)
+        this.currentMap.position.set(-100, -1700)
         this.addChild(this.currentMap);
         this.addChild(this.mapPanel);
         this.addChild(this.navigation);
