@@ -3,19 +3,19 @@ import {MapFactory} from '../MapFactory';
 import {
     ArasakaShorelineLineCords,
     Arroro,
-    CentreCords,
+    CentreCords, CharterHill,
     CorporatePlaza,
     DowntownCords,
     Glen,
-    HeywoodDistrictCords,
+    HeywoodDistrictCords, Japantown,
     KabukiLineCords,
-    LittleChinaLineCords, MorroRock,
+    LittleChinaLineCords, MorroRock, Northoak,
     NorthsideCords, RanchoCoronado,
     SantoDomingo,
     texturePathsMap4000,
     VistalDelRay,
     WatsonDistrictLineCords,
-    Wellsprings
+    Wellsprings, Westbrook
 } from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
 
@@ -38,16 +38,27 @@ export class Map4000 extends MapFactory {
     private arroyoContainer = new Container();
     private ranchoCoronadoContainer = new Container();
     private morroRockContainer = new Container();
+    private westbrookContainer = new Container();
+    private japantownContainer = new Container();
+    private northoakContainer = new Container();
+    private charterHillContainer = new Container();
     private currentCords = [
-        713, 2110,
-        2062, 2110,
-        2321, 2276,
-        2321, 2431,
-        2063, 2863,
-        1424, 3453,
-        718, 3442,
-        588, 3294,
-        588, 2257
+        4204, 2607,
+        4204, 2607,
+        4299, 2740,
+        4404, 2810,
+        4613, 2824,
+        4846, 3073,
+        5015, 3462,
+        4904, 3353,
+        4538, 3412,
+        4440, 3392,
+        4142, 3179,
+        4117, 3204,
+        3987, 3107,
+        3969, 3074,
+        4112, 2679,
+        4095, 2655,
     ]
 
     constructor() {
@@ -75,6 +86,10 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(this.arroyoContainer);
         this.mapContainer.addChild(this.ranchoCoronadoContainer);
         this.mapContainer.addChild(this.morroRockContainer);
+        this.mapContainer.addChild(this.westbrookContainer);
+        this.mapContainer.addChild(this.japantownContainer);
+        this.mapContainer.addChild(this.northoakContainer);
+        this.mapContainer.addChild(this.charterHillContainer);
         this.lineMove();
         this.setWatsonDistrict();
         this.setArasakaShoreline();
@@ -92,6 +107,10 @@ export class Map4000 extends MapFactory {
         this.setArroyo();
         this.setRanchoCoronado();
         this.setMorroRock();
+        this.setWestbrookDistrict();
+        this.setJapantown();
+        this.setNorthoak();
+        this.setCharterHill();
     }
 
     private lineMove() {
@@ -122,7 +141,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setMorroRock();
+            this.setCharterHill();
         });
     }
 
@@ -157,6 +176,60 @@ export class Map4000 extends MapFactory {
                     console.log(`Key pressed: ${event.key}`);
             }
         });
+    }
+
+    private setCharterHill() {
+        this.charterHillContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(CharterHill);
+        g.endFill();
+
+        this.charterHillContainer.addChild(g);
+    }
+
+    private setNorthoak() {
+        this.northoakContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Northoak);
+        g.endFill();
+
+        this.northoakContainer.addChild(g);
+    }
+
+    private setJapantown() {
+        this.japantownContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Japantown);
+        g.endFill();
+
+        this.japantownContainer.addChild(g);
+    }
+
+    private setWestbrookDistrict() {
+        this.westbrookContainer.removeChildren();
+        const text = new Text('Watson', {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(Westbrook);
+        g.endFill();
+
+        this.westbrookContainer.addChild(g);
     }
 
     // DISTRICTS
