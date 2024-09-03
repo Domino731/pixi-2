@@ -3,19 +3,19 @@ import {MapFactory} from '../MapFactory';
 import {
     ArasakaShorelineLineCords,
     Arroro,
-    CentreCords, CharterHill,
-    CorporatePlaza,
+    CentreCords, CharterHill, CoastView,
+    CorporatePlaza, Dogtown,
     DowntownCords,
     Glen,
     HeywoodDistrictCords, Japantown,
     KabukiLineCords,
     LittleChinaLineCords, MorroRock, Northoak,
-    NorthsideCords, RanchoCoronado,
+    NorthsideCords, Pacifica, RanchoCoronado,
     SantoDomingo,
     texturePathsMap4000,
     VistalDelRay,
     WatsonDistrictLineCords,
-    Wellsprings, Westbrook
+    Wellsprings, Westbrook, WindWestEstateContainer
 } from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
 
@@ -42,23 +42,56 @@ export class Map4000 extends MapFactory {
     private japantownContainer = new Container();
     private northoakContainer = new Container();
     private charterHillContainer = new Container();
+    private pacificaContainer = new Container();
+    private coastViewContainer = new Container();
+    private windWestEstateContainer = new Container();
+    private dogtownContainer = new Container();
     private currentCords = [
-        4204, 2607,
-        4204, 2607,
-        4299, 2740,
-        4404, 2810,
-        4613, 2824,
-        4846, 3073,
-        5015, 3462,
-        4904, 3353,
-        4538, 3412,
-        4440, 3392,
-        4142, 3179,
-        4117, 3204,
-        3987, 3107,
-        3969, 3074,
-        4112, 2679,
-        4095, 2655,
+        3518, 4222, //
+        3649, 4328,
+        3549, 4561,
+        3317, 4619,
+        3323, 4750,
+        3231, 4835,
+        2965, 4944,
+        2764, 5137,
+        2376, 5018,
+        2219, 4870,
+        2514, 4797,
+        2622, 4749,
+        2596, 4720,
+        2634, 4704,
+        2670, 4700,
+        2728, 4644,
+        2820, 4559,
+        2806, 4546,
+        2834, 4522,
+        2862, 4550,
+        2878, 4536,
+        2844, 4503,
+        2843, 4488,
+        2873, 4462,
+        2895, 4493,
+        2915, 4471,
+        2936, 4488,
+        2964, 4482,
+        3005, 4444,
+        2987, 4422,
+        3025, 4393,
+        3055, 4423,
+        3091, 4430,
+        3191, 4342,
+        3211, 4294,
+        3226, 4291,
+        3245, 4249,
+        3242, 4223,
+        3257, 4187,
+        3271, 4219,
+        3309, 4192,
+        3351, 4182,
+        3383, 4157,
+        3416, 4157,
+        3518, 4222,
     ]
 
     constructor() {
@@ -90,6 +123,10 @@ export class Map4000 extends MapFactory {
         this.mapContainer.addChild(this.japantownContainer);
         this.mapContainer.addChild(this.northoakContainer);
         this.mapContainer.addChild(this.charterHillContainer);
+        this.mapContainer.addChild(this.pacificaContainer);
+        this.mapContainer.addChild(this.coastViewContainer);
+        this.mapContainer.addChild(this.windWestEstateContainer)
+        this.mapContainer.addChild(this.dogtownContainer)
         this.lineMove();
         this.setWatsonDistrict();
         this.setArasakaShoreline();
@@ -111,6 +148,10 @@ export class Map4000 extends MapFactory {
         this.setJapantown();
         this.setNorthoak();
         this.setCharterHill();
+        this.setPacifica();
+        this.setCoastView();
+        this.setWindWestEstate();
+        this.setDogtown()
     }
 
     private lineMove() {
@@ -141,7 +182,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setCharterHill();
+            this.setDogtown()
         });
     }
 
@@ -176,6 +217,54 @@ export class Map4000 extends MapFactory {
                     console.log(`Key pressed: ${event.key}`);
             }
         });
+    }
+
+    private setDogtown() {
+        this.dogtownContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(Dogtown);
+        g.endFill();
+
+        this.dogtownContainer.addChild(g);
+    }
+
+    private setWindWestEstate() {
+        this.windWestEstateContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(WindWestEstateContainer);
+        g.endFill();
+
+        this.windWestEstateContainer.addChild(g);
+    }
+
+    private setCoastView() {
+        this.coastViewContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(1, 'red');
+        g.drawPolygon(CoastView);
+        g.endFill();
+
+        this.coastViewContainer.addChild(g);
+    }
+
+    private setPacifica() {
+        this.charterHillContainer.removeChildren();
+        const g = new Graphics();
+
+        g.beginFill(...GAME_COLORS.transparent)
+        g.lineStyle(3, 'red');
+        g.drawPolygon(Pacifica);
+        g.endFill();
+
+        this.charterHillContainer.addChild(g);
     }
 
     private setCharterHill() {
