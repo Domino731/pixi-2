@@ -535,3 +535,12 @@ export const Dogtown = [
     3416, 4157,
     3518, 4222,
 ]
+
+export const DistrictNamesCords = {
+    watson: {x: 3146, y: 1469},
+    westbrook: {x: 4242, y: 2342},
+    cityCentre: {x: 2936, y: 2832},
+    heywood: {x: 3131, y: 3499},
+    santoDomingo: {x: 4089, y: 3820},
+    pacifica: {x: 2696, y: 4484}
+}

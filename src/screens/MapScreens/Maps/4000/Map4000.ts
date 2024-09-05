@@ -4,7 +4,7 @@ import {
     ArasakaShorelineLineCords,
     Arroro,
     CentreCords, CharterHill, CoastView,
-    CorporatePlaza, Dogtown,
+    CorporatePlaza, DistrictNamesCords, Dogtown,
     DowntownCords,
     Glen,
     HeywoodDistrictCords, Japantown,
@@ -18,6 +18,7 @@ import {
     Wellsprings, Westbrook, WindWestEstateContainer
 } from './Map4000.const';
 import {Container, Graphics, Text} from 'pixi.js';
+import {GetDistrictNameProps} from "./Map4000.types";
 
 export class Map4000 extends MapFactory {
     private fooIcon: Container = null;
@@ -46,52 +47,9 @@ export class Map4000 extends MapFactory {
     private coastViewContainer = new Container();
     private windWestEstateContainer = new Container();
     private dogtownContainer = new Container();
+
     private currentCords = [
-        3518, 4222, //
-        3649, 4328,
-        3549, 4561,
-        3317, 4619,
-        3323, 4750,
-        3231, 4835,
-        2965, 4944,
-        2764, 5137,
-        2376, 5018,
-        2219, 4870,
-        2514, 4797,
-        2622, 4749,
-        2596, 4720,
-        2634, 4704,
-        2670, 4700,
-        2728, 4644,
-        2820, 4559,
-        2806, 4546,
-        2834, 4522,
-        2862, 4550,
-        2878, 4536,
-        2844, 4503,
-        2843, 4488,
-        2873, 4462,
-        2895, 4493,
-        2915, 4471,
-        2936, 4488,
-        2964, 4482,
-        3005, 4444,
-        2987, 4422,
-        3025, 4393,
-        3055, 4423,
-        3091, 4430,
-        3191, 4342,
-        3211, 4294,
-        3226, 4291,
-        3245, 4249,
-        3242, 4223,
-        3257, 4187,
-        3271, 4219,
-        3309, 4192,
-        3351, 4182,
-        3383, 4157,
-        3416, 4157,
-        3518, 4222,
+        3689, 3232
     ]
 
     constructor() {
@@ -182,7 +140,7 @@ export class Map4000 extends MapFactory {
             }
             this.currentCords[this.currentCords.length - 1] = lastPointY;
             this.currentCords[this.currentCords.length - 2] = lastPointX;
-            this.setDogtown()
+            this.setPacifica();
         });
     }
 
@@ -263,7 +221,10 @@ export class Map4000 extends MapFactory {
         g.lineStyle(3, 'red');
         g.drawPolygon(Pacifica);
         g.endFill();
-
+        g.addChild(this.getDistrictName({
+            ...DistrictNamesCords.pacifica,
+            name: "Pacifica"
+        }))
         this.charterHillContainer.addChild(g);
     }
 
@@ -305,20 +266,28 @@ export class Map4000 extends MapFactory {
 
     private setWestbrookDistrict() {
         this.westbrookContainer.removeChildren();
-        const text = new Text('Watson', {
-            fill: GAME_COLORS.yellow,
-            stroke: GAME_COLORS.black2,
-            strokeThickness: 2,
-            fontSize: 22,
-        });
         const g = new Graphics();
 
         g.beginFill(...GAME_COLORS.transparent)
         g.lineStyle(3, 'red');
         g.drawPolygon(Westbrook);
         g.endFill();
-
+        g.addChild(this.getDistrictName({
+            ...DistrictNamesCords.westbrook,
+            name: "Westbrook"
+        }))
         this.westbrookContainer.addChild(g);
+    }
+
+    private getDistrictName({x, y, name}: GetDistrictNameProps): Text {
+        const text = new Text(name, {
+            fill: GAME_COLORS.yellow,
+            stroke: GAME_COLORS.black2,
+            strokeThickness: 2,
+            fontSize: 22,
+        });
+        text.position.set(x, y);
+        return text;
     }
 
     // DISTRICTS
@@ -336,7 +305,11 @@ export class Map4000 extends MapFactory {
         g.lineStyle(3, 'red');
         g.drawPolygon(WatsonDistrictLineCords);
         g.endFill();
-
+        g.addChild(this.getDistrictName({
+            x: DistrictNamesCords.watson.x,
+            y: DistrictNamesCords.watson.y,
+            name: "Watson"
+        }))
         this.watsonDistrictContainer.addChild(g);
     }
 
@@ -354,7 +327,10 @@ export class Map4000 extends MapFactory {
         g.lineStyle(3, 'red');
         g.drawPolygon(CentreCords);
         g.endFill();
-
+        g.addChild(this.getDistrictName({
+            ...DistrictNamesCords.cityCentre,
+            name: "City Centre"
+        }))
         this.centreDistrictContainer.addChild(g);
     }
 
@@ -372,7 +348,10 @@ export class Map4000 extends MapFactory {
         g.lineStyle(3, 'red');
         g.drawPolygon(HeywoodDistrictCords);
         g.endFill();
-
+        g.addChild(this.getDistrictName({
+            ...DistrictNamesCords.heywood,
+            name: "Heywood"
+        }))
         this.heywoodDistrictContainer.addChild(g);
     }
 
@@ -465,6 +444,10 @@ export class Map4000 extends MapFactory {
         g.lineStyle(3, 'red');
         g.drawPolygon(SantoDomingo);
         g.endFill();
+        g.addChild(this.getDistrictName({
+            ...DistrictNamesCords.santoDomingo,
+            name: "Santo Domingo"
+        }))
         this.santoDomingoContainer.addChild(g);
     }
 
