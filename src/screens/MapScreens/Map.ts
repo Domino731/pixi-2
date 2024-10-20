@@ -6,10 +6,12 @@ import {Map1000} from './Maps/1000/Map1000';
 import {Map200} from './Maps/200/map200';
 import {Map4000} from './Maps/4000/Map4000';
 import {Navigation} from './Navigation';
+import {MapDebug} from "./components/MapDebug";
 
 export class CityMap extends Container {
     private mapPanel: MapPanel;
     private navigation: Navigation;
+    private mapDebug: MapDebug;
 
     private maps = {
         large: new Map4000(),
@@ -30,10 +32,11 @@ export class CityMap extends Container {
         this.mapPanel = new MapPanel(this);
         this.navigation = new Navigation();
         this.currentMap.position.set(-1200, -3200)
+        this.mapDebug = new MapDebug();
         this.addChild(this.currentMap);
         this.addChild(this.mapPanel);
         this.addChild(this.navigation);
-
+        this.addChild(this.mapDebug)
         this.interactive = true;
         this.on('wheel', this.onScroll.bind(this));
         this.currentMap.scale.set(0.8473321344609005, 0.8473321344609005)
